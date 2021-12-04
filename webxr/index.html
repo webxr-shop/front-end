@@ -2,33 +2,35 @@
 <html lang="en">
 
 <head>
-
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <title>AR Viewer</title>
-
 </head>
-
 <body>
     <script src="../libs/fas.js"></script>
     <script type="module">
         import { App } from './app.js';
-        import { HttpService } from '../services/http-service.js';
 
         document.addEventListener("DOMContentLoaded", function(){
             const app = new App();
-            var serv = new HttpService();
-            var respon = serv.get("http://ae52-2804-14d-5e83-82f7-453d-86f9-aebb-ac2e.sa.ngrok.io/");
-            console.log(respon);
             window.app = app;
         });
     </script>
 
   <!-- Page Content -->
     <div id="viewer" class="container">
+        <button id="BOTAO" class="ar-button"><i class="fas fa-camera"></i></button>
         <button class="ar-button" onclick="window.app.showChair(1);"><i class="fas fa-camera"></i></button>
     </div>
 
+    <script type="module">
+        import { TesteService } from '../services/teste.js';
+        document.getElementById("BOTAO").onclick=function(){
+            console.log('clicou');
+            var serv = new TesteService();
+            serv.importTeste();
+        }
+    </script>
 </body>
 
 </html>
