@@ -192,7 +192,7 @@ class App{
         }
     }
 
-    requestHitTestSource(){
+    requestHitTestSource(){// print hit teste
         const self = this;
 
         const session = this.renderer.xr.getSession();
@@ -219,7 +219,7 @@ class App{
 
     }
 
-    getHitTestResults( frame ){
+    getHitTestResults( frame ){// print hit teste
         const hitTestResults = frame.getHitTestResults( this.hitTestSource );
 
         if ( hitTestResults.length ) {
