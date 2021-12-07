@@ -107,7 +107,7 @@ class App{
     }
 
 	showChair(id){
-        var div = document.getElementById("teste");
+        var div = document.getElementById("showAr");
         div.hidden = true;
 
         this.initAR();
