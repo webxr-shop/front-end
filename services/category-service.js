@@ -23,4 +23,14 @@ export class CategoryService {
                 throw new Error(erro);
             });
     }
+
+    listCategories(data) {
+        return this._http
+            .post("http://localhost:3333/models/category/name", data)
+            .then((res) => res)
+            .catch((erro) => {
+                console.log(erro);
+                throw new Error(erro);
+            });
+    }
 }

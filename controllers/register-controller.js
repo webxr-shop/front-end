@@ -1,5 +1,8 @@
+import { RegisterService } from "../services/register-service.js";
+
 export class RegisterController {
     register(e) {
+        let registerService = new RegisterService();
         e.preventDefault();
 
         let data = {
@@ -9,6 +12,6 @@ export class RegisterController {
             password: e.target[3].value,
         };
 
-        newClient(data);
+        registerService.newClient(data);
     }
 }

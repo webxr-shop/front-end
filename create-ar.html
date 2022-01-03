@@ -10,17 +10,32 @@
         <meta name="description" content="" />
         <meta name="author" content="" />
         <title>Criar AR - Plataforma WebXR</title>
-        <link
-            href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css"
-            rel="stylesheet"
-        />
+        <link href="css/model-viewer.css" rel="stylesheet" />
         <link href="css/styles.css" rel="stylesheet" />
         <script
             src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js"
             crossorigin="anonymous"
         ></script>
+
+        <!-- The following libraries and polyfills are recommended to maximize browser support -->
+        <!-- NOTE: you must adjust the paths as appropriate for your project -->
+
+        <!-- 🚨 REQUIRED: Web Components polyfill to support Edge and Firefox < 63 -->
+        <script src="https://unpkg.com/@webcomponents/webcomponentsjs@2.1.3/webcomponents-loader.js"></script>
+
+        <!-- 💁 OPTIONAL: Intersection Observer polyfill for better performance in Safari and IE11 -->
+        <script src="https://unpkg.com/intersection-observer@0.5.1/intersection-observer.js"></script>
+
+        <!-- 💁 OPTIONAL: Resize Observer polyfill improves resize behavior in non-Chrome browsers -->
+        <script src="https://unpkg.com/resize-observer-polyfill@1.5.1/dist/ResizeObserver.js"></script>
+
+        <!-- 💁 OPTIONAL: Fullscreen polyfill is required for experimental AR features in Canary -->
+        <script src="https://unpkg.com/fullscreen-polyfill@1.0.2/dist/fullscreen.polyfill.js"></script>
+
+        <!-- 💁 OPTIONAL: Include prismatic.js for Magic Leap support -->
+        <!-- <script src="https://unpkg.com/@magicleap/prismatic@0.18.2/prismatic.min.js"></script> -->
     </head>
-    <body class="sb-nav-fixed" onload="exists_token()">
+    <body id="body" class="sb-nav-fixed">
         <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
             <!-- Navbar Brand-->
             <a class="navbar-brand ps-3" href="index.html">Plataforma WebXR</a>
@@ -147,29 +162,16 @@
                             <div class="col-lg-7">
                                 <div class="card border-0 rounded-lg mt-5">
                                     <div class="card-body">
-                                        <form>
+                                        <form id="forms">
                                             <div class="row mb-3">
                                                 <div class="col-md-9">
                                                     <div class="form-floating">
                                                         <select
+                                                            required
                                                             class="form-select"
                                                             id="selectCategory"
                                                             aria-label="Categoria"
-                                                        >
-                                                            <option selected>
-                                                                Selecione a
-                                                                categoria
-                                                            </option>
-                                                            <option value="1">
-                                                                1
-                                                            </option>
-                                                            <option value="2">
-                                                                2
-                                                            </option>
-                                                            <option value="3">
-                                                                3
-                                                            </option>
-                                                        </select>
+                                                        ></select>
                                                         <label
                                                             for="selectCategory"
                                                             >Categoria</label
@@ -193,6 +195,7 @@
                                             </div>
                                             <div class="form-floating mb-3">
                                                 <input
+                                                    required
                                                     class="form-control"
                                                     id="inputNameCategory"
                                                     type="text"
@@ -211,6 +214,7 @@
                                                         "
                                                     >
                                                         <input
+                                                            required
                                                             class="form-control"
                                                             id="inputWidth"
                                                             type="number"
@@ -224,6 +228,7 @@
                                                 <div class="col-md-4">
                                                     <div class="form-floating">
                                                         <input
+                                                            required
                                                             class="form-control"
                                                             id="inputHeight"
                                                             type="number"
@@ -237,6 +242,7 @@
                                                 <div class="col-md-4">
                                                     <div class="form-floating">
                                                         <input
+                                                            required
                                                             class="form-control"
                                                             id="inputLength"
                                                             type="number"
@@ -257,11 +263,30 @@
                                                     3D</label
                                                 >
                                                 <input
+                                                    required
                                                     class="form-control"
                                                     type="file"
-                                                    id="formModel"
+                                                    id="formFile"
                                                 />
                                             </div>
+                                            <div class="mt-4 mb-0">
+                                                <p hidden id="preview">
+                                                    <model-viewer
+                                                        background-color="#"
+                                                        camera-orbit="-20deg 75deg 2m"
+                                                        environment-image="../assets/hdr/studio_small_07_1k.hdr"
+                                                        shadow-intensity="1"
+                                                        stage-light-intensity="3"
+                                                        environment-intensity="2"
+                                                        auto-rotate
+                                                        camera-controls
+                                                        src="../assets/models/chair1.glb"
+                                                        alt="Modelo 3D"
+                                                    >
+                                                    </model-viewer>
+                                                </p>
+                                            </div>
+
                                             <div class="row mt-4 mb-3">
                                                 <div class="col-md-6">
                                                     <div class="d-grid">
@@ -278,15 +303,16 @@
                                                 </div>
                                                 <div class="col-md-6">
                                                     <div class="d-grid">
-                                                        <a
+                                                        <button
+                                                            type="submit"
                                                             class="
                                                                 btn
                                                                 btn-primary
                                                                 btn-block
                                                             "
-                                                            href="category.html"
-                                                            >Gerar AR</a
                                                         >
+                                                            Gerar AR
+                                                        </button>
                                                     </div>
                                                 </div>
                                             </div>
@@ -322,22 +348,78 @@
                 </footer>
             </div>
         </div>
+        <script>
+            function readModel() {
+                if (this.files && this.files[0]) {
+                    var file = new FileReader();
+                    file.onload = function (e) {
+                        let model = document.getElementById("preview");
+                        model.src = e.target.result;
+                        model.hidden = false;
+                        window.base64 = file.result;
+                    };
+
+                    file.readAsDataURL(this.files[0]);
+                }
+            }
+            var models = document.getElementById("formFile");
+            if (models) {
+                models.addEventListener("change", readModel, false);
+            }
+        </script>
         <script
             src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
             crossorigin="anonymous"
         ></script>
         <script src="js/scripts.js"></script>
-        <script
-            src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js"
-            crossorigin="anonymous"
-        ></script>
-        <script src="assets/demo/chart-area-demo.js"></script>
-        <script src="assets/demo/chart-bar-demo.js"></script>
-        <script
-            src="https://cdn.jsdelivr.net/npm/simple-datatables@latest"
-            crossorigin="anonymous"
-        ></script>
-        <script src="js/datatables-simple-demo.js"></script>
         <script src="./controllers/auth-controller.js"></script>
+        <script type="module">
+            import { CreateARController } from "./controllers/create-ar-controller.js";
+            import {
+                token,
+                delete_token,
+            } from "./controllers/auth-controller-din.js";
+            let createARController = new CreateARController();
+
+            document.getElementById("body").onload = function () {
+                token();
+                createARController.getCategories();
+            };
+        </script>
+
+        <script type="module">
+            import { CreateARController } from "./controllers/create-ar-controller.js";
+            let createARController = new CreateARController();
+            let form = document.getElementById("forms");
+            form.addEventListener("submit", (event) => {
+                event.preventDefault();
+                document.getElementById("formFile");
+                let data = {
+                    category: event.target[0].value,
+                    name: event.target[1].value,
+                    width: event.target[2].value,
+                    height: event.target[3].value,
+                    length: event.target[4].value,
+                    model: window.base64,
+                    token: localStorage.getItem("token"),
+                };
+                console.log(data);
+                createARController.create(data);
+            });
+        </script>
+
+        <!-- 💁 Include both scripts below to support all browsers! -->
+
+        <!-- Loads <model-viewer> for modern browsers: -->
+        <script
+            type="module"
+            src="https://unpkg.com/@google/model-viewer/dist/model-viewer.js"
+        ></script>
+
+        <!-- Loads <model-viewer> for old browsers like IE11: -->
+        <script
+            nomodule
+            src="https://unpkg.com/@google/model-viewer/dist/model-viewer-legacy.js"
+        ></script>
     </body>
 </html>
