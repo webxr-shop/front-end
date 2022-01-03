@@ -7,3 +7,13 @@ window.addEventListener("DOMContentLoaded", (event) => {
         new simpleDatatables.DataTable(datatablesSimple);
     }
 });
+
+new simpleDatatables.DataTable("#datatablesSimple", {
+    labels: {
+        placeholder: "Pesquisar...",
+        perPage: "{select} por página",
+        noRows: "Nenhum resultado encontrado",
+        info: "Exibindo {start} a {end} de {rows} resultados",
+        noResults: "Nenhum resultado encontrado"
+    },
+});

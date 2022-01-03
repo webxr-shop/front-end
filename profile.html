@@ -9,21 +9,17 @@
         />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <title>Nome da categoria - Plataforma WebXR</title>
-        <link
-            href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css"
-            rel="stylesheet"
-        />
+        <title>Perfil - Plataforma WebXR</title>
         <link href="css/styles.css" rel="stylesheet" />
         <script
             src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js"
             crossorigin="anonymous"
         ></script>
     </head>
-    <body class="sb-nav-fixed" onload="exists_token()">
+    <body class="sb-nav-fixed">
         <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
             <!-- Navbar Brand-->
-            <a class="navbar-brand ps-3" href="index.html">Plataforma WebXR</a>
+            <a class="navbar-brand ps-3" href="index.html">Perfil</a>
             <!-- Sidebar Toggle-->
             <button
                 class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0"
@@ -139,126 +135,126 @@
                             <li class="breadcrumb-item">
                                 <a href="index.html">Dashboard</a>
                             </li>
-                            <li class="breadcrumb-item">
-                                <a href="models.html">Modelos</a>
-                            </li>
                             <li class="breadcrumb-item active">
-                                Nome da categoria
+                                Perfil
                             </li>
                         </ol>
-                        <div class="card mb-4">
-                            <div class="card-body">
-                                <a
-                                    target="_blank"
-                                    href="https://datatables.net/"
-                                    >Documentação tabela</a
-                                >
-                            </div>
-                        </div>
-                        <div class="card mb-4">
-                            <div class="card-header">
-                                <i class="fas fa-table me-1"></i>
-                                Nome da categoria
-                            </div>
-                            <div class="card-body">
-                                <table id="datatablesSimple">
-                                    <thead>
-                                        <tr>
-                                            <th>ID</th>
-                                            <th>Nome</th>
-                                            <th>Visualizações</th>
-                                            <th>Opções</th>
-                                        </tr>
-                                    </thead>
-                                    <tfoot>
-                                        <tr>
-                                            <th>ID</th>
-                                            <th>Nome</th>
-                                            <th>Visualizações</th>
-                                            <th>Opções</th>
-                                        </tr>
-                                    </tfoot>
-                                    <tbody>
-                                        <tr>
-                                            <td>001</td>
-                                            <td>Sofá</td>
-                                            <td>1000</td>
-                                            <td>
-                                                <div class="row">
+                    </div>
+                    <div class="container">
+                        <div class="row justify-content-center">
+                            <div class="col-lg-7">
+                                <div class="card border-0 rounded-lg mt-5">
+                                    <div class="card-body">
+                                        <form id="forms">
+                                            <div class="row mb-3">
+                                                <div class="col-md-6">
                                                     <div
                                                         class="
-                                                            col-2
-                                                            d-flex
-                                                            align-items-center
+                                                            form-floating
+                                                            mb-3 mb-md-0
                                                         "
                                                     >
-                                                        <a href="#">
-                                                            <div
-                                                                class="
-                                                                    sb-nav-link-icon
-                                                                "
-                                                            >
-                                                                <i
-                                                                    class="
-                                                                        fas
-                                                                        fa-link
-                                                                    "
-                                                                ></i>
-                                                                Visualizar
-                                                            </div>
-                                                        </a>
-                                                    </div>
-                                                    <div
-                                                        class="
-                                                            col-2
-                                                            d-flex
-                                                            align-items-center
-                                                        "
-                                                    >
-                                                        <a href="#">
-                                                            <div
-                                                                class="
-                                                                    sb-nav-link-icon
-                                                                "
-                                                            >
-                                                                <i
-                                                                    class="
-                                                                        fas
-                                                                        fa-edit
-                                                                    "
-                                                                ></i>
-                                                                Editar
-                                                            </div>
-                                                        </a>
-                                                    </div>
-                                                    <div
-                                                        class="
-                                                            col-2
-                                                            d-flex
-                                                            align-items-center
-                                                        "
-                                                    >
-                                                        <a href="#">
-                                                            <div
-                                                                class="
-                                                                    sb-nav-link-icon
-                                                                "
-                                                            >
-                                                                <i
-                                                                    class="
-                                                                        fas
-                                                                        fa-trash
-                                                                    "
-                                                                ></i>
-                                                                Excluir
-                                                            </div>
-                                                        </a>
+                                                        <input
+                                                            required
+                                                            class="form-control"
+                                                            id="inputFirstName"
+                                                            type="text"
+                                                            placeholder="Digite seu nome"
+                                                        />
+                                                        <label
+                                                            for="inputFirstName"
+                                                            >Nome</label
+                                                        >
                                                     </div>
                                                 </div>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
+                                                <div class="col-md-6">
+                                                    <div class="form-floating">
+                                                        <input
+                                                            required
+                                                            class="form-control"
+                                                            id="inputLastName"
+                                                            type="text"
+                                                            placeholder="Digite seu sobrenome"
+                                                        />
+                                                        <label
+                                                            for="inputLastName"
+                                                            >Sobrenome</label
+                                                        >
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-floating mb-3">
+                                                <input
+                                                    required
+                                                    class="form-control"
+                                                    id="inputEmail"
+                                                    type="email"
+                                                    placeholder="nome@mail.com"
+                                                />
+                                                <label for="inputEmail"
+                                                    >E-mail</label
+                                                >
+                                            </div>
+                                            <div class="row mb-3">
+                                                <div class="col-md-6">
+                                                    <div
+                                                        class="
+                                                            form-floating
+                                                            mb-3 mb-md-0
+                                                        "
+                                                    >
+                                                        <input
+                                                            required
+                                                            class="form-control"
+                                                            id="inputPassword"
+                                                            type="password"
+                                                            placeholder="Crie uma senha"
+                                                        />
+                                                        <label
+                                                            for="inputPassword"
+                                                            >Senha</label
+                                                        >
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div
+                                                        class="
+                                                            form-floating
+                                                            mb-3 mb-md-0
+                                                        "
+                                                    >
+                                                        <input
+                                                            required
+                                                            class="form-control"
+                                                            id="inputPasswordConfirm"
+                                                            type="password"
+                                                            placeholder="Confirme a senha"
+                                                        />
+                                                        <label
+                                                            for="inputPasswordConfirm"
+                                                            >Confirme a
+                                                            senha</label
+                                                        >
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="mt-4 mb-0">
+                                                <div class="d-grid">
+                                                    <button
+                                                        type="submit"
+                                                        class="
+                                                            btn
+                                                            btn-primary
+                                                            btn-block
+                                                        "
+                                                    >
+                                                        Atualizar cadastro
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -293,20 +289,6 @@
             crossorigin="anonymous"
         ></script>
         <script src="js/scripts.js"></script>
-        <script
-            src="https://cdn.jsdelivr.net/npm/simple-datatables@latest"
-            crossorigin="anonymous"
-        ></script>
-        <script src="js/datatables-simple.js"></script>
         <script src="./controllers/auth-controller.js"></script>
-        <script>
-            $(document).ready(function () {
-                $("#datatablesSimple").DataTable({
-                    language: {
-                        url: "https://cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Portuguese-Brasil.json",
-                    },
-                });
-            });
-        </script>
     </body>
 </html>
