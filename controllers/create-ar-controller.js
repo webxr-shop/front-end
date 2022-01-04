@@ -1,16 +1,18 @@
 import { CategoryService } from "../services/category-service.js";
+import { CreateArService } from "../services/create-ar-service.js";
 
 export class CreateARController {
     create(data) {
-        let registerService = new RegisterService();
+        let createArService = new CreateArService();
 
-        registerService.newClient(data);
+        createArService.newModel(data);
     }
     getCategories() {
         let categoryService = new CategoryService();
         var data = {
             token: localStorage.getItem("token"),
         };
+
         categoryService
             .listCategories(data)
             .then((res) => {

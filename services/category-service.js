@@ -16,7 +16,7 @@ export class CategoryService {
     }
     getCategories(data) {
         return this._http
-            .post("http://localhost:3333/models/category", data)
+            .post("http://localhost:3333/categories", data)
             .then((res) => res)
             .catch((erro) => {
                 console.log(erro);
@@ -26,7 +26,17 @@ export class CategoryService {
 
     listCategories(data) {
         return this._http
-            .post("http://localhost:3333/models/category/name", data)
+            .post("http://localhost:3333/category/name", data)
+            .then((res) => res)
+            .catch((erro) => {
+                console.log(erro);
+                throw new Error(erro);
+            });
+    }
+
+    listModels(data) {
+        return this._http
+            .post("http://localhost:3333/models", data)
             .then((res) => res)
             .catch((erro) => {
                 console.log(erro);

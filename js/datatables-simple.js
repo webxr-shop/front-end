@@ -14,6 +14,6 @@ new simpleDatatables.DataTable("#datatablesSimple", {
         perPage: "{select} por página",
         noRows: "Nenhum resultado encontrado",
         info: "Exibindo {start} a {end} de {rows} resultados",
-        noResults: "Nenhum resultado encontrado"
+        noResults: "Nenhum resultado encontrado",
     },
 });

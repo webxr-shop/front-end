@@ -20,7 +20,7 @@
             crossorigin="anonymous"
         ></script>
     </head>
-    <body class="sb-nav-fixed" onload="exists_token()">
+    <body id="body" class="sb-nav-fixed">
         <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
             <!-- Navbar Brand-->
             <a class="navbar-brand ps-3" href="index.html">Plataforma WebXR</a>
@@ -34,13 +34,7 @@
             </button>
             <!-- Navbar Search-->
             <form
-                class="
-                    d-none d-md-inline-block
-                    form-inline
-                    ms-auto
-                    me-0 me-md-3
-                    my-2 my-md-0
-                "
+                class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0"
             >
                 <!-- <div class="input-group">
                     <input class="form-control" type="text" placeholder="Pesquisar..." aria-label="Pesquisar..." aria-describedby="btnNavbarSearch" />
@@ -68,9 +62,7 @@
                         </li>
                         <li><hr class="dropdown-divider" /></li>
                         <li>
-                            <a class="dropdown-item" onclick=" delete_token()"
-                                >Sair</a
-                            >
+                            <a class="dropdown-item" id="logout">Sair</a>
                         </li>
                     </ul>
                 </li>
@@ -98,7 +90,7 @@
                                 </div>
                                 Modelos
                             </a>
-                            <a class="nav-link" href="my-account.html">
+                            <a class="nav-link" href="profile.html">
                                 <div class="sb-nav-link-icon">
                                     <i class="fas fas fa-user-circle"></i>
                                 </div>
@@ -123,12 +115,7 @@
                 <main>
                     <div class="container-fluid px-4">
                         <div
-                            class="
-                                d-flex
-                                align-items-center
-                                justify-content-between
-                                mt-4
-                            "
+                            class="d-flex align-items-center justify-content-between mt-4"
                         >
                             <h1 class="">Nome da categoria</h1>
                             <a class="btn btn-primary" href="create-ar.html"
@@ -146,118 +133,35 @@
                                 Nome da categoria
                             </li>
                         </ol>
-                        <div class="card mb-4">
-                            <div class="card-body">
-                                <a
-                                    target="_blank"
-                                    href="https://datatables.net/"
-                                    >Documentação tabela</a
-                                >
-                            </div>
-                        </div>
+
                         <div class="card mb-4">
                             <div class="card-header">
                                 <i class="fas fa-table me-1"></i>
                                 Nome da categoria
                             </div>
-                            <div class="card-body">
+                            <div id="tableCategory" class="card-body">
                                 <table id="datatablesSimple">
                                     <thead>
                                         <tr>
                                             <th>ID</th>
                                             <th>Nome</th>
-                                            <th>Visualizações</th>
+                                            <th>Altura</th>
+                                            <th>Largura</th>
+                                            <th>Comprimento</th>
                                             <th>Opções</th>
                                         </tr>
                                     </thead>
+
                                     <tfoot>
                                         <tr>
                                             <th>ID</th>
                                             <th>Nome</th>
-                                            <th>Visualizações</th>
+                                            <th>Altura</th>
+                                            <th>Largura</th>
+                                            <th>Comprimento</th>
                                             <th>Opções</th>
                                         </tr>
                                     </tfoot>
-                                    <tbody>
-                                        <tr>
-                                            <td>001</td>
-                                            <td>Sofá</td>
-                                            <td>1000</td>
-                                            <td>
-                                                <div class="row">
-                                                    <div
-                                                        class="
-                                                            col-2
-                                                            d-flex
-                                                            align-items-center
-                                                        "
-                                                    >
-                                                        <a href="#">
-                                                            <div
-                                                                class="
-                                                                    sb-nav-link-icon
-                                                                "
-                                                            >
-                                                                <i
-                                                                    class="
-                                                                        fas
-                                                                        fa-link
-                                                                    "
-                                                                ></i>
-                                                                Visualizar
-                                                            </div>
-                                                        </a>
-                                                    </div>
-                                                    <div
-                                                        class="
-                                                            col-2
-                                                            d-flex
-                                                            align-items-center
-                                                        "
-                                                    >
-                                                        <a href="#">
-                                                            <div
-                                                                class="
-                                                                    sb-nav-link-icon
-                                                                "
-                                                            >
-                                                                <i
-                                                                    class="
-                                                                        fas
-                                                                        fa-edit
-                                                                    "
-                                                                ></i>
-                                                                Editar
-                                                            </div>
-                                                        </a>
-                                                    </div>
-                                                    <div
-                                                        class="
-                                                            col-2
-                                                            d-flex
-                                                            align-items-center
-                                                        "
-                                                    >
-                                                        <a href="#">
-                                                            <div
-                                                                class="
-                                                                    sb-nav-link-icon
-                                                                "
-                                                            >
-                                                                <i
-                                                                    class="
-                                                                        fas
-                                                                        fa-trash
-                                                                    "
-                                                                ></i>
-                                                                Excluir
-                                                            </div>
-                                                        </a>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                    </tbody>
                                 </table>
                             </div>
                         </div>
@@ -266,12 +170,7 @@
                 <footer class="py-4 bg-light mt-auto">
                     <div class="container-fluid px-4">
                         <div
-                            class="
-                                d-flex
-                                align-items-center
-                                justify-content-between
-                                small
-                            "
+                            class="d-flex align-items-center justify-content-between small"
                         >
                             <div class="text-muted">
                                 Copyright &copy; Plataforma WebXR 2021
@@ -299,14 +198,24 @@
         ></script>
         <script src="js/datatables-simple.js"></script>
         <script src="./controllers/auth-controller.js"></script>
-        <script>
-            $(document).ready(function () {
-                $("#datatablesSimple").DataTable({
-                    language: {
-                        url: "https://cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Portuguese-Brasil.json",
-                    },
-                });
-            });
+        <script src="./controllers/category-controller.js"></script>
+        <script type="module">
+            import { models } from "./controllers/category-controller.js";
+            import {
+                token,
+                delete_token,
+            } from "./controllers/auth-controller-din.js";
+            document.getElementById("body").onload = function () {
+                token();
+                const queryString = window.location.search;
+                const urlParams = new URLSearchParams(queryString);
+                const id = urlParams.get("id");
+                models(id);
+            };
+
+            document.getElementById("logout").onclick = function () {
+                delete_token();
+            };
         </script>
     </body>
 </html>
