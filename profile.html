@@ -16,7 +16,7 @@
             crossorigin="anonymous"
         ></script>
     </head>
-    <body class="sb-nav-fixed">
+    <body id="body" class="sb-nav-fixed">
         <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
             <!-- Navbar Brand-->
             <a class="navbar-brand ps-3" href="index.html">Perfil</a>
@@ -58,9 +58,7 @@
                         </li>
                         <li><hr class="dropdown-divider" /></li>
                         <li>
-                            <a class="dropdown-item" onclick=" delete_token()"
-                                >Sair</a
-                            >
+                            <a class="dropdown-item" id="logout">Sair</a>
                         </li>
                     </ul>
                 </li>
@@ -185,7 +183,6 @@
                                                         class="form-floating mb-3 mb-md-0"
                                                     >
                                                         <input
-                                                            required
                                                             class="form-control"
                                                             id="inputPassword"
                                                             type="password"
@@ -202,7 +199,6 @@
                                                         class="form-floating mb-3 mb-md-0"
                                                     >
                                                         <input
-                                                            required
                                                             class="form-control"
                                                             id="inputPasswordConfirm"
                                                             type="password"
@@ -259,5 +255,32 @@
         ></script>
         <script src="js/scripts.js"></script>
         <script src="./controllers/auth-controller.js"></script>
+        <script type="module">
+            import { getProfile } from "./controllers/profile-controller.js";
+            import {
+                token,
+                delete_token,
+            } from "./controllers/auth-controller-din.js";
+            document.getElementById("body").onload = function () {
+                token();
+                getProfile();
+            };
+
+            document.getElementById("logout").onclick = function () {
+                delete_token();
+            };
+        </script>
+
+        <script type="module">
+            import { editProfile } from "./controllers/profile-controller.js";
+
+            let form = document.getElementById("forms");
+            form.addEventListener("submit", (event) => {
+                event.preventDefault();
+                document.getElementById("formFile");
+
+                editProfile(event);
+            });
+        </script>
     </body>
 </html>

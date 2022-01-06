@@ -177,7 +177,9 @@
                                                             <div
                                                                 class="col-2 d-flex align-items-center"
                                                             >
-                                                                <a href="#">
+                                                                <a
+                                                                    href="edit-ar.html?id=9"
+                                                                >
                                                                     <div
                                                                         class="sb-nav-link-icon"
                                                                     >
@@ -191,7 +193,9 @@
                                                             <div
                                                                 class="col-2 d-flex align-items-center"
                                                             >
-                                                                <a href="#">
+                                                                <button
+                                                                    id="del"
+                                                                >
                                                                     <div
                                                                         class="sb-nav-link-icon"
                                                                     >
@@ -200,7 +204,7 @@
                                                                         ></i>
                                                                         Excluir
                                                                     </div>
-                                                                </a>
+                                                                </button>
                                                             </div>
                                                         </div>
                                                     </td>
@@ -265,14 +269,22 @@
         ></script>
         <script src="js/datatables-simple.js"></script>
         <script src="./controllers/auth-controller.js"></script>
+        <script src="./controllers/create-ar-controller.js"></script>
         <script type="module">
             import { models } from "./controllers/category-controller.js";
+            import { del } from "./controllers/create-ar-controller.js";
+            import { label } from "./controllers/table-controller.js";
             import {
                 token,
                 delete_token,
             } from "./controllers/auth-controller-din.js";
             document.getElementById("body").onload = function () {
                 token();
+                label(1);
+            };
+
+            document.getElementById("del").onclick = function () {
+                del(9);
             };
 
             document.getElementById("logout").onclick = function () {

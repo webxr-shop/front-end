@@ -77,9 +77,7 @@
                         </li>
                         <li><hr class="dropdown-divider" /></li>
                         <li>
-                            <a class="dropdown-item" onclick=" delete_token()"
-                                >Sair</a
-                            >
+                            <a class="dropdown-item" id="logout">Sair</a>
                         </li>
                     </ul>
                 </li>
@@ -182,7 +180,7 @@
                                                 <input
                                                     required
                                                     class="form-control"
-                                                    id="inputNameCategory"
+                                                    id="inputNameModel"
                                                     type="text"
                                                     placeholder="Nome do modelo"
                                                 />
@@ -341,42 +339,39 @@
         ></script>
         <script src="js/scripts.js"></script>
         <script src="./controllers/auth-controller.js"></script>
-        <script type="module">
-            import { CreateARController } from "./controllers/create-ar-controller.js";
-            import {
-                token,
-                delete_token,
-            } from "./controllers/auth-controller-din.js";
-            let createARController = new CreateARController();
-
-            document.getElementById("body").onload = function () {
-                token();
-                createARController.getCategories();
-            };
-        </script>
 
         <script type="module">
-            import { CreateARController } from "./controllers/create-ar-controller.js";
-            let createARController = new CreateARController();
+            import { editing } from "./controllers/create-ar-controller.js";
+
             let form = document.getElementById("forms");
             form.addEventListener("submit", (event) => {
                 event.preventDefault();
                 document.getElementById("formFile");
-                let data = {
-                    name_model: event.target[1].value,
-                    file_model: "window.base64",
-                    dim_x: parseFloat(event.target[2].value),
-                    dim_y: parseFloat(event.target[3].value),
-                    dim_z: parseFloat(event.target[4].value),
-                    name_product: "",
-                    description_product: "",
-                    thumb_product: "",
-                    category_id: parseInt(event.target[0].value),
-                    token: localStorage.getItem("token"),
-                };
-                console.log(data);
-                createARController.create(data);
+                editing(event, "window.base64");
             });
+        </script>
+        <script type="module">
+            import {
+                getEdit,
+                getCategories,
+            } from "./controllers/create-ar-controller.js";
+
+            import {
+                token,
+                delete_token,
+            } from "./controllers/auth-controller-din.js";
+            document.getElementById("body").onload = function () {
+                token();
+
+                const queryString = window.location.search;
+                const urlParams = new URLSearchParams(queryString);
+                const id = urlParams.get("id");
+                getEdit(parseInt(id));
+            };
+
+            document.getElementById("logout").onclick = function () {
+                delete_token();
+            };
         </script>
 
         <!-- 💁 Include both scripts below to support all browsers! -->

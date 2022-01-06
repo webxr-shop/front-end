@@ -14,4 +14,22 @@ export class CreateArService {
                 throw new Error(erro);
             });
     }
+    getEdit(data) {
+        return this._http
+            .post("http://localhost:3333/models/get", data)
+            .then((res) => res)
+            .catch((erro) => {
+                console.log(erro);
+                throw new Error(erro);
+            });
+    }
+    del(data) {
+        return this._http
+            .post("http://localhost:3333/models/delete", data)
+            .then((res) => res)
+            .catch((erro) => {
+                console.log(erro);
+                throw new Error(erro);
+            });
+    }
 }

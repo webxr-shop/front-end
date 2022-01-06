@@ -140,29 +140,7 @@
                                 Nome da categoria
                             </div>
                             <div id="tableCategory" class="card-body">
-                                <table id="datatablesSimple">
-                                    <thead>
-                                        <tr>
-                                            <th>ID</th>
-                                            <th>Nome</th>
-                                            <th>Altura</th>
-                                            <th>Largura</th>
-                                            <th>Comprimento</th>
-                                            <th>Opções</th>
-                                        </tr>
-                                    </thead>
-
-                                    <tfoot>
-                                        <tr>
-                                            <th>ID</th>
-                                            <th>Nome</th>
-                                            <th>Altura</th>
-                                            <th>Largura</th>
-                                            <th>Comprimento</th>
-                                            <th>Opções</th>
-                                        </tr>
-                                    </tfoot>
-                                </table>
+                                <table id="datatables"></table>
                             </div>
                         </div>
                     </div>
@@ -200,6 +178,7 @@
         <script src="./controllers/auth-controller.js"></script>
         <script src="./controllers/category-controller.js"></script>
         <script type="module">
+            import { tables } from "./controllers/table-controller.js";
             import { models } from "./controllers/category-controller.js";
             import {
                 token,
