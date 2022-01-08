@@ -1,35 +1,107 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>AR Viewer</title>
-</head>
-<body>
-    <script src="../libs/fas.js"></script>
-    <script type="module">
-        import { App } from './app.js';
-        document.addEventListener("DOMContentLoaded", function(){
-            const app = new App();
-            window.app = app;
-        });
-    </script>
-
-  <!-- Page Content -->
-    <div id="viewer" class="container">
-        <button id="BOTAO" class="ar-button">Teste</i></button>
-        <button id="showAr" class="ar-button" onclick="window.app.showChair(5);"><i class="fas fa-camera"></i></button>
-    </div>
-
-    <script type="module">
-        import { TesteService } from '../services/teste.js';
-        document.getElementById("BOTAO").onclick=function(){
-            console.log('clicou');
-            var serv = new TesteService();
-            serv.importTeste();
-        }
-    </script>
-</body>
-
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1, shrink-to-fit=no"
+        />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>AR</title>
+        <link href="../css/styles.css" rel="stylesheet" />
+        <script
+            src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js"
+            crossorigin="anonymous"
+        ></script>
+    </head>
+    <body class="bg-primary">
+        <div id="layoutAuthentication">
+            <div id="layoutAuthentication_content">
+                <main>
+                    <div class="container">
+                        <div class="row justify-content-center">
+                            <div class="col-lg-5">
+                                <div
+                                    class="
+                                        card
+                                        shadow-lg
+                                        border-0
+                                        rounded-lg
+                                        mt-5
+                                    "
+                                >
+                                    <div class="card-header">
+                                        <h3
+                                            class="
+                                                text-center
+                                                font-weight-light
+                                                my-4
+                                            "
+                                        >
+                                            Visualizar AR
+                                        </h3>
+                                    </div>
+                                    <div class="card-body">
+                                        <div id="viewer" class="container">
+                                            <div class="mt-0 mb-0">
+                                                <div class="d-grid">
+                                                    <button id="showAr" class="btn btn-primary btn-block ar-button" onclick="window.app.showChair(5);">AR</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="card-footer text-center py-3">
+                                        <div class="small">
+                                            <a href="#"
+                                                >Baixe o app ...</a
+                                            >
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </main>
+            </div>
+            <div id="layoutAuthentication_footer">
+                <footer class="py-4 bg-light mt-auto">
+                    <div class="container-fluid px-4">
+                        <div
+                            class="
+                                d-flex
+                                align-items-center
+                                justify-content-between
+                                small
+                            "
+                        >
+                            <div class="text-muted">
+                                Copyright &copy; Plataforma WebXR 2021
+                            </div>
+                            <div>
+                                <a href="privacy-policy.html"
+                                    >Política de privacidade</a
+                                >
+                                &middot;
+                                <a href="terms-of-use.html">Termos de uso</a>
+                            </div>
+                        </div>
+                    </div>
+                </footer>
+            </div>
+        </div>
+        <script
+            src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+            crossorigin="anonymous"
+        ></script>
+        <script src="../libs/fas.js"></script>
+        <script type="module">
+            import { App } from './app.js';
+            document.addEventListener("DOMContentLoaded", function(){
+                const app = new App();
+                window.app = app;
+            });
+        </script>
+    </body>
 </html>
