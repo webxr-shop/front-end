@@ -1,52 +1,53 @@
-/* body {
-    margin: 1em;
-    padding: 0;
-    font-family: Google Sans, Noto, Roboto, Helvetica Neue, sans-serif;
-    color: #244376;
-} */
-
-#card {
-    margin: 3em auto;
-    display: flex;
-    flex-direction: column;
-    max-width: 600px;
-    border-radius: 6px;
-    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.25);
-    overflow: hidden;
-}
-
 model-viewer {
     width: 100%;
     height: 500px;
 }
 
-.attribution {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    margin: 1em;
+#controls {
+    position: absolute;
+    bottom: 16px;
+    left: 16px;
+    max-width: unset;
+    transform: unset;
 }
 
-.attribution h1 {
-    margin: 0 0 0.25em;
+.dot {
+    display: block;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.25);
+    background: #fff;
+    --min-hotspot-opacity: 0;
 }
 
-.attribution img {
-    opacity: 0.5;
-    height: 2em;
+.dim {
+    background: #fff;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.25);
+    color: rgba(0, 0, 0, 0.8);
+    display: block;
+    font-family: Futura, Helvetica Neue, sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+    max-width: 128px;
+    overflow-wrap: break-word;
+    padding: 0.5em 1em;
+    position: absolute;
+    width: max-content;
+    height: max-content;
+    transform: translate3d(-50%, -50%, 0);
+    --min-hotspot-opacity: 0;
 }
 
-.attribution .cc {
-    flex-shrink: 0;
-    text-decoration: none;
+.show {
+    --min-hotspot-opacity: 1;
 }
 
-/* footer {
-    display: flex;
-    flex-direction: column;
-    max-width: 600px;
-    margin: auto;
-    text-align: center;
-    font-style: italic;
-    line-height: 1.5em;
-} */
+.hide {
+    display: none;
+}
+/* This keeps child nodes hidden while the element loads */
+:not(:defined) > * {
+    display: none;
+}
