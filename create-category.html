@@ -241,8 +241,10 @@
                         img.src = e.target.result;
                         img.hidden = false;
                         window.base64 = file.result;
-                    };
 
+                        console.log(file);
+                    };
+                    console.log(this.files[0]);
                     file.readAsDataURL(this.files[0]);
                 }
             }
@@ -258,20 +260,29 @@
         <script src="js/scripts.js"></script>
         <script src="./controllers/auth-controller.js"></script>
         <script type="module">
-            import { CategoryService } from "./services/category-service.js";
-            let categoryService = new CategoryService();
+            // import { CategoryService } from "./services/category-service.js";
+            // let categoryService = new CategoryService();
+            // let form = document.getElementById("forms");
+            // form.addEventListener("submit", (event) => {
+            //     event.preventDefault();
+            //     // document.getElementById("formCover");
+            //     let data = {
+            //         name: event.target[0].value,
+            //         description: event.target[1].value,
+            //         thumb: window.base64,
+            //         token: localStorage.getItem("token"),
+            //     };
+            //     console.log(data);
+            //     // categoryService.newCategory(data);
+            // });
+            import { create } from "./controllers/create-ar-controller.js";
+
             let form = document.getElementById("forms");
             form.addEventListener("submit", (event) => {
                 event.preventDefault();
-                // document.getElementById("formCover");
-                let data = {
-                    name: event.target[0].value,
-                    description: event.target[1].value,
-                    thumb: window.base64,
-                    token: localStorage.getItem("token"),
-                };
-                console.log(data);
-                // categoryService.newCategory(data);
+                document.getElementById("formFile");
+
+                create(event, "window.base64");
             });
         </script>
     </body>

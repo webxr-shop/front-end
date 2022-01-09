@@ -24,21 +24,11 @@
                         <div class="row justify-content-center">
                             <div class="col-lg-5">
                                 <div
-                                    class="
-                                        card
-                                        shadow-lg
-                                        border-0
-                                        rounded-lg
-                                        mt-5
-                                    "
+                                    class="card shadow-lg border-0 rounded-lg mt-5"
                                 >
                                     <div class="card-header">
                                         <h3
-                                            class="
-                                                text-center
-                                                font-weight-light
-                                                my-4
-                                            "
+                                            class="text-center font-weight-light my-4"
                                         >
                                             Visualizar AR
                                         </h3>
@@ -47,16 +37,20 @@
                                         <div id="viewer" class="container">
                                             <div class="mt-0 mb-0">
                                                 <div class="d-grid">
-                                                    <button id="showAr" class="btn btn-primary btn-block ar-button" onclick="window.app.showChair(5);">AR</button>
+                                                    <button
+                                                        id="showAr"
+                                                        class="btn btn-primary btn-block ar-button"
+                                                        onclick="window.app.showChair(5);"
+                                                    >
+                                                        AR
+                                                    </button>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="card-footer text-center py-3">
                                         <div class="small">
-                                            <a href="#"
-                                                >Baixe o app ...</a
-                                            >
+                                            <a href="#">Baixe o app ...</a>
                                         </div>
                                     </div>
                                 </div>
@@ -69,12 +63,7 @@
                 <footer class="py-4 bg-light mt-auto">
                     <div class="container-fluid px-4">
                         <div
-                            class="
-                                d-flex
-                                align-items-center
-                                justify-content-between
-                                small
-                            "
+                            class="d-flex align-items-center justify-content-between small"
                         >
                             <div class="text-muted">
                                 Copyright &copy; Plataforma WebXR 2021
@@ -97,8 +86,8 @@
         ></script>
         <script src="../libs/fas.js"></script>
         <script type="module">
-            import { App } from './app.js';
-            document.addEventListener("DOMContentLoaded", function(){
+            import { App } from "./app.js";
+            document.addEventListener("DOMContentLoaded", function () {
                 const app = new App();
                 window.app = app;
             });

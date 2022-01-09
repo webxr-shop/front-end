@@ -5,18 +5,18 @@ export function create(e, file) {
     e.preventDefault();
     let createArService = new CreateArService();
     let data = {
-        name_model: e.target[1].value,
-        file_model: file,
-        dim_x: parseFloat(e.target[2].value),
-        dim_y: parseFloat(e.target[3].value),
-        dim_z: parseFloat(e.target[4].value),
-        name_product: "",
-        description_product: "",
-        thumb_product: "",
-        category_id: parseInt(e.target[0].value),
-        token: localStorage.getItem("token"),
+        name_model: e.target[0].value,
+        file_model: e.target[2].value,
+        // dim_x: parseFloat(e.target[2].value),
+        // dim_y: parseFloat(e.target[3].value),
+        // dim_z: parseFloat(e.target[4].value),
+        // name_product: "",
+        // description_product: "",
+        // thumb_product: "",
+        // category_id: parseInt(e.target[0].value),
+        // token: localStorage.getItem("token"),
     };
-
+    console.log(e.target[2].value);
     createArService.newModel(data);
 }
 
