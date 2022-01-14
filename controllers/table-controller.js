@@ -1,28 +1,16 @@
-export function tables(id, data) {
-    switch (id) {
-        case 1:
-            const datatablesSimple = document.getElementById("datatables");
-            if (datatablesSimple) {
-                var datatable = new simpleDatatables.DataTable(
-                    datatablesSimple
-                );
+export function tables(data) {
+    console.log(data);
 
-                let myData = {
-                    headings: [
-                        "ID",
-                        "Nome",
-                        "Altura.",
-                        "Largura",
-                        "Comprimento",
-                        "Opções",
-                    ],
-                    data: [data],
-                };
-                datatable.insert(myData);
-            }
-            break;
+    const datatablesSimple = document.getElementById("datatablesSimple");
 
-        default:
-            break;
+    if (datatablesSimple) {
+        let datatable = new simpleDatatables.DataTable(datatablesSimple);
+
+        let myData = {
+            headings: ["ID", "Nome", "Categoria", "Opções"],
+            data: data,
+        };
+
+        datatable.insert(myData);
     }
 }

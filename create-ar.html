@@ -252,24 +252,98 @@
                                             </div>
                                             <div class="mt-4 mb-0">
                                                 <p hidden id="preview">
-                                                    <model-viewer id="dimension-demo" camera-orbit="-30deg auto auto" max-camera-orbit="auto 100deg auto" shadow-intensity="1" camera-controls src="./assets/models/chair1.glb" alt="Modelo 3D">
-                                                        <button slot="hotspot-dot+X-Y+Z" class="dot" data-position="1 -1 1" data-normal="1 0 0"></button>
-                                                        <button slot="hotspot-dim+X-Y" class="dim" data-position="1 -1 0" data-normal="1 0 0"></button>
-                                                        <button slot="hotspot-dot+X-Y-Z" class="dot" data-position="1 -1 -1" data-normal="1 0 0"></button>
-                                                        <button slot="hotspot-dim+X-Z" class="dim" data-position="1 0 -1" data-normal="1 0 0"></button>
-                                                        <button slot="hotspot-dot+X+Y-Z" class="dot show" data-position="1 1 -1" data-normal="0 1 0"></button>
-                                                        <button slot="hotspot-dim+Y-Z" class="dim show" data-position="0 -1 -1" data-normal="0 1 0"></button>
-                                                        <button slot="hotspot-dot-X+Y-Z" class="dot show" data-position="-1 1 -1" data-normal="0 1 0"></button>
-                                                        <button slot="hotspot-dim-X-Z" class="dim" data-position="-1 0 -1" data-normal="-1 0 0"></button>
-                                                        <button slot="hotspot-dot-X-Y-Z" class="dot" data-position="-1 -1 -1" data-normal="-1 0 0"></button>
-                                                        <button slot="hotspot-dim-X-Y" class="dim" data-position="-1 -1 0" data-normal="-1 0 0"></button>
-                                                        <button slot="hotspot-dot-X-Y+Z" class="dot" data-position="-1 -1 1" data-normal="-1 0 0"></button>
+                                                    <model-viewer
+                                                        id="dimension-demo"
+                                                        camera-orbit="-30deg auto auto"
+                                                        max-camera-orbit="auto 100deg auto"
+                                                        shadow-intensity="1"
+                                                        camera-controls
+                                                        src="./assets/models/chair1.glb"
+                                                        alt="Modelo 3D"
+                                                    >
+                                                        <button
+                                                            slot="hotspot-dot+X-Y+Z"
+                                                            class="dot"
+                                                            data-position="1 -1 1"
+                                                            data-normal="1 0 0"
+                                                        ></button>
+                                                        <button
+                                                            slot="hotspot-dim+X-Y"
+                                                            class="dim"
+                                                            data-position="1 -1 0"
+                                                            data-normal="1 0 0"
+                                                        ></button>
+                                                        <button
+                                                            slot="hotspot-dot+X-Y-Z"
+                                                            class="dot"
+                                                            data-position="1 -1 -1"
+                                                            data-normal="1 0 0"
+                                                        ></button>
+                                                        <button
+                                                            slot="hotspot-dim+X-Z"
+                                                            class="dim"
+                                                            data-position="1 0 -1"
+                                                            data-normal="1 0 0"
+                                                        ></button>
+                                                        <button
+                                                            slot="hotspot-dot+X+Y-Z"
+                                                            class="dot show"
+                                                            data-position="1 1 -1"
+                                                            data-normal="0 1 0"
+                                                        ></button>
+                                                        <button
+                                                            slot="hotspot-dim+Y-Z"
+                                                            class="dim show"
+                                                            data-position="0 -1 -1"
+                                                            data-normal="0 1 0"
+                                                        ></button>
+                                                        <button
+                                                            slot="hotspot-dot-X+Y-Z"
+                                                            class="dot show"
+                                                            data-position="-1 1 -1"
+                                                            data-normal="0 1 0"
+                                                        ></button>
+                                                        <button
+                                                            slot="hotspot-dim-X-Z"
+                                                            class="dim"
+                                                            data-position="-1 0 -1"
+                                                            data-normal="-1 0 0"
+                                                        ></button>
+                                                        <button
+                                                            slot="hotspot-dot-X-Y-Z"
+                                                            class="dot"
+                                                            data-position="-1 -1 -1"
+                                                            data-normal="-1 0 0"
+                                                        ></button>
+                                                        <button
+                                                            slot="hotspot-dim-X-Y"
+                                                            class="dim"
+                                                            data-position="-1 -1 0"
+                                                            data-normal="-1 0 0"
+                                                        ></button>
+                                                        <button
+                                                            slot="hotspot-dot-X-Y+Z"
+                                                            class="dot"
+                                                            data-position="-1 -1 1"
+                                                            data-normal="-1 0 0"
+                                                        ></button>
 
-                                                        <div id="controls" class="dim">
-                                                            <label for="show-dimensions">Mostrar dimensões:</label>
-                                                            <input id="show-dimensions" type="checkbox" checked="true">
+                                                        <div
+                                                            id="controls"
+                                                            class="dim"
+                                                        >
+                                                            <label
+                                                                for="show-dimensions"
+                                                                >Mostrar
+                                                                dimensões:</label
+                                                            >
+                                                            <input
+                                                                id="show-dimensions"
+                                                                type="checkbox"
+                                                                checked="true"
+                                                            />
                                                         </div>
-                                                        </model-viewer>
+                                                    </model-viewer>
                                                 </p>
                                             </div>
 
@@ -375,20 +449,20 @@
 
         <!-- Scripts annotations <model-viewer> -->
         <script type="module">
-            const modelViewer = document.querySelector('#dimension-demo');
+            const modelViewer = document.querySelector("#dimension-demo");
 
-            const checkbox = modelViewer.querySelector('#show-dimensions');
-            checkbox.addEventListener('change', () => {
-                modelViewer.querySelectorAll('button').forEach((hotspot) => {
-                if (checkbox.checked) {
-                    hotspot.classList.remove('hide');
-                } else {
-                    hotspot.classList.add('hide');
-                }
+            const checkbox = modelViewer.querySelector("#show-dimensions");
+            checkbox.addEventListener("change", () => {
+                modelViewer.querySelectorAll("button").forEach((hotspot) => {
+                    if (checkbox.checked) {
+                        hotspot.classList.remove("hide");
+                    } else {
+                        hotspot.classList.add("hide");
+                    }
                 });
             });
 
-            modelViewer.addEventListener('load', () => {
+            modelViewer.addEventListener("load", () => {
                 const center = modelViewer.getCameraTarget();
                 const size = modelViewer.getDimensions();
                 const x2 = size.x / 2;
@@ -396,68 +470,85 @@
                 const z2 = size.z / 2;
 
                 modelViewer.updateHotspot({
-                name: 'hotspot-dot+X-Y+Z',
-                position: `${center.x + x2} ${center.y - y2} ${center.z + z2}`
+                    name: "hotspot-dot+X-Y+Z",
+                    position: `${center.x + x2} ${center.y - y2} ${
+                        center.z + z2
+                    }`,
                 });
 
                 modelViewer.updateHotspot({
-                name: 'hotspot-dim+X-Y',
-                position: `${center.x + x2} ${center.y - y2} ${center.z}`
+                    name: "hotspot-dim+X-Y",
+                    position: `${center.x + x2} ${center.y - y2} ${center.z}`,
                 });
-                modelViewer.querySelector('button[slot="hotspot-dim+X-Y"]').textContent =
-                    `${(size.z * 100).toFixed(0)} cm`;
+                modelViewer.querySelector(
+                    'button[slot="hotspot-dim+X-Y"]'
+                ).textContent = `${(size.z * 100).toFixed(0)} cm`;
 
                 modelViewer.updateHotspot({
-                name: 'hotspot-dot+X-Y-Z',
-                position: `${center.x + x2} ${center.y - y2} ${center.z - z2}`
-                });
-
-                modelViewer.updateHotspot({
-                name: 'hotspot-dim+X-Z',
-                position: `${center.x + x2} ${center.y} ${center.z - z2}`
-                });
-                modelViewer.querySelector('button[slot="hotspot-dim+X-Z"]').textContent =
-                    `${(size.y * 100).toFixed(0)} cm`;
-
-                modelViewer.updateHotspot({
-                name: 'hotspot-dot+X+Y-Z',
-                position: `${center.x + x2} ${center.y + y2} ${center.z - z2}`
+                    name: "hotspot-dot+X-Y-Z",
+                    position: `${center.x + x2} ${center.y - y2} ${
+                        center.z - z2
+                    }`,
                 });
 
                 modelViewer.updateHotspot({
-                name: 'hotspot-dim+Y-Z',
-                position: `${center.x} ${center.y + y2} ${center.z - z2}`
+                    name: "hotspot-dim+X-Z",
+                    position: `${center.x + x2} ${center.y} ${center.z - z2}`,
                 });
-                modelViewer.querySelector('button[slot="hotspot-dim+Y-Z"]').textContent =
-                    `${(size.x * 100).toFixed(0)} cm`;
+                modelViewer.querySelector(
+                    'button[slot="hotspot-dim+X-Z"]'
+                ).textContent = `${(size.y * 100).toFixed(0)} cm`;
 
                 modelViewer.updateHotspot({
-                name: 'hotspot-dot-X+Y-Z',
-                position: `${center.x - x2} ${center.y + y2} ${center.z - z2}`
-                });
-
-                modelViewer.updateHotspot({
-                name: 'hotspot-dim-X-Z',
-                position: `${center.x - x2} ${center.y} ${center.z - z2}`
-                });
-                modelViewer.querySelector('button[slot="hotspot-dim-X-Z"]').textContent =
-                    `${(size.y * 100).toFixed(0)} cm`;
-
-                modelViewer.updateHotspot({
-                name: 'hotspot-dot-X-Y-Z',
-                position: `${center.x - x2} ${center.y - y2} ${center.z - z2}`
+                    name: "hotspot-dot+X+Y-Z",
+                    position: `${center.x + x2} ${center.y + y2} ${
+                        center.z - z2
+                    }`,
                 });
 
                 modelViewer.updateHotspot({
-                name: 'hotspot-dim-X-Y',
-                position: `${center.x - x2} ${center.y - y2} ${center.z}`
+                    name: "hotspot-dim+Y-Z",
+                    position: `${center.x} ${center.y + y2} ${center.z - z2}`,
                 });
-                modelViewer.querySelector('button[slot="hotspot-dim-X-Y"]').textContent =
-                    `${(size.z * 100).toFixed(0)} cm`;
+                modelViewer.querySelector(
+                    'button[slot="hotspot-dim+Y-Z"]'
+                ).textContent = `${(size.x * 100).toFixed(0)} cm`;
 
                 modelViewer.updateHotspot({
-                name: 'hotspot-dot-X-Y+Z',
-                position: `${center.x - x2} ${center.y - y2} ${center.z + z2}`
+                    name: "hotspot-dot-X+Y-Z",
+                    position: `${center.x - x2} ${center.y + y2} ${
+                        center.z - z2
+                    }`,
+                });
+
+                modelViewer.updateHotspot({
+                    name: "hotspot-dim-X-Z",
+                    position: `${center.x - x2} ${center.y} ${center.z - z2}`,
+                });
+                modelViewer.querySelector(
+                    'button[slot="hotspot-dim-X-Z"]'
+                ).textContent = `${(size.y * 100).toFixed(0)} cm`;
+
+                modelViewer.updateHotspot({
+                    name: "hotspot-dot-X-Y-Z",
+                    position: `${center.x - x2} ${center.y - y2} ${
+                        center.z - z2
+                    }`,
+                });
+
+                modelViewer.updateHotspot({
+                    name: "hotspot-dim-X-Y",
+                    position: `${center.x - x2} ${center.y - y2} ${center.z}`,
+                });
+                modelViewer.querySelector(
+                    'button[slot="hotspot-dim-X-Y"]'
+                ).textContent = `${(size.z * 100).toFixed(0)} cm`;
+
+                modelViewer.updateHotspot({
+                    name: "hotspot-dot-X-Y+Z",
+                    position: `${center.x - x2} ${center.y - y2} ${
+                        center.z + z2
+                    }`,
                 });
             });
         </script>

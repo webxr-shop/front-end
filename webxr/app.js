@@ -118,14 +118,18 @@ class App {
         );
     }
 
-    showChair(id) {
+    showChair(url) {
+        let files = url.split("/");
+        let file = files[files.length - 1];
+        let assetsPath = url.replace(file, "");
+
         var div = document.getElementById("showAr");
         div.hidden = true;
         const button = new ARButton(this.renderer);
 
         this.initAR();
 
-        const loader = new GLTFLoader().setPath(this.assetsPath);
+        const loader = new GLTFLoader().setPath(assetsPath);
         const self = this;
 
         this.loadingBar.visible = true;
@@ -133,7 +137,7 @@ class App {
         // Load a glTF resource
         loader.load(
             // resource URL
-            `chair${id}.glb`,
+            file,
             // called when the resource is loaded
             function (gltf) {
                 self.scene.add(gltf.scene);

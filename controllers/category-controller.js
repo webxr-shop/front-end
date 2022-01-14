@@ -1,4 +1,6 @@
 import { CategoryService } from "../services/category-service.js";
+import { del } from "./create-ar-controller.js";
+import { tables } from "./table-controller.js";
 
 function getRandomIntInclusive(min, max) {
     min = Math.ceil(min);
@@ -83,129 +85,54 @@ export function models(category_id) {
     categoryService
         .listModels(data)
         .then((res) => {
-            var divMain = document.getElementById("tableCategory");
+            console.log(res);
+            let data = [];
+            for (let i = 0; i < res._templates.length; i++) {
+                let array = [
+                    res._templates[i].id.toString(),
+                    res._templates[i].name_model,
+                    res._templates[i].category.name,
+                    `<div class="row">
+                        <div class="col-2 d-flex align-items-center">
+                            <a href="webxr/app.html?token=${res._templates[i].token}">
+                                <div class="sb-nav-link-icon">
+                                    <i class="fas fa-link"></i>
+                                    Visualizar
+                                </div>
+                            </a>
+                        </div>
+                        <div class="col-2 d-flex align-items-center">
+                            <a href="edit-ar.html?token=${res._templates[i].token}">
+                                <div class="sb-nav-link-icon">
+                                    <i class="fas fa-edit"></i>
+                                    Editar
+                                </div>
+                            </a>
+                        </div>
+                        <div class="col-2 d-flex align-items-center">
+                            <a id="${res._templates[i].token}" key="${res._templates[i].token}" href=# >
+                                <div class="sb-nav-link-icon">
+                                    <i class="fas fa-trash"></i>
+                                    Excluir
+                                </div>
+                            </a>
+                        </div>
+                        
+                    </div>
+                    `,
+                ];
 
-            var table = document.createElement("table");
-            table.setAttribute("id", "datatablesSimple");
-
-            var thead = document.createElement("thead");
-            var trT = document.createElement("tr");
-
-            var thId = document.createElement("th");
-            var thNm = document.createElement("th");
-            var thHe = document.createElement("th");
-            var thWd = document.createElement("th");
-            var thLe = document.createElement("th");
-            var thOp = document.createElement("th");
-
-            thId.innerHTML = "ID";
-            thNm.innerHTML = "Nome";
-            thHe.innerHTML = "Altura";
-            thWd.innerHTML = "Largura";
-            thLe.innerHTML = "Comprimento";
-            thOp.innerHTML = "Opções";
-
-            trT.appendChild(thId);
-            trT.appendChild(thNm);
-            trT.appendChild(thHe);
-            trT.appendChild(thWd);
-            trT.appendChild(thLe);
-            trT.appendChild(thOp);
-            thead.appendChild(trT);
-
-            table.appendChild(thead);
-
-            var tBody = document.createElement("tbody");
-
-            for (let i = 0; i < res["_templates"].length; i++) {
-                var tr = document.createElement("tr");
-
-                var tdId = document.createElement("td");
-                var tdNm = document.createElement("td");
-                var tdHe = document.createElement("td");
-                var tdWd = document.createElement("td");
-                var tdLe = document.createElement("td");
-                var tdOp = document.createElement("td");
-
-                tdId.innerHTML = res["_templates"][i]["id"];
-                tdNm.innerHTML = res["_templates"][i]["name_model"];
-                tdHe.innerHTML = res["_templates"][i]["dim_y"];
-                tdWd.innerHTML = res["_templates"][i]["dim_x"];
-                tdLe.innerHTML = res["_templates"][i]["dim_z"];
-
-                tr.appendChild(tdId);
-                tr.appendChild(tdNm);
-                tr.appendChild(tdHe);
-                tr.appendChild(tdWd);
-                tr.appendChild(tdLe);
-
-                var divRow = document.createElement("div");
-                divRow.setAttribute("class", "row");
-                var divItem1 = document.createElement("div");
-                divItem1.setAttribute(
-                    "class",
-                    "col-2 d-flex align-items-center"
-                );
-                var a1 = document.createElement("a");
-                a1.setAttribute("href", "#");
-                var divIcon1 = document.createElement("div");
-                divIcon1.setAttribute("class", "sb-nav-link-icon");
-                divIcon1.innerHTML = "Visualizar";
-                var i1 = document.createElement("i");
-                i1.setAttribute("class", "fas fa-link");
-
-                divIcon1.appendChild(i1);
-                a1.appendChild(divIcon1);
-                divItem1.appendChild(a1);
-
-                var divItem2 = document.createElement("div");
-                divItem2.setAttribute(
-                    "class",
-                    "col-2 d-flex align-items-center"
-                );
-                var a2 = document.createElement("a");
-                a2.setAttribute("href", "#");
-                var divIcon2 = document.createElement("a");
-                divIcon2.setAttribute("class", "sb-nav-link-icon");
-                divIcon2.innerHTML = "Editar";
-                var i2 = document.createElement("a");
-                i2.setAttribute("class", "fas fa-edit");
-
-                divIcon2.appendChild(i2);
-                a2.appendChild(divIcon2);
-                divItem2.appendChild(a2);
-
-                var divItem3 = document.createElement("div");
-                divItem3.setAttribute(
-                    "class",
-                    "col-2 d-flex align-items-center"
-                );
-                var a3 = document.createElement("a");
-                a3.setAttribute("href", "#");
-                var divIcon3 = document.createElement("a");
-                divIcon3.setAttribute("class", "sb-nav-link-icon");
-                divIcon3.innerHTML = "Excluir";
-                var i3 = document.createElement("a");
-                i3.setAttribute("class", "fas fa-trash");
-
-                divIcon3.appendChild(i3);
-                a3.appendChild(divIcon3);
-                divItem3.appendChild(a3);
-
-                divRow.appendChild(divItem1);
-                divRow.appendChild(divItem2);
-                divRow.appendChild(divItem3);
-
-                tdOp.appendChild(divRow);
-                tr.appendChild(tdOp);
-                tBody.appendChild(tr);
+                data.push(array);
             }
-            table.appendChild(tBody);
-            // var tfoot = document.createElement("tfoot");
-            // tfoot.appendChild(trT);
-            // table.appendChild(tfoot);
-            divMain.appendChild(table);
-            console.log(table);
+
+            tables(data);
+
+            for (let i = 0; i < res._templates.length; i++) {
+                document.getElementById(res._templates[i].token).onclick =
+                    function () {
+                        del(res._templates[i].token);
+                    };
+            }
         })
         .catch((erro) => {
             console.log(erro);

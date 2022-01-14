@@ -5,9 +5,9 @@ export class HomeService {
         this._http = new HttpService();
     }
 
-    lists(data) {
+    list_model_recent(data) {
         return this._http
-            .post("http://localhost:3333/models", data)
+            .post("http://localhost:3333/models/recent", data)
             .then((res) => res)
             .catch((erro) => {
                 console.log(erro);

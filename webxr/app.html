@@ -16,7 +16,7 @@
             crossorigin="anonymous"
         ></script>
     </head>
-    <body class="bg-primary">
+    <body id="ar" class="bg-primary">
         <div id="layoutAuthentication">
             <div id="layoutAuthentication_content">
                 <main>
@@ -40,7 +40,6 @@
                                                     <button
                                                         id="showAr"
                                                         class="btn btn-primary btn-block ar-button"
-                                                        onclick="window.app.showChair(5);"
                                                     >
                                                         AR
                                                     </button>
@@ -86,6 +85,14 @@
         ></script>
         <script src="../libs/fas.js"></script>
         <script type="module">
+            import { getModel } from "../controllers/ar-controller.js";
+            document.getElementById("ar").onload = function () {
+                const queryString = window.location.search;
+                const urlParams = new URLSearchParams(queryString);
+                const token = urlParams.get("token");
+                getModel(token);
+            };
+
             import { App } from "./app.js";
             document.addEventListener("DOMContentLoaded", function () {
                 const app = new App();

@@ -1,6 +1,6 @@
 import { HttpService } from "./http-service.js";
 
-export class CategoryService {
+export class ArService {
     constructor() {
         this._http = new HttpService();
     }

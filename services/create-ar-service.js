@@ -8,7 +8,10 @@ export class CreateArService {
     newModel(data) {
         return this._http
             .post("http://localhost:3333/models/create", data)
-            .then((res) => (window.location.href = "../category.html"))
+            .then(
+                (res) =>
+                    (window.location.href = `../category.html?id=${res.category_id}`)
+            )
             .catch((erro) => {
                 console.log(erro);
                 throw new Error(erro);
@@ -16,7 +19,7 @@ export class CreateArService {
     }
     getEdit(data) {
         return this._http
-            .post("http://localhost:3333/models/get", data)
+            .post("http://localhost:3333/models/edit", data)
             .then((res) => res)
             .catch((erro) => {
                 console.log(erro);
@@ -26,7 +29,7 @@ export class CreateArService {
     del(data) {
         return this._http
             .post("http://localhost:3333/models/delete", data)
-            .then((res) => res)
+            .then((res) => window.location.reload())
             .catch((erro) => {
                 console.log(erro);
                 throw new Error(erro);

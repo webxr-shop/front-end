@@ -365,8 +365,9 @@
 
                 const queryString = window.location.search;
                 const urlParams = new URLSearchParams(queryString);
-                const id = urlParams.get("id");
-                getEdit(parseInt(id));
+                const tok = urlParams.get("token");
+                console.log(tok);
+                getEdit(tok);
             };
 
             document.getElementById("logout").onclick = function () {

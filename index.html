@@ -136,81 +136,7 @@
                                         Recentes
                                     </div>
                                     <div class="card-body">
-                                        <table id="datatablesSimple">
-                                            <thead>
-                                                <tr>
-                                                    <th>ID</th>
-                                                    <th>Nome</th>
-                                                    <th>Visualizações</th>
-                                                    <th>Opções</th>
-                                                </tr>
-                                            </thead>
-                                            <tfoot>
-                                                <tr>
-                                                    <th>ID</th>
-                                                    <th>Nome</th>
-                                                    <th>Visualizações</th>
-                                                    <th>Opções</th>
-                                                </tr>
-                                            </tfoot>
-                                            <tbody>
-                                                <tr>
-                                                    <td>001</td>
-                                                    <td>Sofá</td>
-                                                    <td>1000</td>
-                                                    <td>
-                                                        <div class="row">
-                                                            <div
-                                                                class="col-2 d-flex align-items-center"
-                                                            >
-                                                                <a href="#">
-                                                                    <div
-                                                                        class="sb-nav-link-icon"
-                                                                    >
-                                                                        <i
-                                                                            class="fas fa-link"
-                                                                        ></i>
-                                                                        Visualizar
-                                                                    </div>
-                                                                </a>
-                                                            </div>
-                                                            <div
-                                                                class="col-2 d-flex align-items-center"
-                                                            >
-                                                                <a
-                                                                    href="edit-ar.html?id=9"
-                                                                >
-                                                                    <div
-                                                                        class="sb-nav-link-icon"
-                                                                    >
-                                                                        <i
-                                                                            class="fas fa-edit"
-                                                                        ></i>
-                                                                        Editar
-                                                                    </div>
-                                                                </a>
-                                                            </div>
-                                                            <div
-                                                                class="col-2 d-flex align-items-center"
-                                                            >
-                                                                <button
-                                                                    id="del"
-                                                                >
-                                                                    <div
-                                                                        class="sb-nav-link-icon"
-                                                                    >
-                                                                        <i
-                                                                            class="fas fa-trash"
-                                                                        ></i>
-                                                                        Excluir
-                                                                    </div>
-                                                                </button>
-                                                            </div>
-                                                        </div>
-                                                    </td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
+                                        <table id="datatablesSimple"></table>
                                     </div>
                                 </div>
                             </div>
@@ -269,27 +195,27 @@
         ></script>
         <script src="js/datatables-simple.js"></script>
         <script src="./controllers/auth-controller.js"></script>
-        <script src="./controllers/create-ar-controller.js"></script>
+
         <script type="module">
-            import { models } from "./controllers/category-controller.js";
-            import { del } from "./controllers/create-ar-controller.js";
-            import { label } from "./controllers/table-controller.js";
+            import { models } from "./controllers/home-controller.js";
+
             import {
                 token,
                 delete_token,
             } from "./controllers/auth-controller-din.js";
             document.getElementById("body").onload = function () {
                 token();
-                label(1);
-            };
-
-            document.getElementById("del").onclick = function () {
-                del(9);
+                models();
             };
 
             document.getElementById("logout").onclick = function () {
                 delete_token();
             };
+
+            console.log(document.getElementById("del"));
+            // document.getElementById("del").onclick = function () {
+            //     console.log("entrou no cu do davi");
+            // };
         </script>
     </body>
 </html>
