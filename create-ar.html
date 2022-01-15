@@ -12,10 +12,7 @@
         <title>Criar AR - Plataforma WebXR</title>
         <link href="css/model-viewer.css" rel="stylesheet" />
         <link href="css/styles.css" rel="stylesheet" />
-        <script
-            src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js"
-            crossorigin="anonymous"
-        ></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js" crossorigin="anonymous"></script>
 
         <!-- The following libraries and polyfills are recommended to maximize browser support -->
         <!-- NOTE: you must adjust the paths as appropriate for your project -->
@@ -182,12 +179,31 @@
                                                 <input
                                                     required
                                                     class="form-control"
-                                                    id="inputNameCategory"
+                                                    id="inputName"
                                                     type="text"
                                                     placeholder="Nome do modelo"
                                                 />
-                                                <label for="inputNameCategory"
+                                                <label for="inputName"
                                                     >Nome do modelo</label
+                                                >
+                                            </div>
+                                            <div class="form-floating mb-3">
+                                                <textarea required class="form-control" id="inputDescription" placeholder="Descrição" rows="3"></textarea>
+                                                <label for="inputDescription"
+                                                    >Descrição</label
+                                                >
+                                            </div>
+                                            <div class="form-floating mb-3">
+                                                <input
+                                                    required
+                                                    class="form-control"
+                                                    name="inputPrice"
+                                                    id="inputPrice"
+                                                    type="text"
+                                                    placeholder="Preço"
+                                                />
+                                                <label for="inputPrice"
+                                                    >Preço</label
                                                 >
                                             </div>
                                             <div class="row mb-3">
@@ -239,7 +255,19 @@
                                             </div>
                                             <div class="mt-4 mb-0">
                                                 <label
-                                                    for="formFile"
+                                                    for="formImage"
+                                                    class="form-label"
+                                                    >Fazer upload da imagem do modelo</label
+                                                >
+                                                <input
+                                                    class="form-control"
+                                                    type="file"
+                                                    id="formImage"
+                                                />
+                                            </div>
+                                            <div class="mt-4 mb-0">
+                                                <label
+                                                    for="formModel"
                                                     class="form-label"
                                                     >Fazer upload do modelo
                                                     3D</label
@@ -247,7 +275,7 @@
                                                 <input
                                                     class="form-control"
                                                     type="file"
-                                                    id="formFile"
+                                                    id="formModel"
                                                 />
                                             </div>
                                             <div class="mt-4 mb-0">
@@ -395,6 +423,18 @@
                 </footer>
             </div>
         </div>
+
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+        <script src="https://igorescobar.github.io/jQuery-Mask-Plugin/js/jquery.mask.min.js" crossorigin="anonymous"></script>
+        <script src="js/scripts.js"></script>
+        <script src="./controllers/auth-controller.js"></script>
+
+        <script>
+            $(document).ready(function(){
+                $('.inputPrice').mask("#.##0,00", {reverse: true});
+            });
+        </script>
+
         <script>
             function readModel() {
                 if (this.files && this.files[0]) {
@@ -409,18 +449,11 @@
                     file.readAsDataURL(this.files[0]);
                 }
             }
-            var models = document.getElementById("formFile");
+            var models = document.getElementById("formModel");
             if (models) {
                 models.addEventListener("change", readModel, false);
             }
         </script>
-
-        <script
-            src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
-            crossorigin="anonymous"
-        ></script>
-        <script src="js/scripts.js"></script>
-        <script src="./controllers/auth-controller.js"></script>
 
         <script type="module">
             import { getCategories } from "./controllers/create-ar-controller.js";
@@ -441,7 +474,7 @@
             let form = document.getElementById("forms");
             form.addEventListener("submit", (event) => {
                 event.preventDefault();
-                document.getElementById("formFile");
+                document.getElementById("formModel");
 
                 create(event, "window.base64");
             });

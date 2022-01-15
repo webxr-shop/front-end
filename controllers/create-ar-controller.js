@@ -10,9 +10,8 @@ export function create(e, file) {
         dim_x: parseFloat(e.target[2].value),
         dim_y: parseFloat(e.target[3].value),
         dim_z: parseFloat(e.target[4].value),
-        name_product: "",
-        description_product: "",
-        thumb_product: "",
+        description_model: "",
+        thumb_model: "",
         category_id: parseInt(e.target[0].value),
         token: localStorage.getItem("token"),
     };
@@ -38,9 +37,9 @@ export function editing(e, file) {
         dim_x: parseFloat(e.target[2].value),
         dim_y: parseFloat(e.target[3].value),
         dim_z: parseFloat(e.target[4].value),
-        name_product: "",
-        description_product: "",
-        thumb_product: "",
+        name_model: "",
+        description_model: "",
+        thumb_model: "",
         category_id: parseInt(e.target[0].value),
         token: localStorage.getItem("token"),
     };
@@ -97,15 +96,19 @@ export function getEdit(token) {
 function params(res) {
     console.log(res);
     serCategories(res["_template"]["category_id"]);
-    var name = document.getElementById("inputNameModel");
-    var largura = document.getElementById("inputWidth");
-    var altura = document.getElementById("inputHeight");
-    var comprimento = document.getElementById("inputLength");
+    var name = document.getElementById("inputName");
+    var description = document.getElementById("inputDescription");
+    var price = document.getElementById("inputPrice");
+    var width = document.getElementById("inputWidth");
+    var height = document.getElementById("inputHeight");
+    var length = document.getElementById("inputLength");
 
     name.value = res["_template"]["name_model"];
-    largura.value = res["_template"]["dim_x"];
-    altura.value = res["_template"]["dim_y"];
-    comprimento.value = res["_template"]["dim_z"];
+    description.value = res["_template"]["description_model"];
+    price.value = res["_template"]["price_model"];
+    width.value = res["_template"]["dim_x"];
+    height.value = res["_template"]["dim_y"];
+    length.value = res["_template"]["dim_z"];
 }
 
 export function serCategories(category_id) {
