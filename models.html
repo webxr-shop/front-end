@@ -9,14 +9,18 @@
         />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <title>Modelos - Plataforma WebXR</title>
+        <title>Nome da categoria - Plataforma WebXR</title>
+        <link
+            href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css"
+            rel="stylesheet"
+        />
         <link href="css/styles.css" rel="stylesheet" />
         <script
             src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js"
             crossorigin="anonymous"
         ></script>
     </head>
-    <body class="sb-nav-fixed" id="body">
+    <body id="body" class="sb-nav-fixed">
         <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
             <!-- Navbar Brand-->
             <a class="navbar-brand ps-3" href="index.html">Plataforma WebXR</a>
@@ -58,7 +62,7 @@
                         </li>
                         <li><hr class="dropdown-divider" /></li>
                         <li>
-                            <a id="logout" class="dropdown-item">Sair</a>
+                            <a class="dropdown-item" id="logout">Sair</a>
                         </li>
                     </ul>
                 </li>
@@ -80,7 +84,7 @@
                                 </div>
                                 Dashboard
                             </a>
-                            <a class="nav-link" href="models.html">
+                            <a class="nav-link" href="categories.html">
                                 <div class="sb-nav-link-icon">
                                     <i class="fas fa-cube"></i>
                                 </div>
@@ -113,7 +117,7 @@
                         <div
                             class="d-flex align-items-center justify-content-between mt-4"
                         >
-                            <h1 class="">Modelos</h1>
+                            <h1 class="">Nome da categoria</h1>
                             <a class="btn btn-primary" href="create-ar.html"
                                 >Criar novo projeto</a
                             >
@@ -122,113 +126,22 @@
                             <li class="breadcrumb-item">
                                 <a href="index.html">Dashboard</a>
                             </li>
-                            <li class="breadcrumb-item active">Modelos</li>
+                            <li class="breadcrumb-item">
+                                <a href="categories.html">Modelos</a>
+                            </li>
+                            <li class="breadcrumb-item active">
+                                Nome da categoria
+                            </li>
                         </ol>
-                        <div class="row" id="categories">
-                            <!-- <div class="col-xl-3 col-md-6">
-                                <div class="card bg-primary text-white mb-4">
-                                    <div class="card-body">Sofá</div>
-                                    <div
-                                        class="
-                                            card-footer
-                                            d-flex
-                                            align-items-center
-                                            justify-content-between
-                                        "
-                                    >
-                                        <a
-                                            class="
-                                                small
-                                                text-white
-                                                stretched-link
-                                            "
-                                            href="category.html"
-                                            >Ver modelos</a
-                                        >
-                                        <div class="small text-white">
-                                            <i class="fas fa-angle-right"></i>
-                                        </div>
-                                    </div>
-                                </div>
+
+                        <div class="card mb-4">
+                            <div class="card-header">
+                                <i class="fas fa-table me-1"></i>
+                                Nome da categoria
                             </div>
-                            <div class="col-xl-3 col-md-6">
-                                <div class="card bg-warning text-white mb-4">
-                                    <div class="card-body">Armário</div>
-                                    <div
-                                        class="
-                                            card-footer
-                                            d-flex
-                                            align-items-center
-                                            justify-content-between
-                                        "
-                                    >
-                                        <a
-                                            class="
-                                                small
-                                                text-white
-                                                stretched-link
-                                            "
-                                            href="category.html"
-                                            >Ver modelos</a
-                                        >
-                                        <div class="small text-white">
-                                            <i class="fas fa-angle-right"></i>
-                                        </div>
-                                    </div>
-                                </div>
+                            <div id="tableCategory" class="card-body">
+                                <table id="datatablesSimple"></table>
                             </div>
-                            <div class="col-xl-3 col-md-6">
-                                <div class="card bg-success text-white mb-4">
-                                    <div class="card-body">Mesa</div>
-                                    <div
-                                        class="
-                                            card-footer
-                                            d-flex
-                                            align-items-center
-                                            justify-content-between
-                                        "
-                                    >
-                                        <a
-                                            class="
-                                                small
-                                                text-white
-                                                stretched-link
-                                            "
-                                            href="category.html"
-                                            >Ver modelos</a
-                                        >
-                                        <div class="small text-white">
-                                            <i class="fas fa-angle-right"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-xl-3 col-md-6">
-                                <div class="card bg-danger text-white mb-4">
-                                    <div class="card-body">Quadros</div>
-                                    <div
-                                        class="
-                                            card-footer
-                                            d-flex
-                                            align-items-center
-                                            justify-content-between
-                                        "
-                                    >
-                                        <a
-                                            class="
-                                                small
-                                                text-white
-                                                stretched-link
-                                            "
-                                            href="category.html"
-                                            >Ver modelos</a
-                                        >
-                                        <div class="small text-white">
-                                            <i class="fas fa-angle-right"></i>
-                                        </div>
-                                    </div> -->
-                            <!-- </div> -->
-                            <!-- </div> -->
                         </div>
                     </div>
                 </main>
@@ -257,17 +170,26 @@
             crossorigin="anonymous"
         ></script>
         <script src="js/scripts.js"></script>
-
+        <script
+            src="https://cdn.jsdelivr.net/npm/simple-datatables@latest"
+            crossorigin="anonymous"
+        ></script>
+        <script src="js/datatables-simple.js"></script>
+        <script src="./controllers/auth-controller.js"></script>
         <script src="./controllers/category-controller.js"></script>
         <script type="module">
-            import { categories } from "./controllers/category-controller.js";
+            import { tables } from "./controllers/table-controller.js";
+            import { models } from "./controllers/category-controller.js";
             import {
                 token,
                 delete_token,
             } from "./controllers/auth-controller-din.js";
             document.getElementById("body").onload = function () {
                 token();
-                categories();
+                const queryString = window.location.search;
+                const urlParams = new URLSearchParams(queryString);
+                const id = urlParams.get("id");
+                models(id);
             };
 
             document.getElementById("logout").onclick = function () {

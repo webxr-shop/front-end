@@ -50,7 +50,7 @@ export function categories() {
                 );
                 aModels.setAttribute(
                     "href",
-                    "category.html?id=" + res["_categories"][i]["id"]
+                    "models.html?id=" + res["_categories"][i]["id"]
                 );
                 aModels.innerHTML = "Ver modelos";
 
@@ -117,7 +117,6 @@ export function models(category_id) {
                                 </div>
                             </a>
                         </div>
-                        
                     </div>
                     `,
                 ];

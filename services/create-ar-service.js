@@ -10,7 +10,7 @@ export class CreateArService {
             .post("http://localhost:3333/models/create", data)
             .then(
                 (res) =>
-                    (window.location.href = `../category.html?id=${res.category_id}`)
+                    (window.location.href = `../models.html?id=${res.category_id}`)
             )
             .catch((erro) => {
                 console.log(erro);
