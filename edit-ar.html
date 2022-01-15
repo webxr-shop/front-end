@@ -9,7 +9,7 @@
         />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <title>Criar AR - Plataforma WebXR</title>
+        <title>Editar AR - Plataforma WebXR</title>
         <link href="css/model-viewer.css" rel="stylesheet" />
         <link href="css/styles.css" rel="stylesheet" />
         <script
@@ -132,7 +132,7 @@
                         <div
                             class="d-flex align-items-center justify-content-between mt-4"
                         >
-                            <h1 class="">Criar novo AR</h1>
+                            <h1 class="">Editar AR</h1>
                             <a class="btn btn-primary" href="create-ar.html"
                                 >Criar novo projeto</a
                             >
@@ -141,7 +141,7 @@
                             <li class="breadcrumb-item">
                                 <a href="index.html">Dashboard</a>
                             </li>
-                            <li class="breadcrumb-item active">Criar AR</li>
+                            <li class="breadcrumb-item active">Editar AR</li>
                         </ol>
                     </div>
                     <div class="container">
@@ -180,12 +180,31 @@
                                                 <input
                                                     required
                                                     class="form-control"
-                                                    id="inputNameModel"
+                                                    id="inputName"
                                                     type="text"
                                                     placeholder="Nome do modelo"
                                                 />
-                                                <label for="inputNameCategory"
+                                                <label for="inputName"
                                                     >Nome do modelo</label
+                                                >
+                                            </div>
+                                            <div class="form-floating mb-3">
+                                                <textarea required class="form-control" id="inputDescription" placeholder="Descrição" rows="3"></textarea>
+                                                <label for="inputDescription"
+                                                    >Descrição</label
+                                                >
+                                            </div>
+                                            <div class="form-floating mb-3">
+                                                <input
+                                                    required
+                                                    class="form-control"
+                                                    name="inputPrice"
+                                                    id="inputPrice"
+                                                    type="text"
+                                                    placeholder="Preço"
+                                                />
+                                                <label for="inputPrice"
+                                                    >Preço</label
                                                 >
                                             </div>
                                             <div class="row mb-3">
@@ -237,7 +256,19 @@
                                             </div>
                                             <div class="mt-4 mb-0">
                                                 <label
-                                                    for="formFile"
+                                                    for="formImage"
+                                                    class="form-label"
+                                                    >Fazer upload da imagem do modelo</label
+                                                >
+                                                <input
+                                                    class="form-control"
+                                                    type="file"
+                                                    id="formImage"
+                                                />
+                                            </div>
+                                            <div class="mt-4 mb-0">
+                                                <label
+                                                    for="formModel"
                                                     class="form-label"
                                                     >Fazer upload do modelo
                                                     3D</label
@@ -245,7 +276,7 @@
                                                 <input
                                                     class="form-control"
                                                     type="file"
-                                                    id="formFile"
+                                                    id="formModel"
                                                 />
                                             </div>
                                             <div class="mt-4 mb-0">
