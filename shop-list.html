@@ -285,14 +285,11 @@
 
             let canhazElement = document.getElementById('canhazwebxr');
             let canhazImg = document.getElementById('canhazimg');
-            if ('xr' in navigator) {
+            if (!isMobile(window)) {
+              canhazElement.innerText = "O WebXR Shop é compatível apenas com dispositivos móveis (smartphones). Para melhor experiência, acesse novamente este site através de um dispositivo compatível!"
+              canhazImg.src = "assets/img/info-button.png";
+            } else if ('xr' in navigator) {
               canhazElement.innerText = "Seu navegador implementa a API WebXR e pode executar experiências de Realidade Virtual ou Realidade Aumentada se você estiver usando um sistema operacional compatível e o hardware apropriado."
-              navigator.xr.isSessionSupported('immersive-vr').then((supported) => {
-                const span = document.createElement('span');
-                span.innerText = supported ? '✔️- Suporte de RV detectado' : '❌ - Suporte de RV não detectado';
-                canhazElement.appendChild(document.createElement('br'));
-                canhazElement.appendChild(span);
-              });
               navigator.xr.isSessionSupported('immersive-ar').then((supported) => {
                 const span = document.createElement('span');
                 span.innerText = supported ? '✔️- Suporte de RA detectado' : '❌ - Suporte de RA não detectado';
@@ -300,14 +297,11 @@
                 canhazElement.appendChild(span);
               });
               canhazImg.src = "assets/img/check-button.png";
-            } else if ('getVRDisplays' in navigator) {
-              canhazElement.innerText = "Seu navegador não suporta WebXR, mas suporta a API WebVR obsoleta. Você pode executar experiências de Realidade Virtual em sites que usam o WebXR Polyfill, como este!"
-              canhazImg.src = "assets/img/info-button.png";
-            } else if (isMobile(window)) {
-              canhazElement.innerText = "Seu navegador não suporta WebXR, mas parece que você está usando um dispositivo móvel. Você pode executar experiências de Realidade Virtual em sites que usam o WebXR Polyfill, como este!"
-              canhazImg.src = "assets/img/info-button.png";
             } else {
-              canhazElement.innerText = "Desculpe, seu navegador não suporta WebXR."
+              canhazElement.innerText = "Desculpe, seu navegador não suporta WebXR. Caso seja usuário de iPhone, faça o download do navegador WebXR Viewer e acesse novamente este site através dele."
+              const a = document.createElement('a');
+              a.innerHTML='<a href="https://apps.apple.com/us/app/webxr-viewer/id1295998056"> Baixar WebXR Viewer!</a>';
+              canhazElement.appendChild(a);
               canhazImg.src = "assets/img/x-button.png";
             }
           </script>
