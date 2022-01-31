@@ -14,10 +14,35 @@
 	<div id="content">
 		<div id="mySidenav" class="sidenav">
 			<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-			<a class="ar-object" id="1" href="#">Item 1</a>
+            <a class="ar-object" id="1" href="#">Item 1</a>
 			<a class="ar-object" id="2" href="#">Item 2</a>
 			<a class="ar-object" id="3" href="#">Item 3</a>
 			<a class="ar-object" id="4" href="#">Item 4</a>
+            <a class="ar-object" id="5" href="#">Item 5</a>
+			<a class="ar-object" id="6" href="#">Item 6</a>
+			<a class="ar-object" id="7" href="#">Item 7</a>
+			<a class="ar-object" id="8" href="#">Item 8</a>
+            <a class="ar-object" id="9" href="#">Item 9</a>
+			<a class="ar-object" id="10" href="#">Item 10</a>
+			<a class="ar-object" id="11" href="#">Item 11</a>
+			<a class="ar-object" id="12" href="#">Item 12</a>
+            <a class="ar-object" id="13" href="#">Item 13</a>
+			<a class="ar-object" id="14" href="#">Item 14</a>
+			<a class="ar-object" id="15" href="#">Item 15</a>
+			<a class="ar-object" id="16" href="#">Item 16</a>
+            <a class="ar-object" id="17" href="#">Item 17</a>
+			<a class="ar-object" id="18" href="#">Item 18</a>
+			<a class="ar-object" id="19" href="#">Item 19</a>
+			<a class="ar-object" id="20" href="#">Item 20</a>
+            <a class="ar-object" id="21" href="#">Item 21</a>
+			<a class="ar-object" id="22" href="#">Item 22</a>
+			<a class="ar-object" id="23" href="#">Item 23</a>
+			<a class="ar-object" id="24" href="#">Item 24</a>
+            <a class="ar-object" id="25" href="#">Item 25</a>
+			<a class="ar-object" id="26" href="#">Item 26</a>
+			<a class="ar-object" id="27" href="#">Item 27</a>
+			<a class="ar-object" id="28" href="#">Item 28</a>
+            <a class="ar-object" id="29" href="#">Item 29</a>
 		</div>
 
 		<span style="font-size:30px;cursor:pointer;position: absolute;" onclick="openNav()">&#9776; produtos</span>
@@ -56,7 +81,9 @@
 		import { OrbitControls } from './jsm/controls/OrbitControls.js';
 		import { GLTFLoader } from './jsm/loaders/GLTFLoader.js';
 		import { RGBELoader } from './jsm/loaders/RGBELoader.js';
+        import { DRACOLoader } from './jsm/loaders/DRACOLoader.js';
 		import { RoughnessMipmapper } from './jsm/utils/RoughnessMipmapper.js';
+        import { LoadingBar } from './jsm/utils/LoadingBar.js';
 
 		let container;
 		let camera, scene, renderer;
@@ -65,6 +92,9 @@
 		let reticle;
 
 		var pmremGenerator, current_object, controls;
+
+        let loadingBar = new LoadingBar();
+        loadingBar.visible = false;
 
 		let hitTestSource = null;
 		let hitTestSourceRequested = false;
@@ -113,20 +143,46 @@
 					render();
 
 					var loader = new GLTFLoader().setPath('models/');
-					loader.load(model + ".glb", function (glb) {
 
-						current_object = glb.scene;
-						scene.add(current_object);
+                    loadingBar.visible = true;
 
-						arPlace();
+                    const dracoLoader = new DRACOLoader();
+                    dracoLoader.setDecoderPath('jsm/draco/');
+                    loader.setDRACOLoader(dracoLoader);
 
-						var box = new THREE.Box3();
-						box.setFromObject(current_object);
-						box.center(controls.target);
+					loader.load(
 
-						controls.update();
-						render();
-					});
+                        model + ".glb",
+
+                        function (glb) {
+
+                            current_object = glb.scene;
+                            scene.add(current_object);
+
+                            loadingBar.visible = false;
+
+                            arPlace();
+
+                            var box = new THREE.Box3();
+                            box.setFromObject(current_object);
+                            box.center(controls.target);
+
+                            controls.update();
+                            render();
+					    },
+
+                        function (xhr) {
+
+                            loadingBar.progress = (xhr.loaded / xhr.total);
+
+                        },
+
+                        function ( error ) {
+
+                            console.log( 'An error happened' );
+
+                            }
+                    );
 				});
 
 
