@@ -199,7 +199,7 @@
                                             <div hidden id="previewModel">
                                                 <model-viewer id="dimension-demo" camera-orbit="-30deg auto auto"
                                                     max-camera-orbit="auto 100deg auto" shadow-intensity="1"
-                                                    camera-controls src="./assets/models/chair1.glb" alt="Modelo 3D">
+                                                    camera-controls alt="Modelo 3D">
                                                     <button slot="hotspot-dot+X-Y+Z" class="dot" data-position="1 -1 1"
                                                         data-normal="1 0 0"></button>
                                                     <button slot="hotspot-dim+X-Y" class="dim" data-position="1 -1 0"
@@ -288,7 +288,7 @@
         function readImage() {
             console.log(this.files);
             if (this.files && this.files[0]) {
-                var file = new FileReader();
+                let file = new FileReader();
                 file.onload = function (e) {
                     let img = document.getElementById("previewImage");
                     img.src = e.target.result;
@@ -299,31 +299,20 @@
                 file.readAsDataURL(this.files[0]);
             }
         }
-        var imgs = document.getElementById("formImage");
+        let imgs = document.getElementById("formImage");
         if (imgs) {
             imgs.addEventListener("change", readImage, false);
         }
     </script>
 
     <script>
-        function readModel() {
-            console.log(this.files[0]);
-            if (this.files && this.files[0]) {
-                var file = new FileReader();
-
-                file.onload = function (e) {
-                    let model = document.getElementById("previewModel");
-                    model.src = e.target.result;
-                    model.hidden = false;
-                    window.base64 = file.result;
-                };
-
-                file.readAsDataURL(this.files[0]);
-            }
-        }
-        var models = document.getElementById("formModel");
-        if (models) {
-            models.addEventListener("change", readModel, false);
+        document.getElementById("formModel")
+        .onchange = function(event) {
+            let file = event.target.files[0];
+            let div = document.getElementById("previewModel");
+            div.hidden = false;
+            let modelURL = URL.createObjectURL(file);
+            document.querySelector("model-viewer").src = modelURL;
         }
     </script>
 
