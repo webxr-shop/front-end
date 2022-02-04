@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <title>Visualizar modelo</title>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+        <link rel="stylesheet" href="./css/model-viewer.css" />
+        <!-- The following libraries and polyfills are recommended to maximize browser support -->
+        <!-- NOTE: you must adjust the paths as appropriate for your project -->
+
+        <!-- 🚨 REQUIRED: Web Components polyfill to support Edge and Firefox < 63 -->
+        <script src="https://unpkg.com/@webcomponents/webcomponentsjs@2.1.3/webcomponents-loader.js"></script>
+
+        <!-- 💁 OPTIONAL: Intersection Observer polyfill for better performance in Safari and IE11 -->
+        <script src="https://unpkg.com/intersection-observer@0.5.1/intersection-observer.js"></script>
+
+        <!-- 💁 OPTIONAL: Resize Observer polyfill improves resize behavior in non-Chrome browsers -->
+        <script src="https://unpkg.com/resize-observer-polyfill@1.5.1/dist/ResizeObserver.js"></script>
+
+        <!-- 💁 OPTIONAL: Fullscreen polyfill is required for experimental AR features in Canary -->
+        <script src="https://unpkg.com/fullscreen-polyfill@1.0.2/dist/fullscreen.polyfill.js"></script>
+
+        <!-- 💁 OPTIONAL: Include prismatic.js for Magic Leap support -->
+        <!-- <script src="https://unpkg.com/@magicleap/prismatic@0.18.2/prismatic.min.js"></script> -->
+    </head>
+
+    <body>
+        <model-viewer id="dimension-demo" camera-orbit="-30deg auto auto" max-camera-orbit="auto 100deg auto" shadow-intensity="1" camera-controls src="../assets/models/chair1.glb" alt="Modelo 3D">
+            <button slot="hotspot-dot+X-Y+Z" class="dot" data-position="1 -1 1" data-normal="1 0 0"></button>
+            <button slot="hotspot-dim+X-Y" class="dim" data-position="1 -1 0" data-normal="1 0 0"></button>
+            <button slot="hotspot-dot+X-Y-Z" class="dot" data-position="1 -1 -1" data-normal="1 0 0"></button>
+            <button slot="hotspot-dim+X-Z" class="dim" data-position="1 0 -1" data-normal="1 0 0"></button>
+            <button slot="hotspot-dot+X+Y-Z" class="dot show" data-position="1 1 -1" data-normal="0 1 0"></button>
+            <button slot="hotspot-dim+Y-Z" class="dim show" data-position="0 -1 -1" data-normal="0 1 0"></button>
+            <button slot="hotspot-dot-X+Y-Z" class="dot show" data-position="-1 1 -1" data-normal="0 1 0"></button>
+            <button slot="hotspot-dim-X-Z" class="dim" data-position="-1 0 -1" data-normal="-1 0 0"></button>
+            <button slot="hotspot-dot-X-Y-Z" class="dot" data-position="-1 -1 -1" data-normal="-1 0 0"></button>
+            <button slot="hotspot-dim-X-Y" class="dim" data-position="-1 -1 0" data-normal="-1 0 0"></button>
+            <button slot="hotspot-dot-X-Y+Z" class="dot" data-position="-1 -1 1" data-normal="-1 0 0"></button>
+
+            <div id="controls" class="dim">
+                <label for="show-dimensions">Mostrar dimensões:</label>
+                <input id="show-dimensions" type="checkbox" checked="true">
+            </div>
+            </model-viewer>
+
+        <script type="module">
+        const modelViewer = document.querySelector('#dimension-demo');
+
+        const checkbox = modelViewer.querySelector('#show-dimensions');
+        checkbox.addEventListener('change', () => {
+            modelViewer.querySelectorAll('button').forEach((hotspot) => {
+            if (checkbox.checked) {
+                hotspot.classList.remove('hide');
+            } else {
+                hotspot.classList.add('hide');
+            }
+            });
+        });
+
+        modelViewer.addEventListener('load', () => {
+            const center = modelViewer.getCameraTarget();
+            const size = modelViewer.getDimensions();
+            const x2 = size.x / 2;
+            const y2 = size.y / 2;
+            const z2 = size.z / 2;
+
+            modelViewer.updateHotspot({
+            name: 'hotspot-dot+X-Y+Z',
+            position: `${center.x + x2} ${center.y - y2} ${center.z + z2}`
+            });
+
+            modelViewer.updateHotspot({
+            name: 'hotspot-dim+X-Y',
+            position: `${center.x + x2} ${center.y - y2} ${center.z}`
+            });
+            modelViewer.querySelector('button[slot="hotspot-dim+X-Y"]').textContent =
+                `${(size.z * 100).toFixed(0)} cm`;
+
+            modelViewer.updateHotspot({
+            name: 'hotspot-dot+X-Y-Z',
+            position: `${center.x + x2} ${center.y - y2} ${center.z - z2}`
+            });
+
+            modelViewer.updateHotspot({
+            name: 'hotspot-dim+X-Z',
+            position: `${center.x + x2} ${center.y} ${center.z - z2}`
+            });
+            modelViewer.querySelector('button[slot="hotspot-dim+X-Z"]').textContent =
+                `${(size.y * 100).toFixed(0)} cm`;
+
+            modelViewer.updateHotspot({
+            name: 'hotspot-dot+X+Y-Z',
+            position: `${center.x + x2} ${center.y + y2} ${center.z - z2}`
+            });
+
+            modelViewer.updateHotspot({
+            name: 'hotspot-dim+Y-Z',
+            position: `${center.x} ${center.y + y2} ${center.z - z2}`
+            });
+            modelViewer.querySelector('button[slot="hotspot-dim+Y-Z"]').textContent =
+                `${(size.x * 100).toFixed(0)} cm`;
+
+            modelViewer.updateHotspot({
+            name: 'hotspot-dot-X+Y-Z',
+            position: `${center.x - x2} ${center.y + y2} ${center.z - z2}`
+            });
+
+            modelViewer.updateHotspot({
+            name: 'hotspot-dim-X-Z',
+            position: `${center.x - x2} ${center.y} ${center.z - z2}`
+            });
+            modelViewer.querySelector('button[slot="hotspot-dim-X-Z"]').textContent =
+                `${(size.y * 100).toFixed(0)} cm`;
+
+            modelViewer.updateHotspot({
+            name: 'hotspot-dot-X-Y-Z',
+            position: `${center.x - x2} ${center.y - y2} ${center.z - z2}`
+            });
+
+            modelViewer.updateHotspot({
+            name: 'hotspot-dim-X-Y',
+            position: `${center.x - x2} ${center.y - y2} ${center.z}`
+            });
+            modelViewer.querySelector('button[slot="hotspot-dim-X-Y"]').textContent =
+                `${(size.z * 100).toFixed(0)} cm`;
+
+            modelViewer.updateHotspot({
+            name: 'hotspot-dot-X-Y+Z',
+            position: `${center.x - x2} ${center.y - y2} ${center.z + z2}`
+            });
+        });
+        </script>
+
+        <!-- 💁 Include both scripts below to support all browsers! -->
+
+        <!-- Loads <model-viewer> for modern browsers: -->
+        <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.js"></script>
+
+        <!-- Loads <model-viewer> for old browsers like IE11: -->
+        <script nomodule src="https://unpkg.com/@google/model-viewer/dist/model-viewer-legacy.js"></script>
+    </body>
+</html>
