@@ -8,18 +8,19 @@
     <meta name='mobile-web-app-capable' content='yes'>
     <meta name='apple-mobile-web-app-capable' content='yes'>
     <meta name='twitter:card' content='summary'>
-    <meta name='twitter:title' content='Criar categoria - Plataforma WebXR'>
+    <meta name='twitter:title' content='Dashboard - Plataforma WebXR'>
     <meta name='twitter:description' content='Realidade Aumentada para e-commerce'>
     <link rel='icon' type='image/png' sizes='32x32' href='assets/img/favicon-32x32.png'>
     <link rel='icon' type='image/png' sizes='96x96' href='assets/img/favicon-96x96.png'>
+    <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
     <link href="css/styles.css" rel="stylesheet" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js"
         crossorigin="anonymous"></script>
 
-    <title>Criar categoria - Plataforma WebXR</title>
+    <title>Dashboard - Plataforma WebXR</title>
 </head>
 
-<body class="sb-nav-fixed" onload="exists_token()">
+<body id="body" class="sb-nav-fixed">
     <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
         <!-- Navbar Brand-->
         <a class="navbar-brand ps-3" href="admin.html">Plataforma WebXR</a>
@@ -47,7 +48,7 @@
                         <hr class="dropdown-divider" />
                     </li>
                     <li>
-                        <a class="dropdown-item" onclick=" delete_token()">Sair</a>
+                        <a class="dropdown-item" id="logout">Sair</a>
                     </li>
                 </ul>
             </li>
@@ -97,74 +98,32 @@
             <main>
                 <div class="container-fluid px-4">
                     <div class="d-flex align-items-center justify-content-between mt-4">
-                        <h1 class="">Criar nova categoria</h1>
+                        <h1 class="">Dashboard</h1>
                         <a class="btn btn-primary" href="create-ar.html">Criar novo projeto</a>
                     </div>
                     <ol class="breadcrumb mb-4">
-                        <li class="breadcrumb-item">
-                            <a href="admin.html">Dashboard</a>
-                        </li>
-                        <li class="breadcrumb-item active">
-                            Criar categoria
-                        </li>
+                        <li class="breadcrumb-item active">Dashboard</li>
                     </ol>
-                </div>
-                <div class="container">
-                    <div class="row justify-content-center">
-                        <div class="col-lg-7">
-                            <div class="card border-0 rounded-lg mt-5">
+                    <div class="row">
+                        <div class="col-xl-6">
+                            <div class="card mb-4">
+                                <div class="card-header">
+                                    <i class="fas fa-table me-1"></i>
+                                    Recentes
+                                </div>
                                 <div class="card-body">
-                                    <form id="forms">
-                                        <div class="form-floating mb-3">
-                                            <input required class="form-control" id="inputNameCategory" type="text"
-                                                placeholder="Nome da categoria" />
-                                            <label for="inputNameCategory">Nome da categoria</label>
-                                        </div>
-                                        <div class="form-floating mb-3">
-                                            <input required class="form-control" id="inputDescriptionCategory"
-                                                type="text" placeholder="Descrição da categoria" />
-                                            <label for="inputDescriptionCategory">Descrição da
-                                                categoria</label>
-                                        </div>
-                                        <!-- <div class="mt-4 mb-0">
-                                                <label
-                                                    for="formFile"
-                                                    class="form-label"
-                                                    >Fazer upload da capa da
-                                                    categoria</label
-                                                >
-                                                <input
-                                                    required
-                                                    class="form-control"
-                                                    type="file"
-                                                    id="formFile"
-                                                />
-                                            </div>
-                                            <div class="mt-4 mb-0">
-                                                <img
-                                                    hidden
-                                                    id="preview"
-                                                    class="card-img-top"
-                                                    alt="..."
-                                                />
-                                            </div> -->
-                                        <div class="row mt-4 mb-3">
-                                            <div class="col-md-6">
-                                                <div class="d-grid">
-                                                    <a class="btn btn-outline-primary btn-block"
-                                                        href="admin.html">Cancelar</a>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <div class="d-grid">
-                                                    <button type="submit" class="btn btn-primary btn-block"
-                                                        href="create-ar.html">
-                                                        Cadastrar categoria
-                                                    </button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </form>
+                                    <table id="datatablesSimple"></table>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-6">
+                            <div class="card mb-4">
+                                <div class="card-header">
+                                    <i class="fas fa-chart-bar me-1"></i>
+                                    Categorias
+                                </div>
+                                <div class="card-body">
+                                    <canvas id="myBarChart" width="100%" height="40"></canvas>
                                 </div>
                             </div>
                         </div>
@@ -187,41 +146,34 @@
             </footer>
         </div>
     </div>
-    <!-- <script>
-            function readImage() {
-                if (this.files && this.files[0]) {
-                    var file = new FileReader();
-                    file.onload = function (e) {
-                        let img = document.getElementById("preview");
-                        img.src = e.target.result;
-                        img.hidden = false;
-                        window.base64 = file.result;
-
-                        console.log(file);
-                    };
-                    console.log(this.files[0]);
-                    file.readAsDataURL(this.files[0]);
-                }
-            }
-            var imgs = document.getElementById("formFile");
-            if (imgs) {
-                imgs.addEventListener("change", readImage, false);
-            }
-        </script> -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
         crossorigin="anonymous"></script>
     <script src="js/scripts.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
+    <script src="assets/demo/chart-area-demo.js"></script>
+    <script src="js/chart-bar.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
+    <script src="js/datatables-simple.js"></script>
     <script src="./controllers/auth-controller.js"></script>
+
     <script type="module">
-        import { create } from "./controllers/category-controller.js";
+        import { models } from "./controllers/home-controller.js";
 
-        let form = document.getElementById("forms");
-        form.addEventListener("submit", (event) => {
-            event.preventDefault();
-            document.getElementById("formFile");
+        import {
+            token,
+            delete_token,
+        } from "./controllers/auth-controller-din.js";
+        document.getElementById("body").onload = function () {
+            token();
+            models();
+        };
 
-            create(event);
-        });
+        document.getElementById("logout").onclick = function () {
+            delete_token();
+        };
+
+        console.log(document.getElementById("del"));
+
     </script>
 </body>
 
