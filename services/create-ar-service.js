@@ -6,6 +6,7 @@ export class CreateArService {
     }
 
     newModel(data) {
+        console.log("b");
         return this._http
             .post("http://localhost:3333/models/create", data)
             .then(

@@ -12,7 +12,7 @@ const colors = ["bg-primary", "bg-warning", "bg-success", "bg-danger"];
 
 export function categories() {
     let categoryService = new CategoryService();
-    var data = {
+    let data = {
         token: localStorage.getItem("token"),
     };
 
@@ -21,29 +21,33 @@ export function categories() {
         .then((res) => {
             console.log(res);
             for (let i = 0; i < res["_categories"].length; i++) {
-                var color = colors[getRandomIntInclusive(0, 3)];
+                let color = colors[getRandomIntInclusive(0, 3)];
 
-                var categories = document.getElementById("categories");
+                let categories = document.getElementById("categories");
 
-                var divMain = document.createElement("div");
+                let divMain = document.createElement("div");
                 divMain.setAttribute("class", "col-xl-3 col-md-6");
 
-                var divCard = document.createElement("div");
+                let divCard = document.createElement("div");
                 divCard.setAttribute(
                     "class",
                     "card " + color + " text-white mb-4"
                 );
 
-                var divName = document.createElement("div");
+                let divName = document.createElement("div");
                 divName.setAttribute("class", "card-body");
                 divName.innerHTML = res["_categories"][i]["name"];
-                var div = document.createElement("div");
+                let divCount = document.createElement("div");
+
+                divCount.innerHTML =
+                    res["_categories"][i]["templates"].length + " modelos";
+                let div = document.createElement("div");
                 div.setAttribute(
                     "class",
                     "card-footer d-flex align-items-center justify-content-between"
                 );
 
-                var aModels = document.createElement("a");
+                let aModels = document.createElement("a");
                 aModels.setAttribute(
                     "class",
                     "small text-white stretched-link"
@@ -54,16 +58,17 @@ export function categories() {
                 );
                 aModels.innerHTML = "Ver modelos";
 
-                var divText = document.createElement("div");
+                let divText = document.createElement("div");
                 divText.setAttribute("class", "small text-white");
 
-                var iSet = document.createElement("i");
+                let iSet = document.createElement("i");
                 iSet.setAttribute("class", "fas fa-angle-right");
 
                 divText.appendChild(iSet);
                 div.appendChild(aModels);
                 div.appendChild(divText);
                 divCard.appendChild(divName);
+                divName.appendChild(divCount);
                 divCard.appendChild(div);
                 divMain.appendChild(divCard);
                 categories.appendChild(divMain);
@@ -77,7 +82,7 @@ export function categories() {
 
 export function models(category_id) {
     let categoryService = new CategoryService();
-    var data = {
+    let data = {
         token: localStorage.getItem("token"),
         category_id: parseInt(category_id),
     };
@@ -137,4 +142,17 @@ export function models(category_id) {
             console.log(erro);
             throw new Error(erro);
         });
+}
+
+export function create(e) {
+    e.preventDefault();
+    let categoryService = new CategoryService();
+    let data = {
+        name: e.target[0].value,
+
+        description: e.target[1].value,
+        token: localStorage.getItem("token"),
+    };
+
+    categoryService.newCategory(data);
 }

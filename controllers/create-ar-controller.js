@@ -1,20 +1,22 @@
 import { CategoryService } from "../services/category-service.js";
 import { CreateArService } from "../services/create-ar-service.js";
 
-export function create(e, file) {
+export function create(e, file, img) {
     e.preventDefault();
     let createArService = new CreateArService();
     let data = {
         name_model: e.target[1].value,
-        file_model: file,
-        dim_x: parseFloat(e.target[2].value),
-        dim_y: parseFloat(e.target[3].value),
-        dim_z: parseFloat(e.target[4].value),
-        description_model: "",
-        thumb_model: "",
+        file_model: "file",
+        dim_x: parseFloat(e.target[4].value),
+        dim_y: parseFloat(e.target[5].value),
+        dim_z: parseFloat(e.target[6].value),
+        description_model: e.target[2].value,
+        price: parseFloat(e.target[3].value),
+        thumb_model: img,
         category_id: parseInt(e.target[0].value),
         token: localStorage.getItem("token"),
     };
+    console.log(data);
 
     createArService.newModel(data);
 }
@@ -105,7 +107,7 @@ function params(res) {
 
     name.value = res["_template"]["name_model"];
     description.value = res["_template"]["description_model"];
-    price.value = res["_template"]["price_model"];
+    price.value = res["_template"]["price"];
     width.value = res["_template"]["dim_x"];
     height.value = res["_template"]["dim_y"];
     length.value = res["_template"]["dim_z"];
