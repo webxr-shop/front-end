@@ -36,7 +36,7 @@ export function editProfile(e) {
         profileService
             .editProfile(data)
             .then((res) => {
-                window.location.href = "../index.html";
+                window.location.href = "../admin.html";
             })
             .catch((erro) => {
                 console.log(erro);

@@ -1,17 +1,23 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 
 <head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <meta name="description" content="" />
-    <meta name="author" content="" />
-    <title>Criar AR - Plataforma WebXR</title>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='chrome=1'>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <meta name='mobile-web-app-capable' content='yes'>
+    <meta name='apple-mobile-web-app-capable' content='yes'>
+    <meta name='twitter:card' content='summary'>
+    <meta name='twitter:title' content='Criar AR - Plataforma WebXR'>
+    <meta name='twitter:description' content='Realidade Aumentada para e-commerce'>
+    <link rel='icon' type='image/png' sizes='32x32' href='assets/img/favicon-32x32.png'>
+    <link rel='icon' type='image/png' sizes='96x96' href='assets/img/favicon-96x96.png'>
     <link href="css/create-ar.css" rel="stylesheet" />
     <link href="css/styles.css" rel="stylesheet" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js"
         crossorigin="anonymous"></script>
+
+    <title>Criar AR - Plataforma WebXR</title>
 
     <!-- The following libraries and polyfills are recommended to maximize browser support -->
     <!-- NOTE: you must adjust the paths as appropriate for your project -->
@@ -35,7 +41,7 @@
 <body id="body" class="sb-nav-fixed">
     <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
         <!-- Navbar Brand-->
-        <a class="navbar-brand ps-3" href="index.html">Plataforma WebXR</a>
+        <a class="navbar-brand ps-3" href="admin.html">Plataforma WebXR</a>
         <!-- Sidebar Toggle-->
         <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!">
             <i class="fas fa-bars"></i>
@@ -54,7 +60,7 @@
                     aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
                 <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                     <li>
-                        <a class="dropdown-item" href="#!">Configurações</a>
+                        <a class="dropdown-item" href="profile.html">Perfil</a>
                     </li>
                     <li>
                         <hr class="dropdown-divider" />
@@ -73,7 +79,7 @@
                 <div class="sb-sidenav-menu">
                     <div class="nav">
                         <div class="sb-sidenav-menu-heading">Menu</div>
-                        <a class="nav-link" href="index.html">
+                        <a class="nav-link" href="admin.html">
                             <div class="sb-nav-link-icon">
                                 <i class="fas fa-tachometer-alt"></i>
                             </div>
@@ -115,7 +121,7 @@
                     </div>
                     <ol class="breadcrumb mb-4">
                         <li class="breadcrumb-item">
-                            <a href="index.html">Dashboard</a>
+                            <a href="admin.html">Dashboard</a>
                         </li>
                         <li class="breadcrumb-item active">Criar AR</li>
                     </ol>
@@ -199,9 +205,7 @@
                                             <div hidden id="previewModel">
                                                 <model-viewer id="dimension-demo" camera-orbit="-30deg auto auto"
                                                     max-camera-orbit="auto 100deg auto" shadow-intensity="1"
-                                                    camera-controls
-                                                    src="https://models-webxr.s3.sa-east-1.amazonaws.com/models-easy/chair4.glb"
-                                                    alt="Modelo 3D">
+                                                    camera-controls alt="Modelo 3D">
                                                     <button slot="hotspot-dot+X-Y+Z" class="dot" data-position="1 -1 1"
                                                         data-normal="1 0 0"></button>
                                                     <button slot="hotspot-dim+X-Y" class="dim" data-position="1 -1 0"
@@ -238,7 +242,7 @@
                                             <div class="col-md-6">
                                                 <div class="d-grid">
                                                     <a class="btn btn-outline-primary btn-block"
-                                                        href="index.html">Cancelar</a>
+                                                        href="admin.html">Cancelar</a>
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
@@ -290,7 +294,7 @@
         function readImage() {
             console.log(this.files);
             if (this.files && this.files[0]) {
-                var file = new FileReader();
+                let file = new FileReader();
                 file.onload = function (e) {
                     let img = document.getElementById("previewImage");
                     img.src = e.target.result;
@@ -301,32 +305,21 @@
                 file.readAsDataURL(this.files[0]);
             }
         }
-        var imgs = document.getElementById("formImage");
+        let imgs = document.getElementById("formImage");
         if (imgs) {
             imgs.addEventListener("change", readImage, false);
         }
     </script>
 
     <script>
-        function readModel() {
-            if (this.files && this.files[0]) {
-                var file = new FileReader();
-
-                console.log(URL.createObjectURL(this.files[0]));
-                file.onload = function (e) {
-                    let model = document.getElementById("previewModel");
-                    model.src = e.target.result;
-                    model.hidden = false;
-                    window.base64 = file.result;
-                };
-
-                file.readAsDataURL(this.files[0]);
+        document.getElementById("formModel")
+            .onchange = function (event) {
+                let file = event.target.files[0];
+                let div = document.getElementById("previewModel");
+                div.hidden = false;
+                let modelURL = URL.createObjectURL(file);
+                document.querySelector("model-viewer").src = modelURL;
             }
-        }
-        var models = document.getElementById("formModel");
-        if (models) {
-            models.addEventListener("change", readModel, false);
-        }
     </script>
 
     <script type="module">

@@ -26,6 +26,6 @@ export class RegisterService {
     set_token(token) {
         localStorage.setItem("token", token);
 
-        window.location.href = "../index.html";
+        window.location.href = "../admin.html";
     }
 }

@@ -25,6 +25,6 @@ export class LoginService {
     set_token(token) {
         console.log(token);
         localStorage.setItem("token", token);
-        window.location.href = "../index.html";
+        window.location.href = "../admin.html";
     }
 }
