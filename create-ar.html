@@ -199,7 +199,9 @@
                                             <div hidden id="previewModel">
                                                 <model-viewer id="dimension-demo" camera-orbit="-30deg auto auto"
                                                     max-camera-orbit="auto 100deg auto" shadow-intensity="1"
-                                                    camera-controls src="./assets/models/chair1.glb" alt="Modelo 3D">
+                                                    camera-controls
+                                                    src="https://models-webxr.s3.sa-east-1.amazonaws.com/models-easy/chair4.glb"
+                                                    alt="Modelo 3D">
                                                     <button slot="hotspot-dot+X-Y+Z" class="dot" data-position="1 -1 1"
                                                         data-normal="1 0 0"></button>
                                                     <button slot="hotspot-dim+X-Y" class="dim" data-position="1 -1 0"
@@ -307,10 +309,10 @@
 
     <script>
         function readModel() {
-            console.log(this.files[0]);
             if (this.files && this.files[0]) {
                 var file = new FileReader();
 
+                console.log(URL.createObjectURL(this.files[0]));
                 file.onload = function (e) {
                     let model = document.getElementById("previewModel");
                     model.src = e.target.result;
