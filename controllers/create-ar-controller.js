@@ -4,25 +4,33 @@ import { CreateArService } from "../services/create-ar-service.js";
 export function create(e, file, img) {
     e.preventDefault();
     let createArService = new CreateArService();
-    let data = {
-        name_model: e.target[1].value,
-        file_model: "file",
-        dim_x: parseFloat(e.target[4].value),
-        dim_y: parseFloat(e.target[5].value),
-        dim_z: parseFloat(e.target[6].value),
-        description_model: e.target[2].value,
-        price: parseFloat(e.target[3].value),
-        thumb_model: img,
-        category_id: parseInt(e.target[0].value),
-        token: localStorage.getItem("token"),
-    };
-    console.log(data);
+    let data = new FormData();
+    data.append("category_id", parseInt(e.target[0].value));
+    data.append("name_model", e.target[1].value);
+    data.append("description_model", e.target[2].value);
+    data.append("price", parseFloat(e.target[3].value));
+    data.append("dim_x", parseFloat(e.target[4].value));
+    data.append("dim_y", parseFloat(e.target[5].value));
+    data.append("dim_z", parseFloat(e.target[6].value));
+    data.append("file", file);
 
-    createArService.newModel(data);
+    data.append("token", localStorage.getItem("token"));
+
+    createArService.newModel(data).then((res) => {
+        let api = "http://localhost:3333/";
+        let reqs = {
+            id: res.id,
+            thumb_model: img,
+            link: api + "webxr-viewer.html",
+            category_id: parseInt(e.target[0].value),
+        };
+
+        console.log(reqs);
+        createArService.confirmation(reqs);
+    });
 }
 
 export function del(token) {
-    console.log(token);
     let createArService = new CreateArService();
     let data = {
         token,

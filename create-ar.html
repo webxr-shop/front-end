@@ -292,7 +292,7 @@
 
     <script>
         function readImage() {
-            console.log(this.files);
+
             if (this.files && this.files[0]) {
                 let file = new FileReader();
                 file.onload = function (e) {
@@ -314,7 +314,7 @@
     <script>
         document.getElementById("formModel")
             .onchange = function (event) {
-                let file = event.target.files[0];
+                window.file = event.target.files[0];
                 let div = document.getElementById("previewModel");
                 div.hidden = false;
                 let modelURL = URL.createObjectURL(file);
@@ -341,15 +341,9 @@
         let form = document.getElementById("forms");
         form.addEventListener("submit", (event) => {
             event.preventDefault();
-            document.getElementById("formModel");
-            const files = document.getElementById("formModel");
-            const formDatsa = new FormData();
-            for (let i = 0; i < files.files.length; i++) {
-                console.log(files.files[i]);
-            }
 
 
-            create(event, "event.target[8].value", window.img);
+            create(event, window.file, window.img);
         });
     </script>
 

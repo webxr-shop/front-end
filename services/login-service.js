@@ -7,7 +7,7 @@ export class LoginService {
 
     login(data) {
         return this._http
-            .post("http://localhost:3333/login", data)
+            .post("login", data)
             .then((res) =>
                 res.error == 0
                     ? this.set_token(res.token)
@@ -23,7 +23,6 @@ export class LoginService {
     }
 
     set_token(token) {
-        console.log(token);
         localStorage.setItem("token", token);
         window.location.href = "../admin.html";
     }

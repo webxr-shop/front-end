@@ -6,9 +6,18 @@ export class CreateArService {
     }
 
     newModel(data) {
-        console.log("b");
         return this._http
-            .post("http://localhost:3333/models/create", data)
+            .postSpecial("media/create", data)
+            .then((res) => res)
+            .catch((erro) => {
+                console.log(erro);
+                throw new Error(erro);
+            });
+    }
+
+    confirmation(data) {
+        return this._http
+            .post("models/confirmation", data)
             .then(
                 (res) =>
                     (window.location.href = `../models.html?id=${res.category_id}`)
@@ -18,9 +27,10 @@ export class CreateArService {
                 throw new Error(erro);
             });
     }
+
     getEdit(data) {
         return this._http
-            .post("http://localhost:3333/models/edit", data)
+            .post("models/edit", data)
             .then((res) => res)
             .catch((erro) => {
                 console.log(erro);
@@ -29,7 +39,7 @@ export class CreateArService {
     }
     del(data) {
         return this._http
-            .post("http://localhost:3333/models/delete", data)
+            .post("models/delete", data)
             .then((res) => window.location.reload())
             .catch((erro) => {
                 console.log(erro);

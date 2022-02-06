@@ -3,7 +3,6 @@ import { App } from "../webxr/app.js";
 
 export function getModel(token) {
     let arService = new ArService();
-    console.log("sd");
     var data = {
         token,
     };
@@ -11,7 +10,6 @@ export function getModel(token) {
     arService
         .getModel(data)
         .then((res) => {
-            console.log(res._template);
             const app = new App();
 
             var but = document.getElementById("showAr");

@@ -7,7 +7,7 @@ export class ProfileService {
 
     editProfile(data) {
         return this._http
-            .post("http://localhost:3333/profile/edit", data)
+            .post("profile/edit", data)
             .then((res) => {
                 console.log(res);
             })
@@ -18,7 +18,7 @@ export class ProfileService {
     }
     getProfile(data) {
         return this._http
-            .post("http://localhost:3333/profile", data)
+            .post("profile", data)
             .then((res) => res)
             .catch((erro) => {
                 console.log(erro);

@@ -292,11 +292,9 @@
         } from "./controllers/auth-controller-din.js";
         document.getElementById("body").onload = function () {
             token();
-
             const queryString = window.location.search;
             const urlParams = new URLSearchParams(queryString);
             const tok = urlParams.get("token");
-            console.log(tok);
             getEdit(tok);
         };
 

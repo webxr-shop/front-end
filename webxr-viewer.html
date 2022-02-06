@@ -2,20 +2,20 @@
 <html lang="pt-br">
 
 <head>
-    <meta charset='utf-8'>
-    <meta http-equiv='X-UA-Compatible' content='chrome=1'>
-    <meta name='viewport' content='width=device-width, initial-scale=1'>
-    <meta name='mobile-web-app-capable' content='yes'>
-    <meta name='apple-mobile-web-app-capable' content='yes'>
-    <meta name='twitter:card' content='summary'>
-    <meta name='twitter:title' content='Criar AR - Plataforma WebXR'>
-    <meta name='twitter:description' content='Realidade Aumentada para e-commerce'>
-    <link rel='icon' type='image/png' sizes='32x32' href='assets/img/favicon-32x32.png'>
-    <link rel='icon' type='image/png' sizes='96x96' href='assets/img/favicon-96x96.png'>
+	<meta charset='utf-8'>
+	<meta http-equiv='X-UA-Compatible' content='chrome=1'>
+	<meta name='viewport' content='width=device-width, initial-scale=1'>
+	<meta name='mobile-web-app-capable' content='yes'>
+	<meta name='apple-mobile-web-app-capable' content='yes'>
+	<meta name='twitter:card' content='summary'>
+	<meta name='twitter:title' content='Criar AR - Plataforma WebXR'>
+	<meta name='twitter:description' content='Realidade Aumentada para e-commerce'>
+	<link rel='icon' type='image/png' sizes='32x32' href='assets/img/favicon-32x32.png'>
+	<link rel='icon' type='image/png' sizes='96x96' href='assets/img/favicon-96x96.png'>
 	<link type="text/css" rel="stylesheet" href="./css/webxr-viewer.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
-    <title>WebXR Viewer</title>
+	<title>WebXR Viewer</title>
 </head>
 
 <body>
@@ -23,8 +23,10 @@
 	<div id="content">
 		<div id="mySidenav" class="sidenav">
 			<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-            <a class="ar-object" id="fancy_picture_frame_01_4k-v1" href="#" onclick="closeNav()">fancy_picture_frame_01_4k-v1</a>
-			<a class="ar-object" id="fancy_picture_frame_01_4k-v2" href="#" onclick="closeNav()">fancy_picture_frame_01_4k-v2</a>
+			<a class="ar-object" id="fancy_picture_frame_01_4k-v1" href="#"
+				onclick="closeNav()">fancy_picture_frame_01_4k-v1</a>
+			<a class="ar-object" id="fancy_picture_frame_01_4k-v2" href="#"
+				onclick="closeNav()">fancy_picture_frame_01_4k-v2</a>
 			<a class="ar-object" id="television_01_4k-v1" href="#" onclick="closeNav()">television_01_4k-v1</a>
 			<a class="ar-object" id="television_01_4k-v2" href="#" onclick="closeNav()">television_01_4k-v2</a>
 			<a class="ar-object" id="ornate_mirror_01_4k-v1" href="#" onclick="closeNav()">ornate_mirror_01_4k-v1</a>
@@ -69,9 +71,9 @@
 		import { OrbitControls } from './jsm/controls/OrbitControls.js';
 		import { GLTFLoader } from './jsm/loaders/GLTFLoader.js';
 		import { RGBELoader } from './jsm/loaders/RGBELoader.js';
-        import { DRACOLoader } from './jsm/loaders/DRACOLoader.js';
+		import { DRACOLoader } from './jsm/loaders/DRACOLoader.js';
 		import { RoughnessMipmapper } from './jsm/utils/RoughnessMipmapper.js';
-        import { LoadingBar } from './jsm/utils/LoadingBar.js';
+		import { LoadingBar } from './jsm/utils/LoadingBar.js';
 
 		let container;
 		let camera, scene, renderer;
@@ -81,8 +83,8 @@
 
 		var pmremGenerator, current_object, controls;
 
-        let loadingBar = new LoadingBar();
-        loadingBar.visible = false;
+		let loadingBar = new LoadingBar();
+		loadingBar.visible = false;
 
 		let hitTestSource = null;
 		let hitTestSourceRequested = false;
@@ -132,45 +134,45 @@
 
 					var loader = new GLTFLoader().setPath('assets/models/');
 
-                    loadingBar.visible = true;
+					loadingBar.visible = true;
 
-                    const dracoLoader = new DRACOLoader();
-                    dracoLoader.setDecoderPath('jsm/draco/');
-                    loader.setDRACOLoader(dracoLoader);
+					const dracoLoader = new DRACOLoader();
+					dracoLoader.setDecoderPath('jsm/draco/');
+					loader.setDRACOLoader(dracoLoader);
 
 					loader.load(
 
-                        model + ".glb",
+						model + ".glb",
 
-                        function (glb) {
+						function (glb) {
 
-                            current_object = glb.scene;
-                            scene.add(current_object);
+							current_object = glb.scene;
+							scene.add(current_object);
 
-                            loadingBar.visible = false;
+							loadingBar.visible = false;
 
-                            arPlace();
+							arPlace();
 
-                            var box = new THREE.Box3();
-                            box.setFromObject(current_object);
-                            box.center(controls.target);
+							var box = new THREE.Box3();
+							box.setFromObject(current_object);
+							box.center(controls.target);
 
-                            controls.update();
-                            render();
-					    },
+							controls.update();
+							render();
+						},
 
-                        function (xhr) {
+						function (xhr) {
 
-                            loadingBar.progress = (xhr.loaded / xhr.total);
+							loadingBar.progress = (xhr.loaded / xhr.total);
 
-                        },
+						},
 
-                        function ( error ) {
+						function (error) {
 
-                            console.log( 'An error happened' );
+							console.log('An error happened');
 
-                            }
-                    );
+						}
+					);
 				});
 
 

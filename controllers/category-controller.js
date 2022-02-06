@@ -19,7 +19,6 @@ export function categories() {
     categoryService
         .getCategories(data)
         .then((res) => {
-            console.log(res);
             for (let i = 0; i < res["_categories"].length; i++) {
                 let color = colors[getRandomIntInclusive(0, 3)];
 
@@ -90,7 +89,6 @@ export function models(category_id) {
     categoryService
         .listModels(data)
         .then((res) => {
-            console.log(res);
             let data = [];
             for (let i = 0; i < res._templates.length; i++) {
                 let array = [

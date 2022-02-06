@@ -12,7 +12,6 @@ export function models() {
     homeService
         .list_model_recent(data)
         .then((res) => {
-            console.log(res);
             let data = [];
             for (let i = 0; i < res._templates.length; i++) {
                 let array = [

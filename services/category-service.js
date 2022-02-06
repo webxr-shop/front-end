@@ -7,7 +7,7 @@ export class CategoryService {
 
     newCategory(data) {
         return this._http
-            .post("http://localhost:3333/category/create", data)
+            .post("category/create", data)
             .then((res) => (window.location.href = "../create-ar.html"))
             .catch((erro) => {
                 console.log(erro);
@@ -16,7 +16,7 @@ export class CategoryService {
     }
     getCategories(data) {
         return this._http
-            .post("http://localhost:3333/categories", data)
+            .post("categories", data)
             .then((res) => res)
             .catch((erro) => {
                 console.log(erro);
@@ -26,7 +26,7 @@ export class CategoryService {
 
     listCategories(data) {
         return this._http
-            .post("http://localhost:3333/category/name", data)
+            .post("category/name", data)
             .then((res) => res)
             .catch((erro) => {
                 console.log(erro);
@@ -36,7 +36,7 @@ export class CategoryService {
 
     listModels(data) {
         return this._http
-            .post("http://localhost:3333/models", data)
+            .post("models", data)
             .then((res) => res)
             .catch((erro) => {
                 console.log(erro);

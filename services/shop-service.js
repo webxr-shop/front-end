@@ -7,7 +7,7 @@ export class ShopService {
 
     list(data) {
         return this._http
-            .post("http://localhost:3333/shop", data)
+            .post("shop", data)
             .then((res) => res)
             .catch((erro) => {
                 console.log(erro);
@@ -17,7 +17,7 @@ export class ShopService {
 
     getModel(data) {
         return this._http
-            .post("http://localhost:3333/shop/model", data)
+            .post("shop/model", data)
             .then((res) => res)
             .catch((erro) => {
                 console.log(erro);

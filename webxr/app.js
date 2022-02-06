@@ -129,17 +129,17 @@ class App {
     showChair(url) {
         //funcoes do ar button
 
-        let files = url.split("/");
-        let file = files[files.length - 1];
-        let assetsPath = url.replace(file, "");
+        // let files = url.split("/");
+        // let file = files[files.length - 1];
+        // let assetsPath = url.replace(file, "");
 
         var div = document.getElementById("showAr");
         div.hidden = true;
-        const button = new ARButton(this.renderer);
+        // const button = new ARButton(this.renderer);
 
         this.initAR();
 
-        const loader = new GLTFLoader().setPath(assetsPath);
+        const loader = new GLTFLoader();
         const self = this;
 
         this.loadingBar.visible = true;
@@ -147,7 +147,7 @@ class App {
         // Load a glTF resource
         loader.load(
             // resource URL
-            file,
+            "https://plataforma-webxr.s3.amazonaws.com/8491206c79639346cbe92a3319ee3729-2.glb",
             // called when the resource is loaded
             function (gltf) {
                 self.scene.add(gltf.scene);

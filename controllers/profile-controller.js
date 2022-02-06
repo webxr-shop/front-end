@@ -32,7 +32,6 @@ export function editProfile(e) {
             email: e.target[2].value,
             password: e.target[3].value,
         };
-        console.log(data);
         profileService
             .editProfile(data)
             .then((res) => {

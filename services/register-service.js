@@ -7,7 +7,7 @@ export class RegisterService {
 
     newClient(data) {
         return this._http
-            .post("http://localhost:3333/login/sign", data)
+            .post("login/sign", data)
             .then((res) =>
                 res.error == 0
                     ? this.set_token(res.token)

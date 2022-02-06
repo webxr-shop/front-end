@@ -1,6 +1,4 @@
 export function tables(data) {
-    console.log(data);
-
     const datatablesSimple = document.getElementById("datatablesSimple");
 
     if (datatablesSimple) {

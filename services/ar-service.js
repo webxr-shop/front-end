@@ -7,7 +7,7 @@ export class ArService {
 
     getModel(data) {
         return this._http
-            .post("http://localhost:3333/models/get", data)
+            .post("models/get", data)
             .then((res) => res)
             .catch((erro) => {
                 console.log(erro);
