@@ -29,18 +29,9 @@
 
     <body>
         <p>
-            <model-viewer
-                background-color="#"
-                camera-orbit="-20deg 75deg 2m"
-                environment-image="../assets/hdr/studio_small_07_1k.hdr"
-                shadow-intensity="1"
-                stage-light-intensity="3"
-                environment-intensity="2"
-                auto-rotate
-                camera-controls
-                src="../assets/models/chair1.glb"
-                alt="Modelo 3D"
-            >
+            <model-viewer id="dimension-demo" background-color="#70BCD1" camera-orbit="-30deg auto auto"
+            max-camera-orbit="auto 100deg auto" shadow-intensity="1"
+            src="../assets/models/chair1.glb" alt="Modelo 3D">
             </model-viewer>
         </p>
 
