@@ -7,7 +7,7 @@ export class TesteService {
 
     importTeste() {
         return this._http
-            .get("http://localhost:3333")
+            .get("http://ec2-18-116-73-46.us-east-2.compute.amazonaws.com:3333")
             .then((data) => console.log(data))
             .catch((erro) => {
                 console.log(erro);
