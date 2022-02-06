@@ -8,11 +8,15 @@
     <meta name='mobile-web-app-capable' content='yes'>
     <meta name='apple-mobile-web-app-capable' content='yes'>
     <meta name='twitter:card' content='summary'>
-    <meta name='twitter:title' content='Visualizar modelo - Plataforma WebXR'>
+    <meta name='twitter:title' content='Criar AR - Plataforma WebXR'>
     <meta name='twitter:description' content='Realidade Aumentada para e-commerce'>
     <link rel='icon' type='image/png' sizes='32x32' href='assets/img/favicon-32x32.png'>
     <link rel='icon' type='image/png' sizes='96x96' href='assets/img/favicon-96x96.png'>
-    <link rel="stylesheet" href="./css/model-viewer.css" />
+    <link href="css/model-viewer.css" rel="stylesheet" />
+    <link href="css/styles.css" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.rawgit.com/davidshimjs/qrcodejs/gh-pages/qrcode.min.js"></script>
 
     <title>Visualizar modelo</title>
 
@@ -35,27 +39,204 @@
     <!-- <script src="https://unpkg.com/@magicleap/prismatic@0.18.2/prismatic.min.js"></script> -->
 </head>
 
-<body>
-    <model-viewer id="dimension-demo" camera-orbit="-30deg auto auto" max-camera-orbit="auto 100deg auto"
-        shadow-intensity="1" camera-controls src="../assets/models/chair1.glb" alt="Modelo 3D">
-        <button slot="hotspot-dot+X-Y+Z" class="dot" data-position="1 -1 1" data-normal="1 0 0"></button>
-        <button slot="hotspot-dim+X-Y" class="dim" data-position="1 -1 0" data-normal="1 0 0"></button>
-        <button slot="hotspot-dot+X-Y-Z" class="dot" data-position="1 -1 -1" data-normal="1 0 0"></button>
-        <button slot="hotspot-dim+X-Z" class="dim" data-position="1 0 -1" data-normal="1 0 0"></button>
-        <button slot="hotspot-dot+X+Y-Z" class="dot show" data-position="1 1 -1" data-normal="0 1 0"></button>
-        <button slot="hotspot-dim+Y-Z" class="dim show" data-position="0 -1 -1" data-normal="0 1 0"></button>
-        <button slot="hotspot-dot-X+Y-Z" class="dot show" data-position="-1 1 -1" data-normal="0 1 0"></button>
-        <button slot="hotspot-dim-X-Z" class="dim" data-position="-1 0 -1" data-normal="-1 0 0"></button>
-        <button slot="hotspot-dot-X-Y-Z" class="dot" data-position="-1 -1 -1" data-normal="-1 0 0"></button>
-        <button slot="hotspot-dim-X-Y" class="dim" data-position="-1 -1 0" data-normal="-1 0 0"></button>
-        <button slot="hotspot-dot-X-Y+Z" class="dot" data-position="-1 -1 1" data-normal="-1 0 0"></button>
-
-        <div id="controls" class="dim">
-            <label for="show-dimensions">Mostrar dimensões:</label>
-            <input id="show-dimensions" type="checkbox" checked="true">
+<body class="sb-nav-fixed">
+    <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
+        <!-- Navbar Brand-->
+        <a class="navbar-brand ps-3" href="admin.html">Plataforma WebXR</a>
+        <!-- Sidebar Toggle-->
+        <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!">
+            <i class="fas fa-bars"></i>
+        </button>
+        <!-- Navbar Search-->
+        <form class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
+            <!-- <div class="input-group">
+                    <input class="form-control" type="text" placeholder="Pesquisar..." aria-label="Pesquisar..." aria-describedby="btnNavbarSearch" />
+                    <button class="btn btn-primary" id="btnNavbarSearch" type="button"><i class="fas fa-search"></i></button>
+                </div> -->
+        </form>
+        <!-- Navbar-->
+        <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown"
+                    aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
+                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                    <li>
+                        <a class="dropdown-item" href="profile.html">Perfil</a>
+                    </li>
+                    <li>
+                        <hr class="dropdown-divider" />
+                    </li>
+                    <li>
+                        <a class="dropdown-item" onclick=" delete_token()">Sair</a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </nav>
+    <div id="layoutSidenav">
+        <!-- Layout Nav-->
+        <div id="layoutSidenav_nav">
+            <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
+                <div class="sb-sidenav-menu">
+                    <div class="nav">
+                        <div class="sb-sidenav-menu-heading">Menu</div>
+                        <a class="nav-link" href="admin.html">
+                            <div class="sb-nav-link-icon">
+                                <i class="fas fa-tachometer-alt"></i>
+                            </div>
+                            Dashboard
+                        </a>
+                        <a class="nav-link" href="categories.html">
+                            <div class="sb-nav-link-icon">
+                                <i class="fas fa-cube"></i>
+                            </div>
+                            Modelos
+                        </a>
+                        <a class="nav-link" href="profile.html">
+                            <div class="sb-nav-link-icon">
+                                <i class="fas fas fa-user-circle"></i>
+                            </div>
+                            Minha conta
+                        </a>
+                        <a class="nav-link" href="about.html">
+                            <div class="sb-nav-link-icon">
+                                <i class="fas fa-question-circle"></i>
+                            </div>
+                            Ajuda
+                        </a>
+                    </div>
+                </div>
+                <div class="sb-sidenav-footer">
+                    <div class="small">Logado como:</div>
+                    Administrador
+                </div>
+            </nav>
         </div>
-    </model-viewer>
+        <!-- Layout Content-->
+        <div id="layoutSidenav_content">
+            <main>
+                <div class="container-fluid px-4">
+                    <div class="d-flex align-items-center justify-content-between mt-4">
+                        <h1 class="">Visualizar modelo</h1>
+                        <a class="btn btn-primary" href="create-ar.html">Criar novo projeto</a>
+                    </div>
+                    <ol class="breadcrumb mb-4">
+                        <li class="breadcrumb-item">
+                            <a href="admin.html">Dashboard</a>
+                        </li>
+                        <li class="breadcrumb-item">
+                            <a href="models.html">Modelos</a>
+                        </li>
+                        <li class="breadcrumb-item active">Visualizar modelo</li>
+                    </ol>
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-12 col-sm-6">
+                                <div class="d-flex justify-content-center">
+                                    <model-viewer id="dimension-demo" camera-orbit="-30deg auto auto"
+                                        max-camera-orbit="auto 100deg auto" shadow-intensity="1" camera-controls
+                                        src="../assets/models/chair1.glb" alt="Modelo 3D">
+                                        <button slot="hotspot-dot+X-Y+Z" class="dot" data-position="1 -1 1"
+                                            data-normal="1 0 0"></button>
+                                        <button slot="hotspot-dim+X-Y" class="dim" data-position="1 -1 0"
+                                            data-normal="1 0 0"></button>
+                                        <button slot="hotspot-dot+X-Y-Z" class="dot" data-position="1 -1 -1"
+                                            data-normal="1 0 0"></button>
+                                        <button slot="hotspot-dim+X-Z" class="dim" data-position="1 0 -1"
+                                            data-normal="1 0 0"></button>
+                                        <button slot="hotspot-dot+X+Y-Z" class="dot show" data-position="1 1 -1"
+                                            data-normal="0 1 0"></button>
+                                        <button slot="hotspot-dim+Y-Z" class="dim show" data-position="0 -1 -1"
+                                            data-normal="0 1 0"></button>
+                                        <button slot="hotspot-dot-X+Y-Z" class="dot show" data-position="-1 1 -1"
+                                            data-normal="0 1 0"></button>
+                                        <button slot="hotspot-dim-X-Z" class="dim" data-position="-1 0 -1"
+                                            data-normal="-1 0 0"></button>
+                                        <button slot="hotspot-dot-X-Y-Z" class="dot" data-position="-1 -1 -1"
+                                            data-normal="-1 0 0"></button>
+                                        <button slot="hotspot-dim-X-Y" class="dim" data-position="-1 -1 0"
+                                            data-normal="-1 0 0"></button>
+                                        <button slot="hotspot-dot-X-Y+Z" class="dot" data-position="-1 -1 1"
+                                            data-normal="-1 0 0"></button>
 
+                                        <div id="controls" class="dim">
+                                            <label for="show-dimensions">Mostrar dimensões:</label>
+                                            <input id="show-dimensions" type="checkbox" checked="true">
+                                        </div>
+                                    </model-viewer>
+                                </div>
+                            </div>
+                            <div class="col-12 col-sm-6">
+                                <div class="d-flex justify-content-center">
+                                    <div class="card shadow-lg border-0 rounded-lg mt-5">
+                                        <div class="card-header">
+                                            <h3 class="text-center font-weight-light my-4">
+                                                Leia o QRCode ou clique no link!
+                                            </h3>
+                                        </div>
+                                        <div class="card-body">
+                                            <div class="container ml-0 mr-0">
+                                                <div class="d-grid">
+                                                    <div class="mx-auto" id="qrcode"></div>
+                                                    <div class="mx-auto mt-2">
+                                                        <button id="showAr" class="btn btn-primary btn-lg">
+                                                            Visualizar AR
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="card-footer text-center py-3">
+                                            <div class="small">Caso seja usuário de iPhone, faça o download do navegador
+                                                WebXR Viewer e acesse novamente este site através dele.
+                                                <a href="https://apps.apple.com/us/app/webxr-viewer/id1295998056">Baixar
+                                                    WebXR Viewer!</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </main>
+            <footer class="py-4 bg-light mt-auto">
+                <div class="container-fluid px-4">
+                    <div class="d-flex align-items-center justify-content-between small">
+                        <div class="text-muted">
+                            Copyright &copy; Plataforma WebXR 2021
+                        </div>
+                        <div>
+                            <a href="privacy-policy.html">Política de privacidade</a>
+                            &middot;
+                            <a href="terms-of-use.html">Termos de uso</a>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        crossorigin="anonymous"></script>
+    <script src="js/scripts.js"></script>
+
+    <script type="text/javascript">
+        var qrcode = new QRCode(document.getElementById("qrcode"), {
+            text: "http://google.com.br",
+            width: 250,
+            height: 250,
+            colorDark: "#000000",
+            colorLight: "#ffffff",
+            correctLevel: QRCode.CorrectLevel.H
+        });
+
+        // qrcode.clear(); // clear the code.
+        // qrcode.makeCode("http://naver.com"); // make another code.
+    </script>
+
+    <!-- Scripts annotations <model-viewer> -->
     <script type="module">
         const modelViewer = document.querySelector('#dimension-demo');
 
