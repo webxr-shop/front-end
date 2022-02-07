@@ -1,7 +1,7 @@
 export class HttpService {
     constructor() {
         this.api =
-            "http://ec2-18-116-73-46.us-east-2.compute.amazonaws.com:3333/";
+            "https://j5e885m040.execute-api.us-east-2.amazonaws.com/";
         // this.api = "http://127.0.0.1:3333/";
     }
 
