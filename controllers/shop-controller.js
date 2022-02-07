@@ -64,18 +64,22 @@ function plot_list(data) {
 }
 
 function params(res) {
+    console.log(res);
     let img = document.getElementById("imgs");
-    img.setAttribute("src", res._templates.thumb_model);
+    img.setAttribute("src", res.model.thumb_model);
 
     let title = document.getElementById("title");
-    title.innerHTML = res._templates.name_model;
+    title.innerHTML = res.model.name_model;
 
     let price = document.getElementById("price");
-    price.innerHTML = `R$ ${res._templates.price}`;
+    price.innerHTML = `R$ ${res.model.price}`;
 
     let description = document.getElementById("description");
-    description.innerHTML = res._templates.description_model;
+    description.innerHTML = res.model.description_model;
+
+    let size = document.getElementById("size");
+    size.innerHTML = `${res.model.dim_x} cm X ${res.model.dim_y} cm X ${res.model.dim_z} cm`;
 
     let but = document.getElementById("but");
-    but.setAttribute("href", `webxr/app.html?token=${res._templates.tokens}`);
+    but.setAttribute("href", `webxr-viewer.html?token=${res.model.token}`);
 }

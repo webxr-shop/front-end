@@ -17,8 +17,7 @@ export function create(e, file, img) {
     data.append("token", localStorage.getItem("token"));
 
     createArService.newModel(data).then((res) => {
-        let api =
-            "http://ec2-18-116-73-46.us-east-2.compute.amazonaws.com:3333/";
+        let api = "http://127.0.0.1:3333/";
         let reqs = {
             id: res.id,
             thumb_model: img,

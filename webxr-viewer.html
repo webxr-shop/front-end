@@ -18,12 +18,12 @@
 	<title>WebXR Viewer</title>
 </head>
 
-<body>
+<body id="body">
 
 	<div id="content">
 		<div id="mySidenav" class="sidenav">
 			<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-			<a class="ar-object" id="fancy_picture_frame_01_4k-v1" href="#"
+			<!-- <a class="ar-object" id="fancy_picture_frame_01_4k-v1" href="#"
 				onclick="closeNav()">fancy_picture_frame_01_4k-v1</a>
 			<a class="ar-object" id="fancy_picture_frame_01_4k-v2" href="#"
 				onclick="closeNav()">fancy_picture_frame_01_4k-v2</a>
@@ -32,7 +32,7 @@
 			<a class="ar-object" id="ornate_mirror_01_4k-v1" href="#" onclick="closeNav()">ornate_mirror_01_4k-v1</a>
 			<a class="ar-object" id="ornate_mirror_01_4k-v2" href="#" onclick="closeNav()">ornate_mirror_01_4k-v2</a>
 			<a class="ar-object" id="chandelier_01_4k-v1" href="#" onclick="closeNav()">chandelier_01_4k-v1</a>
-			<a class="ar-object" id="chandelier_01_4k-v2" href="#" onclick="closeNav()">chandelier_01_4k-v2</a>
+			<a class="ar-object" id="chandelier_01_4k-v2" href="#" onclick="closeNav()">chandelier_01_4k-v2</a> -->
 		</div>
 
 		<span style="font-size:30px;cursor:pointer;position: absolute;" onclick="openNav()">&#9776; produtos</span>
@@ -50,6 +50,15 @@
 		function closeNav() {
 			document.getElementById("mySidenav").style.width = "0";
 		}
+
+		function test(model) {
+
+
+
+			loadModel(model);
+
+		}
+
 	</script>
 
 	<!-- Import maps polyfill -->
@@ -64,6 +73,16 @@
 		}
 	</script>
 
+	<!-- <script type="module">
+		import { getModel } from "./controllers/ar-controller.js";
+		document.getElementById("body").onload = function () {
+			const queryString = window.location.search;
+			const urlParams = new URLSearchParams(queryString);
+			const token = urlParams.get("token");
+			getModel(token);
+		};
+	</script> -->
+
 	<script type="module">
 
 		import * as THREE from 'three';
@@ -74,6 +93,8 @@
 		import { DRACOLoader } from './jsm/loaders/DRACOLoader.js';
 		import { RoughnessMipmapper } from './jsm/utils/RoughnessMipmapper.js';
 		import { LoadingBar } from './jsm/utils/LoadingBar.js';
+		import { ArService } from "./services/ar-service.js";
+		import { getModel } from "./controllers/ar-controller.js";
 
 		let container;
 		let camera, scene, renderer;
@@ -92,22 +113,60 @@
 		init();
 		animate();
 
-		$(".ar-object").click(function () {
-			if (current_object != null) {
-				scene.remove(current_object);
-			}
-
-			loadModel($(this).attr("id"));
-		});
-
 		$("#ARButton").click(function () {
 			current_object.visible = false;
-			isAR = true;
+			// isAR = true;
 		});
 
 		$("#place-button").click(function () {
 			arPlace();
 		});
+
+		document.getElementById("body").onload = function () {
+			const queryString = window.location.search;
+			const urlParams = new URLSearchParams(queryString);
+			const token = urlParams.get("token");
+			let arService = new ArService();
+			var data = {
+				token,
+			};
+
+			arService
+				.getModel(data)
+				.then((res) => {
+					if (current_object != null) {
+						scene.remove(current_object);
+					}
+					// loadModel(res.model.file_model);
+					plot_list(res);
+				})
+				.catch((erro) => {
+					console.log(erro);
+					throw new Error(erro);
+				});
+		};
+
+		function plot_list(data) {
+			let list = document.getElementById("mySidenav");
+
+			for (let i = 0; i < data.models.length; i++) {
+				let a = document.createElement("a");
+				a.setAttribute("class", "ar-object");
+				a.setAttribute("id", data.models[i].file_model);
+				a.setAttribute("href", "#");
+				a.onclick = function () {
+					closeNav();
+					if (current_object != null) {
+						scene.remove(current_object);
+					}
+					loadModel(data.models[i].file_model);
+				};
+
+				a.innerHTML = `${data.models[i].name_model} <br> R$ ${data.models[i].price}`;
+
+				list.appendChild(a);
+			}
+		}
 
 		function arPlace() {
 			if (reticle.visible) {
@@ -119,7 +178,7 @@
 		}
 
 		function loadModel(model) {
-
+			console.log(model)
 			new RGBELoader()
 				.setDataType(THREE.UnsignedByteType)
 				.setPath('assets/hdr/')
@@ -132,7 +191,8 @@
 					pmremGenerator.dispose();
 					render();
 
-					var loader = new GLTFLoader().setPath('assets/models/');
+					var loader = new GLTFLoader();
+					// .setPath('assets/models/');
 
 					loadingBar.visible = true;
 
@@ -142,7 +202,8 @@
 
 					loader.load(
 
-						model + ".glb",
+						// model + ".glb",
+						model,
 
 						function (glb) {
 
