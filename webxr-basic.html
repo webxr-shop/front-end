@@ -8,8 +8,8 @@
 	<meta name='mobile-web-app-capable' content='yes'>
 	<meta name='apple-mobile-web-app-capable' content='yes'>
 	<meta name='twitter:card' content='summary'>
-	<meta name='twitter:title' content='WebXR Viewer - WebXR Shop'>
-	<meta name='twitter:description' content='E-commerce em Realidade Aumentada'>
+	<meta name='twitter:title' content='WebXR Viewer - Plataforma WebXR'>
+	<meta name='twitter:description' content='Realidade Aumentada para e-commerce'>
 	<link rel='icon' type='image/png' sizes='32x32' href='assets/img/favicon-32x32.png'>
 	<link rel='icon' type='image/png' sizes='96x96' href='assets/img/favicon-96x96.png'>
 	<link type="text/css" rel="stylesheet" href="./css/webxr-viewer.css">
@@ -21,45 +21,9 @@
 <body id="body">
 
 	<div id="content">
-		<div id="mySidenav" class="sidenav">
-			<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-			<!-- <a class="ar-object" id="fancy_picture_frame_01_4k-v1" href="#"
-				onclick="closeNav()">fancy_picture_frame_01_4k-v1</a>
-			<a class="ar-object" id="fancy_picture_frame_01_4k-v2" href="#"
-				onclick="closeNav()">fancy_picture_frame_01_4k-v2</a>
-			<a class="ar-object" id="television_01_4k-v1" href="#" onclick="closeNav()">television_01_4k-v1</a>
-			<a class="ar-object" id="television_01_4k-v2" href="#" onclick="closeNav()">television_01_4k-v2</a>
-			<a class="ar-object" id="ornate_mirror_01_4k-v1" href="#" onclick="closeNav()">ornate_mirror_01_4k-v1</a>
-			<a class="ar-object" id="ornate_mirror_01_4k-v2" href="#" onclick="closeNav()">ornate_mirror_01_4k-v2</a>
-			<a class="ar-object" id="chandelier_01_4k-v1" href="#" onclick="closeNav()">chandelier_01_4k-v1</a>
-			<a class="ar-object" id="chandelier_01_4k-v2" href="#" onclick="closeNav()">chandelier_01_4k-v2</a> -->
-		</div>
-
-		<span style="font-size:30px;cursor:pointer;position: absolute;" onclick="openNav()">&#9776; produtos</span>
-
 		<div id="container" styles="position: fixed;"></div>
-
 		<button type="button" id="place-button">Adicionar</button>
 	</div>
-
-	<script>
-		function openNav() {
-			document.getElementById("mySidenav").style.width = "250px";
-		}
-
-		function closeNav() {
-			document.getElementById("mySidenav").style.width = "0";
-		}
-
-		function test(model) {
-
-
-
-			loadModel(model);
-
-		}
-
-	</script>
 
 	<!-- Import maps polyfill -->
 	<!-- Remove this when import maps will be widely supported -->
@@ -73,16 +37,6 @@
 		}
 	</script>
 
-	<!-- <script type="module">
-		import { getModel } from "./controllers/ar-controller.js";
-		document.getElementById("body").onload = function () {
-			const queryString = window.location.search;
-			const urlParams = new URLSearchParams(queryString);
-			const token = urlParams.get("token");
-			getModel(token);
-		};
-	</script> -->
-
 	<script type="module">
 
 		import * as THREE from 'three';
@@ -93,8 +47,6 @@
 		import { DRACOLoader } from './jsm/loaders/DRACOLoader.js';
 		import { RoughnessMipmapper } from './jsm/utils/RoughnessMipmapper.js';
 		import { LoadingBar } from './jsm/utils/LoadingBar.js';
-		import { ArService } from "./services/ar-service.js";
-		import { getModel } from "./controllers/ar-controller.js";
 
 		let container;
 		let camera, scene, renderer;
@@ -115,70 +67,21 @@
 
 		$("#ARButton").click(function () {
 			current_object.visible = false;
-			// isAR = true;
 		});
 
 		$("#place-button").click(function () {
 			arPlace();
 		});
 
-		document.getElementById("body").onload = function () {
-			const queryString = window.location.search;
-			const urlParams = new URLSearchParams(queryString);
-			const token = urlParams.get("token");
-			let arService = new ArService();
-			var data = {
-				token,
-			};
-
-			arService
-				.getModel(data)
-				.then((res) => {
-					if (current_object != null) {
-						scene.remove(current_object);
-					}
-					// loadModel(res.model.file_model);
-					plot_list(res);
-				})
-				.catch((erro) => {
-					console.log(erro);
-					throw new Error(erro);
-				});
-		};
-
-		function plot_list(data) {
-			let list = document.getElementById("mySidenav");
-
-			for (let i = 0; i < data.models.length; i++) {
-				let a = document.createElement("a");
-				a.setAttribute("class", "ar-object");
-				a.setAttribute("id", data.models[i].file_model);
-				a.setAttribute("href", "#");
-				a.onclick = function () {
-					closeNav();
-					if (current_object != null) {
-						scene.remove(current_object);
-					}
-					loadModel(data.models[i].file_model);
-				};
-
-				a.innerHTML = `${data.models[i].name_model} <br> R$ ${data.models[i].price}`;
-
-				list.appendChild(a);
-			}
-		}
-
 		function arPlace() {
 			if (reticle.visible) {
 				current_object.position.setFromMatrixPosition(reticle.matrix);
 				current_object.visible = true;
-
 			}
-
 		}
 
 		function loadModel(model) {
-			console.log(model)
+
 			new RGBELoader()
 				.setDataType(THREE.UnsignedByteType)
 				.setPath('assets/hdr/')
@@ -191,8 +94,7 @@
 					pmremGenerator.dispose();
 					render();
 
-					var loader = new GLTFLoader();
-					// .setPath('assets/models/');
+					var loader = new GLTFLoader()
 
 					loadingBar.visible = true;
 

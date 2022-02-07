@@ -54,7 +54,7 @@ class ARButton {
 
 				await renderer.xr.setSession( session );
 
-				button.textContent = 'STOP AR';
+				button.textContent = 'FECHAR AR';
 				sessionInit.domOverlay.root.style.display = '';
 
 				currentSession = session;
@@ -65,7 +65,7 @@ class ARButton {
 
 				currentSession.removeEventListener( 'end', onSessionEnded );
 
-				button.textContent = 'START AR';
+				button.textContent = 'INICIAR AR';
 				sessionInit.domOverlay.root.style.display = 'none';
 
 				currentSession = null;
@@ -80,7 +80,7 @@ class ARButton {
 			button.style.right = '20px';
 			button.style.width = '100px';
 
-			button.textContent = 'START AR';
+			button.textContent = 'INICIAR AR';
 
 			button.onmouseenter = function () {
 
@@ -90,7 +90,7 @@ class ARButton {
 
 			button.onmouseleave = function () {
 
-				button.style.opacity = '0.5';
+				// button.style.opacity = '0.5';
 
 			};
 
@@ -129,7 +129,7 @@ class ARButton {
 
 			disableButton();
 
-			button.textContent = 'AR NOT SUPPORTED';
+			button.textContent = 'NÃO SUPORTA AR';
 
 		}
 
@@ -144,7 +144,7 @@ class ARButton {
 			element.style.color = '#fff';
 			element.style.font = 'normal 13px sans-serif';
 			element.style.textAlign = 'center';
-			element.style.opacity = '0.5';
+			// element.style.opacity = '0.5';
 			element.style.outline = 'none';
 			element.style.zIndex = '999';
 
@@ -177,7 +177,7 @@ class ARButton {
 			} else {
 
 				message.href = 'https://immersiveweb.dev/';
-				message.innerHTML = 'WEBXR NOT AVAILABLE';
+				message.innerHTML = 'WEBXR NÃO DISPONÍVEL';
 
 			}
 
