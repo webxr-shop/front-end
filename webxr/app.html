@@ -69,17 +69,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
         crossorigin="anonymous"></script>
     <script src="../libs/fas.js"></script>
-    <script type="module">
-        import { getModel } from "../controllers/ar-controller.js";
-        document.getElementById("ar").onload = function () {
-            const queryString = window.location.search;
-            const urlParams = new URLSearchParams(queryString);
-            const token = urlParams.get("token");
-            getModel(token);
-        };
 
-
-    </script>
 </body>
 
 </html>

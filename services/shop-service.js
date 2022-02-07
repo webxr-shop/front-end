@@ -15,7 +15,7 @@ export class ShopService {
             });
     }
 
-    getModel(data) {
+    getShopModel(data) {
         return this._http
             .post("shop/model", data)
             .then((res) => res)

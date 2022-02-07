@@ -17,12 +17,12 @@ export function create(e, file, img) {
     data.append("token", localStorage.getItem("token"));
 
     createArService.newModel(data).then((res) => {
-        let api = "http://127.0.0.1:3333/";
+        let api = "https://webxrshop.netlify.app/";
         let reqs = {
             lvl: 0,
             id: res.id,
             thumb_model: img,
-            link: api + "webxr-viewer.html",
+            link: api + "webxr-basic.html?token=" + res.token,
             category_id: parseInt(e.target[0].value),
         };
 

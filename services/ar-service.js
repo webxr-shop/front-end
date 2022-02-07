@@ -14,6 +14,7 @@ export class ArService {
                 throw new Error(erro);
             });
     }
+
     getModelViewer(data) {
         return this._http
             .post("models/viewer", data)

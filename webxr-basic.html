@@ -47,6 +47,8 @@
 		import { DRACOLoader } from './jsm/loaders/DRACOLoader.js';
 		import { RoughnessMipmapper } from './jsm/utils/RoughnessMipmapper.js';
 		import { LoadingBar } from './jsm/utils/LoadingBar.js';
+		import { ArService } from "./services/ar-service.js";
+
 
 		let container;
 		let camera, scene, renderer;
@@ -72,6 +74,31 @@
 		$("#place-button").click(function () {
 			arPlace();
 		});
+
+
+		document.getElementById("body").onload = function () {
+			const queryString = window.location.search;
+			const urlParams = new URLSearchParams(queryString);
+			const token = urlParams.get("token");
+			let arService = new ArService();
+			var data = {
+				token,
+			};
+
+			arService
+				.getModelViewer(data)
+				.then((res) => {
+					if (current_object != null) {
+						scene.remove(current_object);
+					}
+					loadModel(res.model.file_model);
+
+				})
+				.catch((erro) => {
+					console.log(erro);
+					throw new Error(erro);
+				});
+		};
 
 		function arPlace() {
 			if (reticle.visible) {

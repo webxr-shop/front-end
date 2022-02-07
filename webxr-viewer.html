@@ -51,13 +51,6 @@
 			document.getElementById("mySidenav").style.width = "0";
 		}
 
-		function test(model) {
-
-
-
-			loadModel(model);
-
-		}
 
 	</script>
 
@@ -73,15 +66,6 @@
 		}
 	</script>
 
-	<!-- <script type="module">
-		import { getModel } from "./controllers/ar-controller.js";
-		document.getElementById("body").onload = function () {
-			const queryString = window.location.search;
-			const urlParams = new URLSearchParams(queryString);
-			const token = urlParams.get("token");
-			getModel(token);
-		};
-	</script> -->
 
 	<script type="module">
 
@@ -94,7 +78,7 @@
 		import { RoughnessMipmapper } from './jsm/utils/RoughnessMipmapper.js';
 		import { LoadingBar } from './jsm/utils/LoadingBar.js';
 		import { ArService } from "./services/ar-service.js";
-		import { getModel } from "./controllers/ar-controller.js";
+
 
 		let container;
 		let camera, scene, renderer;
@@ -137,7 +121,7 @@
 					if (current_object != null) {
 						scene.remove(current_object);
 					}
-					// loadModel(res.model.file_model);
+					loadModel(res.model.file_model);
 					plot_list(res);
 				})
 				.catch((erro) => {

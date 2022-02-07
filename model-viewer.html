@@ -225,26 +225,21 @@
     <script src="js/scripts.js"></script>
 
     <script type="text/javascript">
-        var qrcode = new QRCode(document.getElementById("qrcode"), {
-            text: "http://google.com.br",
-            width: 250,
-            height: 250,
-            colorDark: "#000000",
-            colorLight: "#ffffff",
-            correctLevel: QRCode.CorrectLevel.H
-        });
 
-        // qrcode.clear(); // clear the code.
-        // qrcode.makeCode("http://naver.com"); // make another code.
+
     </script>
 
     <script type="module">
-        import { getModel } from "../controllers/ar-controller.js";
+        import { getModel } from "./controllers/ar-controller.js";
         document.getElementById("body").onload = function () {
             const queryString = window.location.search;
             const urlParams = new URLSearchParams(queryString);
             const token = urlParams.get("token");
+
             getModel(token);
+
+
+
         };
 
 

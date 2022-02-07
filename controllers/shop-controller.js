@@ -22,7 +22,7 @@ export function shopItem(token) {
     let shopService = new ShopService();
 
     shopService
-        .getModel(data)
+        .getShopModel(data)
         .then((res) => {
             params(res);
         })

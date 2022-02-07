@@ -9,7 +9,6 @@ export function getModel(token) {
     arService
         .getModelViewer(data)
         .then((res) => {
-            console.log(res);
             params(res);
         })
         .catch((erro) => {
@@ -21,4 +20,18 @@ export function getModel(token) {
 function params(data) {
     let model = document.getElementById("dimension-demo");
     model.setAttribute("src", data.model.file_model);
+
+    let bt = document.getElementById("showAr");
+    bt.onclick = function () {
+        window.location.href = data.model.link;
+    };
+
+    var qrcode = new QRCode(document.getElementById("qrcode"), {
+        text: data.model.link,
+        width: 250,
+        height: 250,
+        colorDark: "#000000",
+        colorLight: "#ffffff",
+        correctLevel: QRCode.CorrectLevel.H,
+    });
 }
