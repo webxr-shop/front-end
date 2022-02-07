@@ -14,4 +14,13 @@ export class ArService {
                 throw new Error(erro);
             });
     }
+    getModelViewer(data) {
+        return this._http
+            .post("models/viewer", data)
+            .then((res) => res)
+            .catch((erro) => {
+                console.log(erro);
+                throw new Error(erro);
+            });
+    }
 }

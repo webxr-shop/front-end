@@ -75,14 +75,10 @@
             const queryString = window.location.search;
             const urlParams = new URLSearchParams(queryString);
             const token = urlParams.get("token");
-            // getModel(token);
+            getModel(token);
         };
 
-        import { App } from "./app.js";
-        document.addEventListener("DOMContentLoaded", function () {
-            const app = new App();
-            window.app = app;
-        });
+
     </script>
 </body>
 

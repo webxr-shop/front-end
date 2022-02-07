@@ -15,13 +15,36 @@ export class CreateArService {
             });
     }
 
+    editModel(data) {
+        return this._http
+            .postSpecial("model/edit", data)
+            .then((res) => res)
+            .catch((erro) => {
+                console.log(erro);
+                throw new Error(erro);
+            });
+    }
+
+    editModelWithoutFile(data) {
+        return this._http
+            .post("model/edit/nofile", data)
+            .then((res) => res)
+            .catch((erro) => {
+                console.log(erro);
+                throw new Error(erro);
+            });
+    }
+
     confirmation(data) {
         return this._http
             .post("models/confirmation", data)
-            .then(
-                (res) =>
-                    (window.location.href = `../models.html?id=${res.category_id}`)
-            )
+            .then((res) => {
+                if (res.lvl == 1) {
+                    window.location.href = `../model-viewer.html?token=${res.token}`;
+                } else {
+                    window.location.href = `../models.html?id=${res.category_id}`;
+                }
+            })
             .catch((erro) => {
                 console.log(erro);
                 throw new Error(erro);

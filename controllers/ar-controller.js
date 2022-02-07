@@ -7,9 +7,10 @@ export function getModel(token) {
     };
 
     arService
-        .getModel(data)
+        .getModelViewer(data)
         .then((res) => {
-            plot_list(res);
+            console.log(res);
+            params(res);
         })
         .catch((erro) => {
             console.log(erro);
@@ -17,21 +18,7 @@ export function getModel(token) {
         });
 }
 
-function plot_list(data) {
-    let list = document.getElementById("mySidenav");
-
-    for (let i = 0; i < data.models.length; i++) {
-        let a = document.createElement("a");
-        a.setAttribute("class", "ar-object");
-        a.setAttribute("id", data.models[i].file_model);
-        a.setAttribute("href", "#");
-        a.onclick = function () {
-            closeNav();
-            test(data.models[i].file_model);
-        };
-
-        a.innerHTML = data.models[i].name_model;
-
-        list.appendChild(a);
-    }
+function params(data) {
+    let model = document.getElementById("dimension-demo");
+    model.setAttribute("src", data.model.file_model);
 }

@@ -342,8 +342,9 @@
         form.addEventListener("submit", (event) => {
             event.preventDefault();
 
-
-            create(event, window.file, window.img);
+            if (window.file != null && window.img != null) {
+                create(event, window.file, window.img);
+            }
         });
     </script>
 

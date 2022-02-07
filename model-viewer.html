@@ -39,7 +39,7 @@
     <!-- <script src="https://unpkg.com/@magicleap/prismatic@0.18.2/prismatic.min.js"></script> -->
 </head>
 
-<body class="sb-nav-fixed">
+<body id="body" class="sb-nav-fixed">
     <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
         <!-- Navbar Brand-->
         <a class="navbar-brand ps-3" href="admin.html">Plataforma WebXR</a>
@@ -135,7 +135,7 @@
                                 <div class="d-flex justify-content-center">
                                     <model-viewer id="dimension-demo" camera-orbit="-30deg auto auto"
                                         max-camera-orbit="auto 100deg auto" shadow-intensity="1" camera-controls
-                                        src="../assets/models/chair1.glb" alt="Modelo 3D">
+                                        alt="Modelo 3D">
                                         <button slot="hotspot-dot+X-Y+Z" class="dot" data-position="1 -1 1"
                                             data-normal="1 0 0"></button>
                                         <button slot="hotspot-dim+X-Y" class="dim" data-position="1 -1 0"
@@ -218,6 +218,8 @@
         </div>
     </div>
 
+
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
         crossorigin="anonymous"></script>
     <script src="js/scripts.js"></script>
@@ -234,6 +236,18 @@
 
         // qrcode.clear(); // clear the code.
         // qrcode.makeCode("http://naver.com"); // make another code.
+    </script>
+
+    <script type="module">
+        import { getModel } from "../controllers/ar-controller.js";
+        document.getElementById("body").onload = function () {
+            const queryString = window.location.search;
+            const urlParams = new URLSearchParams(queryString);
+            const token = urlParams.get("token");
+            getModel(token);
+        };
+
+
     </script>
 
     <!-- Scripts annotations <model-viewer> -->

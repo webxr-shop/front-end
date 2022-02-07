@@ -20,7 +20,7 @@ export function models() {
                     res._templates[i].category.name,
                     `<div class="row">
                         <div class="col-2 d-flex align-items-center">
-                            <a href="webxr/app.html?token=${res._templates[i].token}">
+                            <a href="model-viewer.html?token=${res._templates[i].token}">
                                 <div class="sb-nav-link-icon">
                                     <i class="fas fa-link"></i>
                                     Visualizar

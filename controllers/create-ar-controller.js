@@ -19,6 +19,7 @@ export function create(e, file, img) {
     createArService.newModel(data).then((res) => {
         let api = "http://127.0.0.1:3333/";
         let reqs = {
+            lvl: 0,
             id: res.id,
             thumb_model: img,
             link: api + "webxr-viewer.html",
@@ -38,23 +39,64 @@ export function del(token) {
     createArService.del(data);
 }
 
-export function editing(e, file) {
+export function editing(e, file, img, token) {
     e.preventDefault();
-    let createArService = new CreateArService();
-    let data = {
-        name_model: e.target[1].value,
-        file_model: file,
-        dim_x: parseFloat(e.target[2].value),
-        dim_y: parseFloat(e.target[3].value),
-        dim_z: parseFloat(e.target[4].value),
-        name_model: "",
-        description_model: "",
-        thumb_model: "",
-        category_id: parseInt(e.target[0].value),
-        token: localStorage.getItem("token"),
-    };
 
-    createArService.newModel(data);
+    if (file == null) {
+        let createArService = new CreateArService();
+        let data = {
+            category_id: parseInt(e.target[0].value),
+            name_model: e.target[1].value,
+            description_model: e.target[2].value,
+            price: parseFloat(e.target[3].value),
+            dim_x: parseFloat(e.target[4].value),
+            dim_y: parseFloat(e.target[5].value),
+            dim_z: parseFloat(e.target[6].value),
+            model_token: token,
+        };
+
+        createArService.editModelWithoutFile(data).then((res) => {
+            if (img != null) {
+                let reqs = {
+                    lvl: 1,
+
+                    thumb_model: img,
+                    token,
+                };
+
+                createArService.confirmation(reqs);
+            } else {
+                window.location.href = `../model-viewer.html?token=${res.token}`;
+            }
+        });
+    } else {
+        let createArService = new CreateArService();
+        let data = new FormData();
+        data.append("category_id", parseInt(e.target[0].value));
+        data.append("name_model", e.target[1].value);
+        data.append("description_model", e.target[2].value);
+        data.append("price", parseFloat(e.target[3].value));
+        data.append("dim_x", parseFloat(e.target[4].value));
+        data.append("dim_y", parseFloat(e.target[5].value));
+        data.append("dim_z", parseFloat(e.target[6].value));
+        data.append("model_token", token);
+        data.append("token", localStorage.getItem("token"));
+        data.append("file", file);
+        createArService.editModel(data).then((res) => {
+            if (img != null) {
+                let reqs = {
+                    lvl: 1,
+
+                    thumb_model: img,
+                    token,
+                };
+
+                createArService.confirmation(reqs);
+            } else {
+                window.location.href = `../model-viewer.html?token=${res.token}`;
+            }
+        });
+    }
 }
 
 export function getCategories() {
