@@ -39,7 +39,7 @@
 
 		<div id="container" styles="position: fixed;"></div>
 
-		<button type="button" id="place-button">Adicionar</button>
+		<button type="button" id="place-button">ADICIONAR</button>
 	</div>
 
 	<script>
@@ -269,7 +269,7 @@
 				optionalFeatures: ['dom-overlay'],
 			}
 
-			options.domOverlay = { root: document.getElementById('content') };
+			options.domOverlay = { root: document.body }; // { root: document.getElementById('content') };
 
 			document.body.appendChild(ARButton.createButton(renderer, options));
 
