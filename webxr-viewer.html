@@ -24,18 +24,10 @@
 		<div id="mySidenav" class="sidenav">
 			<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
 			<!-- <a class="ar-object" id="fancy_picture_frame_01_4k-v1" href="#"
-				onclick="closeNav()">fancy_picture_frame_01_4k-v1</a>
-			<a class="ar-object" id="fancy_picture_frame_01_4k-v2" href="#"
-				onclick="closeNav()">fancy_picture_frame_01_4k-v2</a>
-			<a class="ar-object" id="television_01_4k-v1" href="#" onclick="closeNav()">television_01_4k-v1</a>
-			<a class="ar-object" id="television_01_4k-v2" href="#" onclick="closeNav()">television_01_4k-v2</a>
-			<a class="ar-object" id="ornate_mirror_01_4k-v1" href="#" onclick="closeNav()">ornate_mirror_01_4k-v1</a>
-			<a class="ar-object" id="ornate_mirror_01_4k-v2" href="#" onclick="closeNav()">ornate_mirror_01_4k-v2</a>
-			<a class="ar-object" id="chandelier_01_4k-v1" href="#" onclick="closeNav()">chandelier_01_4k-v1</a>
-			<a class="ar-object" id="chandelier_01_4k-v2" href="#" onclick="closeNav()">chandelier_01_4k-v2</a> -->
+				onclick="closeNav()">fancy_picture_frame_01_4k-v1</a> -->
 		</div>
 
-		<span style="font-size:30px;cursor:pointer;position: absolute;" onclick="openNav()">&#9776; produtos</span>
+		<span style="font-size:30px;cursor:pointer;position: absolute;" onclick="openNav()">&#9776; trocar de produto</span>
 
 		<div id="container" styles="position: fixed;"></div>
 
@@ -86,7 +78,7 @@
 
 		let reticle;
 
-		var pmremGenerator, current_object, controls;
+		let pmremGenerator, current_object, controls;
 
 		let loadingBar = new LoadingBar();
 		loadingBar.visible = false;
@@ -111,7 +103,7 @@
 			const urlParams = new URLSearchParams(queryString);
 			const token = urlParams.get("token");
 			let arService = new ArService();
-			var data = {
+			let data = {
 				token,
 			};
 
@@ -162,20 +154,20 @@
 		}
 
 		function loadModel(model) {
-			console.log(model)
+
 			new RGBELoader()
 				.setDataType(THREE.UnsignedByteType)
 				.setPath('assets/hdr/')
 				.load('photo_studio_01_1k.hdr', function (texture) {
 
-					var envmap = pmremGenerator.fromEquirectangular(texture).texture;
+					const envmap = pmremGenerator.fromEquirectangular(texture).texture;
 
 					scene.environment = envmap;
 					texture.dispose();
 					pmremGenerator.dispose();
 					render();
 
-					var loader = new GLTFLoader();
+					const loader = new GLTFLoader();
 					// .setPath('assets/models/');
 
 					loadingBar.visible = true;
@@ -198,7 +190,7 @@
 
 							arPlace();
 
-							var box = new THREE.Box3();
+							const box = new THREE.Box3();
 							box.setFromObject(current_object);
 							box.center(controls.target);
 
@@ -236,11 +228,11 @@
 			hemisphereLight.position.set(0.5, 1, 0.25);
 			scene.add(hemisphereLight);
 
-			var directionalLight = new THREE.DirectionalLight(0xdddddd, 1);
+			const directionalLight = new THREE.DirectionalLight(0xdddddd, 1);
 			directionalLight.position.set(0, 0, 1).normalize();
 			scene.add(directionalLight);
 
-			// var ambientLight = new THREE.AmbientLight(0x222222);
+			// const ambientLight = new THREE.AmbientLight(0x222222);
 			// scene.add(ambientLight);
 
 			//
@@ -319,7 +311,7 @@
 
 		}
 
-		var touchDown, touchX, touchY, deltaX, deltaY;
+		let touchDown, touchX, touchY, deltaX, deltaY;
 
 		function rotateObject() {
 			if (current_object && reticle.visible) {
@@ -372,7 +364,7 @@
 
 						reticle.visible = false;
 
-						var box = new THREE.Box3();
+						const box = new THREE.Box3();
 						box.setFromObject(current_object);
 						box.center(controls.target);
 
