@@ -54,7 +54,7 @@ class ARButton {
 
 				await renderer.xr.setSession( session );
 
-				button.textContent = 'FECHAR AR';
+				button.textContent = 'FINALIZAR';
 				sessionInit.domOverlay.root.style.display = '';
 
 				currentSession = session;
@@ -172,7 +172,7 @@ class ARButton {
 			if ( window.isSecureContext === false ) {
 
 				message.href = document.location.href.replace( /^http:/, 'https:' );
-				message.innerHTML = 'WEBXR NEEDS HTTPS'; // TODO Improve message
+				message.innerHTML = 'ACESSE COM HTTPS'; // TODO Improve message
 
 			} else {
 
