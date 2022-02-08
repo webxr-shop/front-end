@@ -55,6 +55,11 @@ class ARButton {
 				await renderer.xr.setSession( session );
 
 				button.textContent = 'FINALIZAR';
+
+                button.onclick = function() {
+                    window.location.href = 'index.html';
+                };
+
 				sessionInit.domOverlay.root.style.display = '';
 
 				currentSession = session;
@@ -176,7 +181,7 @@ class ARButton {
 
 			} else {
 
-				message.href = 'https://immersiveweb.dev/';
+				message.href = 'index.html';
 				message.innerHTML = 'WEBXR NÃO DISPONÍVEL';
 
 			}
