@@ -89,6 +89,10 @@ export function models(category_id) {
     categoryService
         .listModels(data)
         .then((res) => {
+            console.log(res);
+            let title = document.getElementById("name");
+            title.innerHTML = res.category.name;
+
             let data = [];
             for (let i = 0; i < res._templates.length; i++) {
                 let array = [

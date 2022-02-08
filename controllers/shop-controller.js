@@ -81,5 +81,21 @@ function params(res) {
     size.innerHTML = `${res.model.dim_x} cm X ${res.model.dim_y} cm X ${res.model.dim_z} cm`;
 
     let but = document.getElementById("but");
-    but.setAttribute("href", `webxr-viewer.html?token=${res.model.token}`);
+    but.onclick = function () {
+        window.location.href = `./webxr-viewer.html?token=${res.model.token}`;
+    };
+}
+
+export function addCarrinho() {
+    let car = localStorage.getItem("car");
+    if (car == null) {
+        car = 1;
+        localStorage.setItem("car", car);
+    } else {
+        let number = parseInt(car) + 1;
+        localStorage.setItem("car", number);
+    }
+}
+export function deleteCar() {
+    localStorage.removeItem("car");
 }

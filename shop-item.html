@@ -21,7 +21,7 @@
 <body id="body">
     <!-- Navigation-->
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <div class="container px-4 px-lg-5">
+        <div class="container">
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
                 aria-label="Toggle navigation">
@@ -30,19 +30,10 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#!">Home</a>
+                        <a class="nav-link active" aria-current="page" href="index.html">Para clientes</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#!">Cadeiras</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#!">Mesas</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#!">Sofás</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#!">Lustres</a>
+                        <a class="nav-link active" href="admin.html">Para lojistas</a>
                     </li>
                     <!-- <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button"
@@ -90,17 +81,19 @@
                     </div>
                     <p class="lead" id="description"></p>
                     <p class="lead" id="size"></p>
-                    <div class="d-flex flex-nowrap">
+                    <div class="d-flex mb-2">
+                        <button class="btn btn-primary flex-shrink-0" id="but" type="button">
+                            <i class="bi bi-badge-ar-fill me-1"></i>
+                            Visualizar em Realidade Aumentada
+                        </button>
+                    </div>
+                    <div class="d-flex">
                         <input class="form-control text-center me-3" id="inputQuantity" type="num" value="1"
-                            style="max-width: 3rem" />
-                        <button class="btn btn-outline-dark flex-shrink-0 me-3" type="button">
+                            style="max-width: 6rem" />
+                        <button class="btn btn-outline-dark flex-shrink-0 me-3" id="car" type="button">
                             <i class="bi-cart-fill me-1"></i>
                             Adicionar ao carrinho
                         </button>
-                        <a class="btn btn-primary flex-shrink-0" id="but" type="button">
-                            <i class="bi bi-badge-ar-fill me-1"></i>
-                            Visualizar AR
-                        </a>
                     </div>
                 </div>
             </div>
