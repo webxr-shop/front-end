@@ -135,7 +135,7 @@
                                         <div class="row mb-3">
                                             <div class="col-md-9">
                                                 <div class="form-floating">
-                                                    <select class="form-select" id="selectCategory"
+                                                    <select required class="form-select" id="selectCategory"
                                                         aria-label="Categoria"></select>
                                                     <label for="selectCategory">Categoria</label>
                                                 </div>
@@ -149,48 +149,47 @@
                                             </div>
                                         </div>
                                         <div class="form-floating mb-3">
-                                            <input class="form-control" id="inputName" type="text"
+                                            <input required class="form-control" id="inputName" type="text"
                                                 placeholder="Nome do modelo" />
                                             <label for="inputName">Nome do modelo</label>
                                         </div>
                                         <div class="form-floating mb-3">
-                                            <textarea class="form-control" id="inputDescription" placeholder="Descrição"
+                                            <textarea required class="form-control" id="inputDescription" placeholder="Descrição"
                                                 rows="3"></textarea>
                                             <label for="inputDescription">Descrição</label>
                                         </div>
                                         <div class="form-floating mb-3">
-                                            <input class="form-control" name="inputPrice" id="inputPrice" type="text"
+                                            <input required class="form-control" name="inputPrice" id="inputPrice" type="text"
                                                 placeholder="Preço" />
                                             <label for="inputPrice">Preço</label>
                                         </div>
                                         <div class="row mb-3">
                                             <div class="col-md-4">
                                                 <div class="form-floating mb-3 mb-md-0">
-                                                    <input class="form-control" id="inputWidth" type="number"
+                                                    <input required class="form-control" id="inputWidth" type="number"
                                                         placeholder="Largura" />
                                                     <label for="inputWidth">Largura (cm)</label>
                                                 </div>
                                             </div>
                                             <div class="col-md-4">
                                                 <div class="form-floating">
-                                                    <input class="form-control" id="inputHeight" type="number"
+                                                    <input required class="form-control" id="inputHeight" type="number"
                                                         placeholder="Largura" />
                                                     <label for="inputHeight">Altura (cm)</label>
                                                 </div>
                                             </div>
                                             <div class="col-md-4">
                                                 <div class="form-floating">
-                                                    <input class="form-control" id="inputLength" type="number"
-                                                        placeholder="Comprimento" />
-                                                    <label for="inputLength">Comprimento
+                                                    <input required class="form-control" id="inputLength" type="number"
+                                                        placeholder="Profundidade" />
+                                                    <label for="inputLength">Profundidade
                                                         (cm)</label>
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="mt-4 mb-0">
-                                            <label for="formImage" class="form-label">Fazer upload da imagem do
-                                                modelo</label>
-                                            <input class="form-control" type="file" id="formImage" />
+                                            <label for="formImage" class="form-label">Fazer upload da imagem do modelo</label>
+                                            <input required class="form-control" type="file" id="formImage" />
                                         </div>
                                         <div class="mt-4 mb-0 text-center">
                                             <img hidden id="previewImage" style="max-width: 300px" class="card-img-top"
@@ -199,7 +198,7 @@
                                         <div class="mt-4 mb-0">
                                             <label for="formModel" class="form-label">Fazer upload do modelo
                                                 3D</label>
-                                            <input class="form-control" type="file" id="formModel" />
+                                            <input required class="form-control" type="file" id="formModel" />
                                         </div>
                                         <div class="mt-4 mb-0">
                                             <div hidden id="previewModel">
@@ -248,7 +247,7 @@
                                             <div class="col-md-6">
                                                 <div class="d-grid">
                                                     <button type="submit" class="btn btn-primary btn-block">
-                                                        Gerar AR
+                                                        Salvar
                                                     </button>
                                                 </div>
                                             </div>
