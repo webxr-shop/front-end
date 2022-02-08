@@ -44,10 +44,24 @@ body {
   }
 
   #place-button{
-    position: absolute;
+    /* position: absolute;
     bottom: 20px;
     left: calc(50% - 50px);
     width: 100px;
     height: 35px;
+    display: none; */
+
+    width: 100px;
     display: none;
+    left: calc(50% - 50px);
+    position: absolute;
+    bottom: 20px;
+    padding: 12px 6px;
+    border: 1px solid #fff;
+    border-radius: 4px;
+    background: rgba(0,0,0,0.1);
+    color: #fff;
+    font: normal 13px sans-serif;
+    text-align: center;
+    outline: none;
   }
