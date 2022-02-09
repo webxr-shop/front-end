@@ -42,8 +42,6 @@
 		function closeNav() {
 			document.getElementById("mySidenav").style.width = "0";
 		}
-
-
 	</script>
 
 	<!-- Import maps polyfill -->
@@ -123,6 +121,7 @@
 		};
 
 		function plot_list(data) {
+
 			let list = document.getElementById("mySidenav");
 
 			for (let i = 0; i < data.models.length; i++) {
@@ -138,7 +137,13 @@
 					loadModel(data.models[i].file_model);
 				};
 
-				a.innerHTML = `${data.models[i].name_model} <br> R$ ${data.models[i].price}`;
+                let img = document.createElement("img");
+                img.setAttribute("src", data.models[i].thumb_model);
+                a.appendChild(img);
+
+                let span = document.createElement("span");
+                span.innerHTML = `<br>${data.models[i].name_model} - R$${data.models[i].price}<br>Dimensões: ${data.models[i].dim_x}x${data.models[i].dim_y}x${data.models[i].dim_z} cm`;
+                a.appendChild(span);
 
 				list.appendChild(a);
 			}
@@ -192,7 +197,7 @@
 
 							const box = new THREE.Box3();
 							box.setFromObject(current_object);
-							box.center(controls.target);
+							box.getCenter(controls.target);
 
 							controls.update();
 							render();
@@ -248,9 +253,9 @@
 
 			controls = new OrbitControls(camera, renderer.domElement);
 			controls.addEventListener('change', render);
-			controls.minDistance = 2;
+			controls.minDistance = 1.5;
 			controls.maxDistance = 10;
-			controls.target.set(0, 0, -0.2);
+			controls.target.set(0.14, -0.14, -0.2);
 			controls.enableDamping = true;
 			controls.dampingFactor = 0.05;
 
@@ -366,7 +371,7 @@
 
 						const box = new THREE.Box3();
 						box.setFromObject(current_object);
-						box.center(controls.target);
+						box.getCenter(controls.target);
 
 						document.getElementById("place-button").style.display = "none";
 
