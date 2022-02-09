@@ -57,11 +57,11 @@
             </div>
             <a class="navbar-brand" href="index.html">WebXR Shop</a>
             <form class="d-flex">
-                <button class="btn btn-outline-dark" type="submit">
+                <div class="btn btn-outline-dark">
                     <i class="bi-cart-fill me-1"></i>
                     Carrinho
                     <span class="badge bg-dark text-white ms-1 rounded-pill" id="carrinho"></span>
-                </button>
+                </div>
             </form>
         </div>
     </nav>
@@ -75,20 +75,18 @@
                 <div class="col-md-6">
                     <div class="small mb-1">SKU: BST-498</div>
                     <h1 class="display-5 fw-bolder" id="title"></h1>
-                    <div class="fs-5 mb-5">
+                    <div class="fs-3 mb-4">
                         <!-- <span class="text-decoration-line-through">$45.00</span> -->
                         <span id="price"></span>
                     </div>
-                    <p class="lead" id="description"></p>
-                    <p class="lead" id="size"></p>
-                    <div class="d-flex mb-2">
-                        <button class="btn btn-primary flex-shrink-0" id="but" type="button">
+                    <p style="font-size: 16px;" class="lead" id="description"></p>
+                    <p style="font-size: 16px;" class="lead" id="size"></p>
+                    <div class="d-grid">
+                        <button class="btn btn-primary flex-shrink-0 mb-2" id="but" type="button">
                             <i class="bi bi-badge-ar-fill me-1"></i>
                             Visualizar em Realidade Aumentada
                         </button>
-                    </div>
-                    <div class="d-flex">
-                        <button class="btn btn-outline-dark flex-shrink-0 me-3" id="car" type="button">
+                        <button class="btn btn-outline-dark flex-shrink-0" id="car" type="button">
                             <i class="bi-cart-fill me-1"></i>
                             Adicionar ao carrinho
                         </button>
