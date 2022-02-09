@@ -27,11 +27,12 @@
 				onclick="closeNav()">fancy_picture_frame_01_4k-v1</a> -->
 		</div>
 
-		<span style="font-size:30px;cursor:pointer;position: absolute;" onclick="openNav()">&#9776; trocar produto</span>
+		<span style="font-size:30px;cursor:pointer;position:absolute;" onclick="openNav()">&#9776; trocar produto</span>
 
 		<div id="container" styles="position: fixed;"></div>
 
 		<button type="button" id="place-button">ADICIONAR</button>
+        <button type="button" id="cart-button">CARRINHO</button>
 	</div>
 
 	<script>
@@ -94,6 +95,10 @@
 
 		$("#place-button").click(function () {
 			arPlace();
+		});
+
+        $("#cart-button").click(function () {
+			arCart();
 		});
 
 		document.getElementById("body").onload = function () {
@@ -194,6 +199,7 @@
 							loadingBar.visible = false;
 
 							arPlace();
+                            arCart();
 
 							const box = new THREE.Box3();
 							box.setFromObject(current_object);

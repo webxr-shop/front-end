@@ -76,3 +76,20 @@ body {
     text-align: center;
     outline: none;
   }
+
+  #cart-button{
+    width: 100px;
+    display: none;
+    top: calc(50% - 50px);
+    left: calc(50% - 50px);
+    position: absolute;
+    bottom: 20px;
+    padding: 12px 6px;
+    border: 1px solid #fff;
+    border-radius: 4px;
+    background: rgba(0,0,0,0.1);
+    color: #fff;
+    font: normal 13px sans-serif;
+    text-align: center;
+    outline: none;
+  }
