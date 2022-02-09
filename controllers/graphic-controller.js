@@ -6,10 +6,11 @@ export function graphic(labels, data, max) {
             labels: labels,
             datasets: [
                 {
-                    label: "Cadastros",
-                    backgroundColor: "rgba(2,117,216,1)",
-                    borderColor: "rgba(2,117,216,1)",
+                    label: "N° de modelos",
+                    backgroundColor: "rgba(54, 162, 235, 0.5)",
+                    borderColor: "rgba(54, 162, 235, 1)",
                     data: data,
+                    borderWidth: 1,
                 },
             ],
         },
@@ -26,6 +27,10 @@ export function graphic(labels, data, max) {
                         ticks: {
                             maxTicksLimit: 6,
                         },
+                        scaleLabel: {
+                            display: true,
+                            labelString: "Categorias",
+                        },
                     },
                 ],
                 yAxes: [
@@ -37,6 +42,10 @@ export function graphic(labels, data, max) {
                         },
                         gridLines: {
                             display: true,
+                        },
+                        scaleLabel: {
+                            display: true,
+                            labelString: "N° de modelos",
                         },
                     },
                 ],

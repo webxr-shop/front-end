@@ -154,13 +154,13 @@
                                             <label for="inputName">Nome do modelo</label>
                                         </div>
                                         <div class="form-floating mb-3">
-                                            <textarea required class="form-control" id="inputDescription" placeholder="Descrição"
-                                                rows="3"></textarea>
+                                            <textarea required class="form-control" id="inputDescription"
+                                                placeholder="Descrição" rows="3"></textarea>
                                             <label for="inputDescription">Descrição</label>
                                         </div>
                                         <div class="form-floating mb-3">
-                                            <input required class="form-control" name="inputPrice" id="inputPrice" type="text"
-                                                placeholder="Preço" />
+                                            <input required class="form-control" name="inputPrice" id="inputPrice"
+                                                step="0.01" type="text" placeholder="Preço" />
                                             <label for="inputPrice">Preço</label>
                                         </div>
                                         <div class="row mb-3">
@@ -188,7 +188,8 @@
                                             </div>
                                         </div>
                                         <div class="mt-4 mb-0">
-                                            <label for="formImage" class="form-label">Fazer upload da imagem do modelo</label>
+                                            <label for="formImage" class="form-label">Fazer upload da imagem do
+                                                modelo</label>
                                             <input required class="form-control" type="file" id="formImage" />
                                         </div>
                                         <div class="mt-4 mb-0 text-center">
@@ -282,12 +283,17 @@
         crossorigin="anonymous"></script>
     <script src="js/scripts.js"></script>
     <script src="./controllers/auth-controller.js"></script>
-    <!--
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://igorescobar.github.io/jQuery-Mask-Plugin/js/jquery.mask.min.js"></script>
+
     <script>
         $(document).ready(function () {
-            $(".inputPrice").mask("#.##0,00", { reverse: true });
+            $("#inputPrice").mask("#.##0,00", { reverse: true });
         });
-    </script> -->
+
+    </script>
+
+
 
     <script>
         function readImage() {

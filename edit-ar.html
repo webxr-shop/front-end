@@ -188,8 +188,9 @@
                                             </div>
                                         </div>
                                         <div class="mt-4 mb-0">
-                                            <label for="formImage" class="form-label">Fazer upload da imagem do modelo</label>
-                                            <input required class="form-control" type="file" id="formImage" />
+                                            <label for="formImage" class="form-label">Fazer upload da imagem do
+                                                modelo</label>
+                                            <input class="form-control" type="file" id="formImage" />
                                         </div>
                                         <div class="mt-4 mb-0 text-center">
                                             <img hidden id="previewImage" style="max-width: 300px" class="card-img-top"
@@ -198,7 +199,7 @@
                                         <div class="mt-4 mb-0">
                                             <label for="formModel" class="form-label">Fazer upload do modelo
                                                 3D</label>
-                                            <input required class="form-control" type="file" id="formModel" />
+                                            <input class="form-control" type="file" id="formModel" />
                                         </div>
                                         <div class="mt-4 mb-0">
                                             <div hidden id="previewModel">
@@ -282,10 +283,12 @@
         crossorigin="anonymous"></script>
     <script src="js/scripts.js"></script>
     <script src="./controllers/auth-controller.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://igorescobar.github.io/jQuery-Mask-Plugin/js/jquery.mask.min.js"></script>
 
     <script>
         $(document).ready(function () {
-            $(".inputPrice").mask("#.##0,00", { reverse: true });
+            $("#inputPrice").mask("#.##0,00", { reverse: true });
         });
     </script>
 

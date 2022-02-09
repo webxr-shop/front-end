@@ -5,10 +5,11 @@ export function create(e, file, img) {
     e.preventDefault();
     let createArService = new CreateArService();
     let data = new FormData();
+    let price = e.target[3].value.replace(".", "").replace(",", ".");
     data.append("category_id", parseInt(e.target[0].value));
     data.append("name_model", e.target[1].value);
     data.append("description_model", e.target[2].value);
-    data.append("price", parseFloat(e.target[3].value));
+    data.append("price", price);
     data.append("dim_x", parseFloat(e.target[4].value));
     data.append("dim_y", parseFloat(e.target[5].value));
     data.append("dim_z", parseFloat(e.target[6].value));
@@ -44,11 +45,13 @@ export function editing(e, file, img, token) {
 
     if (file == null) {
         let createArService = new CreateArService();
+        let price = e.target[3].value.replace(".", "").replace(",", ".");
+
         let data = {
             category_id: parseInt(e.target[0].value),
             name_model: e.target[1].value,
             description_model: e.target[2].value,
-            price: parseFloat(e.target[3].value),
+            price: parseFloat(price),
             dim_x: parseFloat(e.target[4].value),
             dim_y: parseFloat(e.target[5].value),
             dim_z: parseFloat(e.target[6].value),
