@@ -11,7 +11,7 @@ export class CreateArService {
             .then((res) => res)
             .catch((erro) => {
                 console.log(erro);
-                throw new Error(erro);
+                alert(erro);
             });
     }
 
@@ -21,7 +21,7 @@ export class CreateArService {
             .then((res) => res)
             .catch((erro) => {
                 console.log(erro);
-                throw new Error(erro);
+                alert(erro);
             });
     }
 
@@ -31,7 +31,7 @@ export class CreateArService {
             .then((res) => res)
             .catch((erro) => {
                 console.log(erro);
-                throw new Error(erro);
+                alert(erro);
             });
     }
 
@@ -47,7 +47,7 @@ export class CreateArService {
             })
             .catch((erro) => {
                 console.log(erro);
-                throw new Error(erro);
+                alert(erro);
             });
     }
 
@@ -57,7 +57,7 @@ export class CreateArService {
             .then((res) => res)
             .catch((erro) => {
                 console.log(erro);
-                throw new Error(erro);
+                alert(erro);
             });
     }
     del(data) {
@@ -66,7 +66,7 @@ export class CreateArService {
             .then((res) => window.location.reload())
             .catch((erro) => {
                 console.log(erro);
-                throw new Error(erro);
+                alert(erro);
             });
     }
 }

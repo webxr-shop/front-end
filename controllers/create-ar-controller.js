@@ -124,7 +124,7 @@ export function getCategories() {
         })
         .catch((erro) => {
             console.log(erro);
-            throw new Error(erro);
+            alert(erro);
         });
 }
 
@@ -141,13 +141,13 @@ export function getEdit(token) {
         })
         .catch((erro) => {
             console.log(erro);
-            throw new Error(erro);
+            alert(erro);
         });
 }
 
 function params(res) {
     console.log(res);
-    serCategories(res["_template"]["category_id"]);
+    setCategories(res["_template"]["category_id"]);
     var name = document.getElementById("inputName");
     var description = document.getElementById("inputDescription");
     var price = document.getElementById("inputPrice");
@@ -163,7 +163,7 @@ function params(res) {
     length.value = res["_template"]["dim_z"];
 }
 
-export function serCategories(category_id) {
+export function setCategories(category_id) {
     let categoryService = new CategoryService();
     var data = {
         token: localStorage.getItem("token"),
@@ -198,6 +198,6 @@ export function serCategories(category_id) {
         })
         .catch((erro) => {
             console.log(erro);
-            throw new Error(erro);
+            alert(erro);
         });
 }

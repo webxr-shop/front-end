@@ -10,7 +10,7 @@ export function list(e) {
         })
         .catch((erro) => {
             console.log(erro);
-            throw new Error(erro);
+            alert(erro);
         });
 }
 
@@ -28,7 +28,7 @@ export function shopItem(token) {
         })
         .catch((erro) => {
             console.log(erro);
-            throw new Error(erro);
+            alert(erro);
         });
 }
 
@@ -64,7 +64,6 @@ function plot_list(data) {
 }
 
 function params(res) {
-    console.log(res);
     let img = document.getElementById("imgs");
     img.setAttribute("src", res.model.thumb_model);
 
@@ -78,12 +77,26 @@ function params(res) {
     description.innerHTML = res.model.description_model;
 
     let size = document.getElementById("size");
-    size.innerHTML = `${res.model.dim_x} cm X ${res.model.dim_y} cm X ${res.model.dim_z} cm`;
+    size.innerHTML = `${res.model.dim_x}cm largura - ${res.model.dim_y}cm altura - ${res.model.dim_z}cm profundidade`;
 
-    let but = document.getElementById("but");
-    but.onclick = function () {
-        window.location.href = `./webxr-viewer.html?token=${res.model.token}`;
+    let supported = localStorage.getItem("isPossible");
+    let car = document.getElementById("car");
+    car.onclick = function () {
+        addCarrinho();
     };
+
+    if (supported == "true") {
+        let but = document.getElementById("but");
+        but.onclick = function () {
+            window.location.href = `./webxr-viewer.html?token=${res.model.token}`;
+        };
+    } else {
+        let but = document.getElementById("but");
+        but.innerHTML = "Não compatível com Realidade Aumentada";
+    }
+    let count = localStorage.getItem("car");
+    let carrinho = document.getElementById("carrinho");
+    carrinho.innerHTML = count == null ? 0 : count;
 }
 
 export function addCarrinho() {
@@ -95,6 +108,8 @@ export function addCarrinho() {
         let number = parseInt(car) + 1;
         localStorage.setItem("car", number);
     }
+    let carrinho = document.getElementById("carrinho");
+    carrinho.innerHTML = car;
 }
 export function deleteCar() {
     localStorage.removeItem("car");

@@ -13,7 +13,7 @@ export function getModel(token) {
         })
         .catch((erro) => {
             console.log(erro);
-            throw new Error(erro);
+            alert(erro);
         });
 }
 

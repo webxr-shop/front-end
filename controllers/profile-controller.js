@@ -13,7 +13,7 @@ export function getProfile() {
         })
         .catch((erro) => {
             console.log(erro);
-            throw new Error(erro);
+            alert(erro);
         });
 }
 
@@ -39,7 +39,7 @@ export function editProfile(e) {
             })
             .catch((erro) => {
                 console.log(erro);
-                throw new Error(erro);
+                alert(erro);
             });
     }
 }

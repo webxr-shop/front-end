@@ -11,7 +11,7 @@ export class HomeService {
             .then((res) => res)
             .catch((erro) => {
                 console.log(erro);
-                throw new Error(erro);
+                alert(erro);
             });
     }
 }

@@ -8,7 +8,16 @@ function getRandomIntInclusive(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
-const colors = ["bg-primary", "bg-warning", "bg-success", "bg-danger"];
+const colors = [
+    "bg-primary",
+    "bg-warning",
+    "bg-success",
+    "bg-danger",
+    "bg-secondary",
+    "bg-info",
+    "bg-black",
+    "bg-dark",
+];
 
 export function categories() {
     let categoryService = new CategoryService();
@@ -20,7 +29,7 @@ export function categories() {
         .getCategories(data)
         .then((res) => {
             for (let i = 0; i < res["_categories"].length; i++) {
-                let color = colors[getRandomIntInclusive(0, 3)];
+                let color = colors[getRandomIntInclusive(0, colors.length - 1)];
 
                 let categories = document.getElementById("categories");
 
@@ -75,7 +84,7 @@ export function categories() {
         })
         .catch((erro) => {
             console.log(erro);
-            throw new Error(erro);
+            alert(erro);
         });
 }
 
@@ -89,9 +98,12 @@ export function models(category_id) {
     categoryService
         .listModels(data)
         .then((res) => {
-            console.log(res);
             let title = document.getElementById("name");
             title.innerHTML = res.category.name;
+            let title2 = document.getElementById("name2");
+            title2.innerHTML = res.category.name;
+            let title3 = document.getElementById("name3");
+            title3.innerHTML = res.category.name;
 
             let data = [];
             for (let i = 0; i < res._templates.length; i++) {
@@ -142,7 +154,7 @@ export function models(category_id) {
         })
         .catch((erro) => {
             console.log(erro);
-            throw new Error(erro);
+            alert(erro);
         });
 }
 
