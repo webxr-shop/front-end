@@ -33,6 +33,10 @@ export function shopItem(token) {
 }
 
 function plot_list(data) {
+    let count = localStorage.getItem("car");
+    let carrinho = document.getElementById("carrinho");
+    carrinho.innerHTML = count == null ? 0 : count;
+
     let list = document.getElementById("list");
 
     for (let i = 0; i < data._templates.length; i++) {
