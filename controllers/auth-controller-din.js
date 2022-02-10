@@ -7,5 +7,6 @@ export function token() {
 }
 export function delete_token() {
     localStorage.removeItem("token");
+
     window.location.href = "../login.html";
 }

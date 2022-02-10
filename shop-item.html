@@ -35,33 +35,15 @@
                     <li class="nav-item">
                         <a class="nav-link active" href="admin.html">Para lojistas</a>
                     </li>
-                    <!-- <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button"
-                            data-bs-toggle="dropdown" aria-expanded="false">Categorias</a>
-                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <li>
-                                <a class="dropdown-item" href="#!">Todos os produtos</a>
-                            </li>
-                            <li>
-                                <hr class="dropdown-divider" />
-                            </li>
-                            <li>
-                                <a class="dropdown-item" href="#!">Cadeiras</a>
-                            </li>
-                            <li>
-                                <a class="dropdown-item" href="#!">Sofás</a>
-                            </li>
-                        </ul>
-                    </li> -->
                 </ul>
             </div>
             <a class="navbar-brand" href="index.html">WebXR Shop</a>
             <form class="d-flex">
-                <button class="btn btn-outline-dark" type="submit">
+                <div class="btn btn-outline-dark">
                     <i class="bi-cart-fill me-1"></i>
                     Carrinho
-                    <span class="badge bg-dark text-white ms-1 rounded-pill">0</span>
-                </button>
+                    <span class="badge bg-dark text-white ms-1 rounded-pill" id="carrinho"></span>
+                </div>
             </form>
         </div>
     </nav>
@@ -75,22 +57,18 @@
                 <div class="col-md-6">
                     <div class="small mb-1">SKU: BST-498</div>
                     <h1 class="display-5 fw-bolder" id="title"></h1>
-                    <div class="fs-5 mb-5">
+                    <div class="fs-3 mb-4">
                         <!-- <span class="text-decoration-line-through">$45.00</span> -->
                         <span id="price"></span>
                     </div>
-                    <p class="lead" id="description"></p>
-                    <p class="lead" id="size"></p>
-                    <div class="d-flex mb-2">
-                        <button class="btn btn-primary flex-shrink-0" id="but" type="button">
+                    <p style="font-size: 16px;" class="lead" id="description"></p>
+                    <p style="font-size: 16px;" class="lead" id="size"></p>
+                    <div class="d-grid">
+                        <button class="btn btn-primary flex-shrink-0 mb-2" id="but" type="button">
                             <i class="bi bi-badge-ar-fill me-1"></i>
                             Visualizar em Realidade Aumentada
                         </button>
-                    </div>
-                    <div class="d-flex">
-                        <input class="form-control text-center me-3" id="inputQuantity" type="num" value="1"
-                            style="max-width: 6rem" />
-                        <button class="btn btn-outline-dark flex-shrink-0 me-3" id="car" type="button">
+                        <button class="btn btn-outline-dark flex-shrink-0" id="car" type="button">
                             <i class="bi-cart-fill me-1"></i>
                             Adicionar ao carrinho
                         </button>
@@ -99,124 +77,7 @@
             </div>
         </div>
     </section>
-    <!-- Related items section-->
-    <!-- <section class="py-5 bg-light">
-        <div class="container px-4 px-lg-5 mt-5">
-            <h2 class="fw-bolder mb-4">Produtos recentes</h2>
-            <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
-                <div class="col mb-5">
-                    <div class="card h-100">
 
-                        <img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..." />
-
-                        <div class="card-body p-4">
-                            <div class="text-center">
-
-                                <h5 class="fw-bolder">Fancy Product</h5>
-
-                                $40.00 - $80.00
-                            </div>
-                        </div>
-
-                        <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                            <div class="text-center">
-                                <a class="btn btn-outline-dark mt-auto" href="#">Comprar</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col mb-5">
-                    <div class="card h-100">
-
-                        <div class="badge bg-dark text-white position-absolute" style="top: 0.5rem; right: 0.5rem">
-                            Promoção
-                        </div>
-
-                        <img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..." />
-
-                        <div class="card-body p-4">
-                            <div class="text-center">
-
-                                <h5 class="fw-bolder">Special Item</h5>
-
-                                <div class="d-flex justify-content-center small text-warning mb-2">
-                                    <div class="bi-star-fill"></div>
-                                    <div class="bi-star-fill"></div>
-                                    <div class="bi-star-fill"></div>
-                                    <div class="bi-star-fill"></div>
-                                    <div class="bi-star-fill"></div>
-                                </div>
-
-                                <span class="text-muted text-decoration-line-through">$20.00</span>
-                                $18.00
-                            </div>
-                        </div>
-
-                        <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                            <div class="text-center">
-                                <a class="btn btn-outline-dark mt-auto" href="#">Comprar</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col mb-5">
-                    <div class="card h-100">
-
-                        <div class="badge bg-dark text-white position-absolute" style="top: 0.5rem; right: 0.5rem">
-                            Promoção
-                        </div>
-
-                        <img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..." />
-
-                        <div class="card-body p-4">
-                            <div class="text-center">
-
-                                <h5 class="fw-bolder">Sale Item</h5>
-
-                                <span class="text-muted text-decoration-line-through">$50.00</span>
-                                $25.00
-                            </div>
-                        </div>
-
-                        <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                            <div class="text-center">
-                                <a class="btn btn-outline-dark mt-auto" href="#">Comprar</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col mb-5">
-                    <div class="card h-100">
-
-                        <img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..." />
-
-                        <div class="card-body p-4">
-                            <div class="text-center">
-
-                                <h5 class="fw-bolder">Popular Item</h5>
-
-                                <div class="d-flex justify-content-center small text-warning mb-2">
-                                    <div class="bi-star-fill"></div>
-                                    <div class="bi-star-fill"></div>
-                                    <div class="bi-star-fill"></div>
-                                    <div class="bi-star-fill"></div>
-                                    <div class="bi-star-fill"></div>
-                                </div>
-
-                                $40.00
-                            </div>
-                        </div>
-
-                        <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                            <div class="text-center">
-                                <a class="btn btn-outline-dark mt-auto" href="#">Comprar</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section> -->
     <!-- Footer-->
     <footer class="py-5 bg-dark">
         <div class="container">

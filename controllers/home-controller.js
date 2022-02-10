@@ -5,7 +5,7 @@ import { graphic } from "./graphic-controller.js";
 
 export function models() {
     let homeService = new HomeService();
-    var data = {
+    let data = {
         token: localStorage.getItem("token"),
     };
 
@@ -19,7 +19,7 @@ export function models() {
                     res._templates[i].name_model,
                     res._templates[i].category.name,
                     `<div class="row">
-                        <div class="col-2 d-flex align-items-center">
+                        <div class="col-4 align-items-center">
                             <a href="model-viewer.html?token=${res._templates[i].token}">
                                 <div class="sb-nav-link-icon">
                                     <i class="fas fa-link"></i>
@@ -27,7 +27,7 @@ export function models() {
                                 </div>
                             </a>
                         </div>
-                        <div class="col-2 d-flex align-items-center">
+                        <div class="col-4 align-items-center">
                             <a href="edit-ar.html?token=${res._templates[i].token}">
                                 <div class="sb-nav-link-icon">
                                     <i class="fas fa-edit"></i>
@@ -35,7 +35,7 @@ export function models() {
                                 </div>
                             </a>
                         </div>
-                        <div class="col-2 d-flex align-items-center">
+                        <div class="col-4 align-items-center">
                             <a id="${res._templates[i].token}" key="${res._templates[i].token}" href=# >
                                 <div class="sb-nav-link-icon">
                                     <i class="fas fa-trash"></i>
@@ -72,6 +72,6 @@ export function models() {
         })
         .catch((erro) => {
             console.log(erro);
-            throw new Error(erro);
+            alert(erro);
         });
 }

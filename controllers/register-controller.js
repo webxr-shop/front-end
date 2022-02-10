@@ -5,13 +5,17 @@ export class RegisterController {
         let registerService = new RegisterService();
         e.preventDefault();
 
-        let data = {
-            name: e.target[0].value,
-            last_name: e.target[1].value,
-            email: e.target[2].value,
-            password: e.target[3].value,
-        };
+        if (e.target[3].value == e.target[4].value) {
+            let data = {
+                name: e.target[0].value,
+                last_name: e.target[1].value,
+                email: e.target[2].value,
+                password: e.target[3].value,
+            };
 
-        registerService.newClient(data);
+            registerService.newClient(data);
+        } else {
+            alert("Senhas incompatíveis");
+        }
     }
 }

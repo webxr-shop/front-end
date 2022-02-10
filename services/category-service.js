@@ -11,7 +11,7 @@ export class CategoryService {
             .then((res) => (window.location.href = "../create-ar.html"))
             .catch((erro) => {
                 console.log(erro);
-                throw new Error(erro);
+                alert(erro);
             });
     }
     getCategories(data) {
@@ -20,7 +20,7 @@ export class CategoryService {
             .then((res) => res)
             .catch((erro) => {
                 console.log(erro);
-                throw new Error(erro);
+                alert(erro);
             });
     }
 
@@ -30,7 +30,7 @@ export class CategoryService {
             .then((res) => res)
             .catch((erro) => {
                 console.log(erro);
-                throw new Error(erro);
+                alert(erro);
             });
     }
 
@@ -40,7 +40,7 @@ export class CategoryService {
             .then((res) => res)
             .catch((erro) => {
                 console.log(erro);
-                throw new Error(erro);
+                alert(erro);
             });
     }
 }

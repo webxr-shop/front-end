@@ -65,7 +65,7 @@
                             <div class="sb-nav-link-icon">
                                 <i class="fas fa-tachometer-alt"></i>
                             </div>
-                            Dashboard
+                            Painel administrativo
                         </a>
                         <a class="nav-link" href="categories.html">
                             <div class="sb-nav-link-icon">
@@ -103,20 +103,20 @@
                     </div>
                     <ol class="breadcrumb mb-4">
                         <li class="breadcrumb-item">
-                            <a href="admin.html">Dashboard</a>
+                            <a href="admin.html">Painel administrativo</a>
                         </li>
                         <li class="breadcrumb-item">
                             <a href="categories.html">Modelos</a>
                         </li>
-                        <li class="breadcrumb-item active">
-                            Nome da categoria
+                        <li id="name2" class="breadcrumb-item active">
+
                         </li>
                     </ol>
 
                     <div class="card mb-4">
-                        <div class="card-header">
+                        <div id="name3" class="card-header">
                             <i class="fas fa-table me-1"></i>
-                            Nome da categoria
+
                         </div>
                         <div id="tableCategory" class="card-body">
                             <table id="datatablesSimple"></table>
@@ -130,11 +130,11 @@
                         <div class="text-muted">
                             Copyright &copy; Plataforma WebXR 2021
                         </div>
-                        <div>
+                        <!-- <div>
                             <a href="privacy-policy.html">Política de privacidade</a>
                             &middot;
                             <a href="terms-of-use.html">Termos de uso</a>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
             </footer>
@@ -144,9 +144,7 @@
         crossorigin="anonymous"></script>
     <script src="js/scripts.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
-    <script src="js/datatables-simple.js"></script>
     <script src="./controllers/auth-controller.js"></script>
-    <script src="./controllers/category-controller.js"></script>
     <script type="module">
         import { tables } from "./controllers/table-controller.js";
         import { models } from "./controllers/category-controller.js";

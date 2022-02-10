@@ -1,8 +1,9 @@
 export class HttpService {
     constructor() {
+        this.api = "https://j5e885m040.execute-api.us-east-2.amazonaws.com/";
         // this.api =
-        //     "https://j5e885m040.execute-api.us-east-2.amazonaws.com/";
-        this.api = "http://127.0.0.1:3333/";
+        //     "http://4349-2804-14d-5e80-84c2-e8f7-269f-f689-56e5.ngrok.io/";
+        // this.api = "http://127.0.0.1:3333/";
     }
 
     get(url) {

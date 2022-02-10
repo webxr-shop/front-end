@@ -57,11 +57,11 @@
             </div>
             <a class="navbar-brand" href="index.html">WebXR Shop</a>
             <form class="d-flex">
-                <button class="btn btn-outline-dark" type="submit">
+                <div class="btn btn-outline-dark">
                     <i class="bi-cart-fill me-1"></i>
                     Carrinho
-                    <span class="badge bg-dark text-white ms-1 rounded-pill">0</span>
-                </button>
+                    <span class="badge bg-dark text-white ms-1 rounded-pill" id="carrinho"></span>
+                </div>
             </form>
         </div>
     </nav>
@@ -116,19 +116,22 @@
         if (!isMobile(window)) {
             canhazElement.innerText = "O WebXR Shop é compatível apenas com dispositivos móveis (smartphones). Para melhor experiência, acesse novamente este site através de um dispositivo compatível!"
             canhazImg.src = "assets/img/info-button.png";
+            localStorage.setItem("isPossible", "false");
         } else if ('xr' in navigator) {
-            canhazElement.innerText = "Seu navegador implementa a API WebXR e pode executar experiências de Realidade Virtual ou Realidade Aumentada se você estiver usando um sistema operacional compatível e o hardware apropriado."
+            canhazElement.innerText = "Seu navegador pode executar experiências de Realidade Aumentada se você estiver usando um sistema operacional compatível e o hardware apropriado."
             navigator.xr.isSessionSupported('immersive-ar').then((supported) => {
                 const span = document.createElement('span');
-                span.innerText = supported ? '✔️- Suporte de RA detectado' : '❌ - Suporte de RA não detectado';
+                span.innerText = supported ? '✔️ Suporta Realidade Aumentada' : '❌ Não suporta Realidade Aumentada';
+                supported ? localStorage.setItem("isPossible", "true") : localStorage.setItem("isPossible", "false");
                 canhazElement.appendChild(document.createElement('br'));
                 canhazElement.appendChild(span);
             });
             canhazImg.src = "assets/img/check-button.png";
         } else {
-            canhazElement.innerText = "Desculpe, seu navegador não suporta WebXR. Caso seja usuário de iPhone, faça o download do navegador WebXR Viewer e acesse novamente este site através dele. "
+            localStorage.setItem("isPossible", "false");
+            canhazElement.innerText = "Desculpe, seu navegador não suporta WebXR. Caso seja usuário de Android, tente novamente com o navegador Chrome. Caso seja usuário de iPhone, tente novamente com o navegador WebXR Viewer. "
             const a = document.createElement('a');
-            a.innerHTML = '<a href="https://apps.apple.com/us/app/webxr-viewer/id1295998056">Baixar WebXR Viewer!</a>';
+            a.innerHTML = '<br> <a href="https://apps.apple.com/us/app/webxr-viewer/id1295998056">Baixar WebXR Viewer</a> <br> <a href="https://play.google.com/store/apps/details?id=com.android.chrome&hl=pt_BR&gl=US">Baixar Chrome</a>';
             canhazElement.appendChild(a);
             canhazImg.src = "assets/img/x-button.png";
         }

@@ -22,7 +22,7 @@
 
 	<div id="content">
 		<div id="container" styles="position: fixed;"></div>
-		<button type="button" id="place-button">Adicionar</button>
+		<button type="button" id="place-button">ADICIONAR</button>
 	</div>
 
 	<!-- Import maps polyfill -->
@@ -56,7 +56,7 @@
 
 		let reticle;
 
-		var pmremGenerator, current_object, controls;
+		let pmremGenerator, current_object, controls;
 
 		let loadingBar = new LoadingBar();
 		loadingBar.visible = false;
@@ -80,8 +80,11 @@
 			const queryString = window.location.search;
 			const urlParams = new URLSearchParams(queryString);
 			const token = urlParams.get("token");
+			if (token == null) {
+				window.location.href = "index.html"
+			}
 			let arService = new ArService();
-			var data = {
+			let data = {
 				token,
 			};
 
@@ -114,14 +117,14 @@
 				.setPath('assets/hdr/')
 				.load('photo_studio_01_1k.hdr', function (texture) {
 
-					var envmap = pmremGenerator.fromEquirectangular(texture).texture;
+					const envmap = pmremGenerator.fromEquirectangular(texture).texture;
 
 					scene.environment = envmap;
 					texture.dispose();
 					pmremGenerator.dispose();
 					render();
 
-					var loader = new GLTFLoader()
+					const loader = new GLTFLoader()
 
 					loadingBar.visible = true;
 
@@ -143,7 +146,7 @@
 
 							arPlace();
 
-							var box = new THREE.Box3();
+							const box = new THREE.Box3();
 							box.setFromObject(current_object);
 							box.center(controls.target);
 
@@ -181,11 +184,11 @@
 			hemisphereLight.position.set(0.5, 1, 0.25);
 			scene.add(hemisphereLight);
 
-			var directionalLight = new THREE.DirectionalLight(0xdddddd, 1);
+			const directionalLight = new THREE.DirectionalLight(0xdddddd, 1);
 			directionalLight.position.set(0, 0, 1).normalize();
 			scene.add(directionalLight);
 
-			// var ambientLight = new THREE.AmbientLight(0x222222);
+			// const ambientLight = new THREE.AmbientLight(0x222222);
 			// scene.add(ambientLight);
 
 			//
@@ -214,7 +217,7 @@
 				optionalFeatures: ['dom-overlay'],
 			}
 
-			options.domOverlay = { root: document.getElementById('content') };
+			options.domOverlay = { root: document.body }; // { root: document.getElementById('content') };
 
 			document.body.appendChild(ARButton.createButton(renderer, options));
 
@@ -264,7 +267,7 @@
 
 		}
 
-		var touchDown, touchX, touchY, deltaX, deltaY;
+		let touchDown, touchX, touchY, deltaX, deltaY;
 
 		function rotateObject() {
 			if (current_object && reticle.visible) {
@@ -317,7 +320,7 @@
 
 						reticle.visible = false;
 
-						var box = new THREE.Box3();
+						const box = new THREE.Box3();
 						box.setFromObject(current_object);
 						box.center(controls.target);
 
