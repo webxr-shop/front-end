@@ -54,7 +54,7 @@ body {
     .sidenav a {font-size: 18px;}
   }
 
-  #place-button{
+  #place-button {
     /* position: absolute;
     bottom: 20px;
     left: calc(50% - 50px);
@@ -77,13 +77,12 @@ body {
     outline: none;
   }
 
-  #cart-button{
+  #cart-button {
     width: 100px;
     display: none;
-    top: calc(50% - 50px);
-    left: calc(50% - 50px);
+    right: 20px;
     position: absolute;
-    bottom: 20px;
+    top: 5px;
     padding: 12px 6px;
     border: 1px solid #fff;
     border-radius: 4px;
