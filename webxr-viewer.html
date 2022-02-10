@@ -118,8 +118,9 @@
 					if (current_object != null) {
 						scene.remove(current_object);
 					}
-
+					alert("1" + res.model.file_model);
 					loadModel(res.model.file_model);
+					alert("2" + res.model.file_model);
 					plot_list(res);
 				})
 				.catch((erro) => {
@@ -129,7 +130,7 @@
 		};
 
 		function plot_list(data) {
-
+			alert("3");
 			let count = localStorage.getItem("car");
 			let carrinho = document.getElementById("cart-number");
 			if (count == null || count == "") {
@@ -189,8 +190,6 @@
 
 		function loadModel(model) {
 
-
-			console.log(model.split("-")[model.split("-").length - 1]);
 			let rightModel = model.split("-")[model.split("-").length - 1];
 
 			new RGBELoader()
