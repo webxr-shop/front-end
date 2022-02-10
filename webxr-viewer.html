@@ -118,6 +118,7 @@
 					if (current_object != null) {
 						scene.remove(current_object);
 					}
+
 					loadModel(res.model.file_model);
 					plot_list(res);
 				})
@@ -188,6 +189,10 @@
 
 		function loadModel(model) {
 
+
+			console.log(model.split("-")[model.split("-").length - 1]);
+			let rightModel = model.split("-")[model.split("-").length - 1];
+
 			new RGBELoader()
 				.setDataType(THREE.UnsignedByteType)
 				.setPath('assets/hdr/')
@@ -200,8 +205,8 @@
 					pmremGenerator.dispose();
 					render();
 
-					const loader = new GLTFLoader();
-					// .setPath('assets/models/');
+					const loader = new GLTFLoader()
+						.setPath('assets/models/');
 
 					loadingBar.visible = true;
 
@@ -212,7 +217,7 @@
 					loader.load(
 
 						// model + ".glb",
-						model,
+						rightModel,
 
 						function (glb) {
 
