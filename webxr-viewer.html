@@ -13,7 +13,7 @@
 	<link rel='icon' type='image/png' sizes='32x32' href='assets/img/favicon-32x32.png'>
 	<link rel='icon' type='image/png' sizes='96x96' href='assets/img/favicon-96x96.png'>
 	<link type="text/css" rel="stylesheet" href="./css/webxr-viewer.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
 	<title>WebXR Viewer</title>
@@ -31,7 +31,7 @@
 		<div id="container" styles="position: fixed;"></div>
 
 		<button type="button" id="place-button">ADICIONAR</button>
-        <button type="button" id="cart-button"><i class="bi-cart-fill"></i> <span id="cart-number"></span></button>
+		<button type="button" id="cart-button"><i class="bi-cart-fill"></i> <span id="cart-number"></span></button>
 	</div>
 
 	<script>
@@ -96,7 +96,7 @@
 			arPlace();
 		});
 
-        $("#cart-button").click(function () {
+		$("#cart-button").click(function () {
 			arCart();
 		});
 
@@ -104,6 +104,9 @@
 			const queryString = window.location.search;
 			const urlParams = new URLSearchParams(queryString);
 			const token = urlParams.get("token");
+			if (token == null) {
+				window.location.href = "index.html"
+			}
 			let arService = new ArService();
 			let data = {
 				token,
@@ -126,16 +129,18 @@
 
 		function plot_list(data) {
 
-            let count = localStorage.getItem("car");
-            let carrinho = document.getElementById("cart-number");
-            if (count == null || count == "") {
-                carrinho.innerHTML = 0;
-            } else {
-                carrinho.innerHTML = count;
-            }
-
+			let count = localStorage.getItem("car");
+			let carrinho = document.getElementById("cart-number");
+			if (count == null || count == "") {
+				carrinho.innerHTML = 0;
+			} else {
+				carrinho.innerHTML = count;
+			}
+			console.log(data.model.category.name);
 			let list = document.getElementById("mySidenav");
-
+			let title = document.createElement("h3");
+			title.innerHTML = data.model.category.name;
+			list.appendChild(title);
 			for (let i = 0; i < data.models.length; i++) {
 				let a = document.createElement("a");
 				a.setAttribute("class", "ar-object");
@@ -149,13 +154,13 @@
 					loadModel(data.models[i].file_model);
 				};
 
-                let img = document.createElement("img");
-                img.setAttribute("src", data.models[i].thumb_model);
-                a.appendChild(img);
+				let img = document.createElement("img");
+				img.setAttribute("src", data.models[i].thumb_model);
+				a.appendChild(img);
 
-                let span = document.createElement("span");
-                span.innerHTML = `<br>${data.models[i].name_model} - R$${data.models[i].price}<br>Dimensões: ${data.models[i].dim_x}x${data.models[i].dim_y}x${data.models[i].dim_z} cm`;
-                a.appendChild(span);
+				let span = document.createElement("span");
+				span.innerHTML = `<br>${data.models[i].name_model} - R$${data.models[i].price}<br>Dimensões: ${data.models[i].dim_x}x${data.models[i].dim_y}x${data.models[i].dim_z} cm`;
+				a.appendChild(span);
 
 				list.appendChild(a);
 			}
@@ -168,18 +173,18 @@
 			}
 		}
 
-        function arCart() {
-            let car = localStorage.getItem("car");
-            if (car == null) {
-                car = 1;
-                localStorage.setItem("car", car);
-            } else {
-                let number = parseInt(car) + 1;
-                localStorage.setItem("car", number);
-            }
-            let carrinho = document.getElementById("cart-number");
-            carrinho.innerHTML = car;
-        }
+		function arCart() {
+			let car = localStorage.getItem("car");
+			if (car == null) {
+				car = 1;
+				localStorage.setItem("car", car);
+			} else {
+				let number = parseInt(car) + 1;
+				localStorage.setItem("car", number);
+			}
+			let carrinho = document.getElementById("cart-number");
+			carrinho.innerHTML = car;
+		}
 
 		function loadModel(model) {
 
@@ -217,7 +222,7 @@
 							loadingBar.visible = false;
 
 							arPlace();
-                            arCart();
+							arCart();
 
 							const box = new THREE.Box3();
 							box.setFromObject(current_object);
@@ -428,7 +433,7 @@
 
 				}
 
-                document.getElementById("cart-button").style.display = "block";
+				document.getElementById("cart-button").style.display = "block";
 
 			}
 

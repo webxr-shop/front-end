@@ -80,6 +80,9 @@
 			const queryString = window.location.search;
 			const urlParams = new URLSearchParams(queryString);
 			const token = urlParams.get("token");
+			if (token == null) {
+				window.location.href = "index.html"
+			}
 			let arService = new ArService();
 			let data = {
 				token,
@@ -214,7 +217,7 @@
 				optionalFeatures: ['dom-overlay'],
 			}
 
-            options.domOverlay = { root: document.body }; // { root: document.getElementById('content') };
+			options.domOverlay = { root: document.body }; // { root: document.getElementById('content') };
 
 			document.body.appendChild(ARButton.createButton(renderer, options));
 

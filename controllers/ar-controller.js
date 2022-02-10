@@ -2,7 +2,7 @@ import { ArService } from "../services/ar-service.js";
 
 export function getModel(token) {
     let arService = new ArService();
-    var data = {
+    let data = {
         token,
     };
 
@@ -26,7 +26,10 @@ function params(data) {
         window.location.href = data.model.link;
     };
 
-    var qrcode = new QRCode(document.getElementById("qrcode"), {
+    let url = document.getElementById("url_link");
+    url.setAttribute("value", data.model.link);
+
+    let qrcode = new QRCode(document.getElementById("qrcode"), {
         text: data.model.link,
         width: 250,
         height: 250,

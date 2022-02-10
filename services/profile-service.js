@@ -9,11 +9,11 @@ export class ProfileService {
         return this._http
             .post("profile/edit", data)
             .then((res) => {
-                alert(res);
+                alert("Perfil Atualizado");
             })
             .catch((erro) => {
                 console.log(erro);
-                alert(erro);
+                // alert(erro);
             });
     }
     getProfile(data) {

@@ -2,7 +2,7 @@ import { ProfileService } from "../services/profile-service.js";
 
 export function getProfile() {
     let profileService = new ProfileService();
-    var data = {
+    let data = {
         token: localStorage.getItem("token"),
     };
 
@@ -23,6 +23,7 @@ export function editProfile(e) {
     let check = true;
     if (e.target[3].value != e.target[4].value) {
         check = false;
+        alert("Senhas incompatíveis");
     }
     if (check) {
         let data = {
@@ -45,9 +46,9 @@ export function editProfile(e) {
 }
 
 function params(res) {
-    var name = document.getElementById("inputFirstName");
-    var lastName = document.getElementById("inputLastName");
-    var email = document.getElementById("inputEmail");
+    let name = document.getElementById("inputFirstName");
+    let lastName = document.getElementById("inputLastName");
+    let email = document.getElementById("inputEmail");
 
     name.value = res["client"]["name"];
     lastName.value = res["client"]["last_name"];

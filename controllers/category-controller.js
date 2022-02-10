@@ -47,8 +47,13 @@ export function categories() {
                 divName.innerHTML = res["_categories"][i]["name"];
                 let divCount = document.createElement("div");
 
+                let text =
+                    res["_categories"][i]["templates"].length == 1
+                        ? " modelo"
+                        : " modelos";
+
                 divCount.innerHTML =
-                    res["_categories"][i]["templates"].length + " modelos";
+                    res["_categories"][i]["templates"].length + text;
                 let div = document.createElement("div");
                 div.setAttribute(
                     "class",

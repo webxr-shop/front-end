@@ -27,7 +27,6 @@ export function create(e, file, img) {
             category_id: parseInt(e.target[0].value),
         };
 
-        console.log(reqs);
         createArService.confirmation(reqs);
     });
 }
@@ -104,22 +103,22 @@ export function editing(e, file, img, token) {
 
 export function getCategories() {
     let categoryService = new CategoryService();
-    var data = {
+    let data = {
         token: localStorage.getItem("token"),
     };
 
     categoryService
         .listCategories(data)
         .then((res) => {
-            var selects = document.getElementById("selectCategory");
-            var selectMain = document.createElement("option");
+            let selects = document.getElementById("selectCategory");
+            let selectMain = document.createElement("option");
             selectMain.selected = true;
             selectMain.innerHTML = "Selecione a categoria";
             selectMain.setAttribute("value", "");
             selectMain.setAttribute("id", "options");
             selects.appendChild(selectMain);
             for (let i = 0; i < res["_categories"].length; i++) {
-                var options = document.createElement("option");
+                let options = document.createElement("option");
                 options.setAttribute("value", res["_categories"][i]["id"]);
                 options.innerHTML = res["_categories"][i]["name"];
                 selects.appendChild(options);
@@ -133,7 +132,7 @@ export function getCategories() {
 
 export function getEdit(token) {
     let createArService = new CreateArService();
-    var data = {
+    let data = {
         token,
     };
 
@@ -149,18 +148,20 @@ export function getEdit(token) {
 }
 
 function params(res) {
-    console.log(res);
     setCategories(res["_template"]["category_id"]);
-    var name = document.getElementById("inputName");
-    var description = document.getElementById("inputDescription");
-    var price = document.getElementById("inputPrice");
-    var width = document.getElementById("inputWidth");
-    var height = document.getElementById("inputHeight");
-    var length = document.getElementById("inputLength");
+
+    let priceUs = res["_template"]["price"].toString();
+
+    let name = document.getElementById("inputName");
+    let description = document.getElementById("inputDescription");
+    let price = document.getElementById("inputPrice");
+    let width = document.getElementById("inputWidth");
+    let height = document.getElementById("inputHeight");
+    let length = document.getElementById("inputLength");
 
     name.value = res["_template"]["name_model"];
     description.value = res["_template"]["description_model"];
-    price.value = res["_template"]["price"];
+    price.value = priceUs.replace(".", ",");
     width.value = res["_template"]["dim_x"];
     height.value = res["_template"]["dim_y"];
     length.value = res["_template"]["dim_z"];
@@ -168,15 +169,15 @@ function params(res) {
 
 export function setCategories(category_id) {
     let categoryService = new CategoryService();
-    var data = {
+    let data = {
         token: localStorage.getItem("token"),
     };
 
     categoryService
         .listCategories(data)
         .then((res) => {
-            var selects = document.getElementById("selectCategory");
-            var selectMain = document.createElement("option");
+            let selects = document.getElementById("selectCategory");
+            let selectMain = document.createElement("option");
             for (let i = 0; i < res["_categories"].length; i++) {
                 if (category_id == res["_categories"][i]["id"]) {
                     selectMain.selected = true;
@@ -192,7 +193,7 @@ export function setCategories(category_id) {
 
             for (let i = 0; i < res["_categories"].length; i++) {
                 if (category_id != res["_categories"][i]["id"]) {
-                    var options = document.createElement("option");
+                    let options = document.createElement("option");
                     options.setAttribute("value", res["_categories"][i]["id"]);
                     options.innerHTML = res["_categories"][i]["name"];
                     selects.appendChild(options);
