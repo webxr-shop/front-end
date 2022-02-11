@@ -115,6 +115,7 @@
 			arService
 				.getModel(data)
 				.then((res) => {
+                    console.log("then");
 					if (current_object != null) {
 						scene.remove(current_object);
 					}
