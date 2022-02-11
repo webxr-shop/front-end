@@ -300,7 +300,7 @@
 				optionalFeatures: ['dom-overlay'],
 			}
 
-			options.domOverlay = { root: document.getElementById('content') }; // { root: document.body };
+			options.domOverlay = { root: document.body }; // { root:  document.getElementById('content') };
 
 			document.body.appendChild(ARButton.createButton(renderer, options));
 
