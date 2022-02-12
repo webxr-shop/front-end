@@ -1,4 +1,5 @@
 import { ArService } from "../services/ar-service.js";
+import { HttpService } from "../services/http-service.js";
 
 export function getModel(token) {
     let arService = new ArService();
@@ -37,4 +38,16 @@ function params(data) {
         colorLight: "#ffffff",
         correctLevel: QRCode.CorrectLevel.H,
     });
+}
+
+export function getModel2(data) {
+    let http = new HttpService();
+
+    return http
+        .post("models/get", data)
+        .then((res) => res)
+        .catch((erro) => {
+            console.log(erro);
+            alert(erro);
+        });
 }
