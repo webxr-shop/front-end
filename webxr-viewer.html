@@ -19,7 +19,7 @@
 	<title>WebXR Viewer</title>
 </head>
 
-<body id="body_onload">
+<body id="body">
 
 	<div id="content">
 		<div id="mySidenav" class="sidenav">
@@ -56,44 +56,6 @@
 		}
 	</script>
 
-
-	<script type="module">
-		import { getModel2 } from "./controllers/ar-controller.js";
-		document.getElementById("body_onload").onload = function () {
-			const queryString = window.location.search;
-			const urlParams = new URLSearchParams(queryString);
-			const token = urlParams.get("token");
-			if (token == null) {
-				window.location.href = "index.html"
-			}
-
-			let data = {
-				token,
-			};
-			console.log("Onload 4");
-			console.log(data)
-
-			getModel2(data)
-				.then((res) => {
-					console.log("then");
-					console.log(res)
-					// if (current_object != null) {
-					// 	scene.remove(current_object);
-					// }
-
-					loadModel(res.model.file_model);
-
-					plot_list(res);
-				})
-				.catch((erro) => {
-					console.log(erro);
-					alert(erro);
-				});
-		};
-
-	</script>
-
-
 	<script type="module">
 
 		import * as THREE from 'three';
@@ -104,9 +66,7 @@
 		import { DRACOLoader } from './jsm/loaders/DRACOLoader.js';
 		import { RoughnessMipmapper } from './jsm/utils/RoughnessMipmapper.js';
 		import { LoadingBar } from './jsm/utils/LoadingBar.js';
-		// import { getModel2 } from "./controllers/ar-controller.js";
-
-
+		import { getModelsAr } from "./controllers/ar-controller.js";
 
 		let container;
 		let camera, scene, renderer;
@@ -137,6 +97,38 @@
 		$("#cart-button").click(function () {
 			arCart();
 		});
+
+		document.getElementById("body").onload = function () {
+			const queryString = window.location.search;
+			const urlParams = new URLSearchParams(queryString);
+			const token = urlParams.get("token");
+			if (token == null) {
+				window.location.href = "index.html"
+			}
+
+			let data = {
+				token,
+			};
+			console.log("Onload 4");
+			console.log(data)
+
+			getModelsAr(data)
+				.then((res) => {
+					console.log("then");
+					console.log(res)
+					if (current_object != null) {
+						scene.remove(current_object);
+					}
+
+					loadModel(res.model.file_model);
+
+					plot_list(res);
+				})
+				.catch((erro) => {
+					console.log(erro);
+					alert(erro);
+				});
+		};
 
 		function plot_list(data) {
 
@@ -259,8 +251,6 @@
 						}
 					);
 				});
-
-
 		}
 
 		function init() {

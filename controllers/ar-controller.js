@@ -40,7 +40,7 @@ function params(data) {
     });
 }
 
-export function getModel2(data) {
+export function getModelsAr(data) {
     let http = new HttpService();
 
     return http
