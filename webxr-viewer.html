@@ -111,11 +111,14 @@
 			let data = {
 				token,
 			};
+	        console.log("Onload");
+			console.log(data)
 
 			arService
 				.getModel(data)
 				.then((res) => {
-                    console.log("then");
+					console.log("then");
+					console.log(res)
 					if (current_object != null) {
 						scene.remove(current_object);
 					}
