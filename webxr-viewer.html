@@ -66,6 +66,7 @@
 		import { DRACOLoader } from './jsm/loaders/DRACOLoader.js';
 		import { RoughnessMipmapper } from './jsm/utils/RoughnessMipmapper.js';
 		import { LoadingBar } from './jsm/utils/LoadingBar.js';
+		import { getModelsAr } from "./controllers/ar-controller.js";
 
 		let container;
 		let camera, scene, renderer;
@@ -98,7 +99,7 @@
 		});
 
 		$("#body").ready(function () {
-			import { getModelsAr } from "./controllers/ar-controller.js";
+
 			const queryString = window.location.search;
 			const urlParams = new URLSearchParams(queryString);
 			const token = urlParams.get("token");
@@ -124,7 +125,7 @@
 					console.log(erro);
 					alert(erro);
 				});
-		})
+		});
 
 
 
