@@ -97,10 +97,7 @@
 		$("#cart-button").click(function () {
 			arCart();
 		});
-		console.log("re-zero");
 
-		// window.onload = (function () {
-		console.log("Onload 1");
 		const queryString = window.location.search;
 		const urlParams = new URLSearchParams(queryString);
 		const token = urlParams.get("token");
@@ -126,11 +123,7 @@
 				console.log(erro);
 				alert(erro);
 			});
-		// });
 
-		// document.getElementById("body").onload = function () {
-
-		// };
 
 		function plot_list(data) {
 
@@ -230,7 +223,6 @@
 							loadingBar.visible = false;
 
 							arPlace();
-							arCart();
 
 							const box = new THREE.Box3();
 							box.setFromObject(current_object);
