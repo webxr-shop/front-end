@@ -59,6 +59,7 @@
 	<script type="module">
 
 		import * as THREE from 'three';
+		import { getModelsAr } from "./controllers/ar-controller.js";
 		import { ARButton } from './jsm/webxr/ARButton.js';
 		import { OrbitControls } from './jsm/controls/OrbitControls.js';
 		import { GLTFLoader } from './jsm/loaders/GLTFLoader.js';
@@ -66,7 +67,6 @@
 		import { DRACOLoader } from './jsm/loaders/DRACOLoader.js';
 		import { RoughnessMipmapper } from './jsm/utils/RoughnessMipmapper.js';
 		import { LoadingBar } from './jsm/utils/LoadingBar.js';
-		import { getModelsAr } from "./controllers/ar-controller.js";
 
 		let container;
 		let camera, scene, renderer;
@@ -99,34 +99,34 @@
 		});
 		console.log("re-zero");
 
-		window.onload = (function () {
-			console.log("Onload 1");
-			const queryString = window.location.search;
-			const urlParams = new URLSearchParams(queryString);
-			const token = urlParams.get("token");
-			if (token == null) {
-				window.location.href = "index.html"
-			}
+		// window.onload = (function () {
+		console.log("Onload 1");
+		const queryString = window.location.search;
+		const urlParams = new URLSearchParams(queryString);
+		const token = urlParams.get("token");
+		if (token == null) {
+			window.location.href = "index.html"
+		}
 
-			let data = {
-				token,
-			};
+		let data = {
+			token,
+		};
 
 
-			getModelsAr(data)
-				.then((res) => {
-					console.log("Then");
-					if (current_object != null) {
-						scene.remove(current_object);
-					}
-					loadModel(res.model.file_model);
-					plot_list(res);
-				})
-				.catch((erro) => {
-					console.log(erro);
-					alert(erro);
-				});
-		});
+		getModelsAr(data)
+			.then((res) => {
+				console.log("Then");
+				if (current_object != null) {
+					scene.remove(current_object);
+				}
+				loadModel(res.model.file_model);
+				plot_list(res);
+			})
+			.catch((erro) => {
+				console.log(erro);
+				alert(erro);
+			});
+		// });
 
 		// document.getElementById("body").onload = function () {
 
