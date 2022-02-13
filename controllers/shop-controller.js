@@ -81,7 +81,7 @@ function params(res) {
     description.innerHTML = res.model.description_model;
 
     let size = document.getElementById("size");
-    size.innerHTML = `${res.model.dim_x}cm largura - ${res.model.dim_y}cm altura - ${res.model.dim_z}cm profundidade`;
+    size.innerHTML = `${res.model.dim_x}cm largura<br>${res.model.dim_y}cm altura<br>${res.model.dim_z}cm profundidade`;
 
     let supported = localStorage.getItem("isPossible");
     let car = document.getElementById("car");
@@ -114,6 +114,7 @@ export function addCarrinho() {
     }
     let carrinho = document.getElementById("carrinho");
     carrinho.innerHTML = car;
+    alert("Você adicionou item ao carrinho");
 }
 export function deleteCar() {
     localStorage.removeItem("car");

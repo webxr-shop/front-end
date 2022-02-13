@@ -159,7 +159,7 @@ export function models(category_id) {
         })
         .catch((erro) => {
             console.log(erro);
-            alert(erro);
+            // alert(erro);
         });
 }
 

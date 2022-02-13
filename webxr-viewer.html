@@ -97,6 +97,7 @@
 		$("#cart-button").click(function () {
 			arCart();
 		});
+		console.log("re-zero")
 
 		document.getElementById("body").onload = function () {
 			const queryString = window.location.search;
@@ -109,19 +110,16 @@
 			let data = {
 				token,
 			};
-			console.log("Onload 4");
-			console.log(data)
+			console.log("Onload");
+
 
 			getModelsAr(data)
 				.then((res) => {
 					console.log("then");
-					console.log(res)
 					if (current_object != null) {
 						scene.remove(current_object);
 					}
-
 					loadModel(res.model.file_model);
-
 					plot_list(res);
 				})
 				.catch((erro) => {
@@ -187,13 +185,13 @@
 			}
 			let carrinho = document.getElementById("cart-number");
 			carrinho.innerHTML = car;
+			alert("Você adicionou item ao carrinho");
 		}
 
 		function loadModel(model) {
 
 			let rightModel = model.split("-")[model.split("-").length - 1];
-			console.log(rightModel);
-			console.log("television_01_4k_v2.glb")
+
 
 			new RGBELoader()
 				.setDataType(THREE.UnsignedByteType)

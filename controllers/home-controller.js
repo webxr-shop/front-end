@@ -23,7 +23,7 @@ export function models() {
                             <a href="model-viewer.html?token=${res._templates[i].token}">
                                 <div class="sb-nav-link-icon">
                                     <i class="fas fa-link"></i>
-                                    Visualizar
+                                    <p class="d-none d-sm-block">Visualizar</p>
                                 </div>
                             </a>
                         </div>
@@ -31,7 +31,7 @@ export function models() {
                             <a href="edit-ar.html?token=${res._templates[i].token}">
                                 <div class="sb-nav-link-icon">
                                     <i class="fas fa-edit"></i>
-                                    Editar
+                                    <p class="d-none d-sm-block">Editar</p>
                                 </div>
                             </a>
                         </div>
@@ -39,7 +39,7 @@ export function models() {
                             <a id="${res._templates[i].token}" key="${res._templates[i].token}" href=# >
                                 <div class="sb-nav-link-icon">
                                     <i class="fas fa-trash"></i>
-                                    Excluir
+                                    <p class="d-none d-sm-block">Excluir</p>
                                 </div>
                             </a>
                         </div>
@@ -51,6 +51,7 @@ export function models() {
                 data.push(array);
             }
             tables(data);
+
             for (let i = 0; i < res._templates.length; i++) {
                 document.getElementById(res._templates[i].token).onclick =
                     function () {
@@ -72,6 +73,6 @@ export function models() {
         })
         .catch((erro) => {
             console.log(erro);
-            alert(erro);
+            // alert(erro);
         });
 }
