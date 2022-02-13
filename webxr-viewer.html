@@ -97,9 +97,10 @@
 		$("#cart-button").click(function () {
 			arCart();
 		});
-		console.log("re-zero")
+		console.log("re-zero");
 
-		document.getElementById("body").onload = function () {
+		window.onload = (function () {
+			console.log("Onload 1");
 			const queryString = window.location.search;
 			const urlParams = new URLSearchParams(queryString);
 			const token = urlParams.get("token");
@@ -110,12 +111,11 @@
 			let data = {
 				token,
 			};
-			console.log("Onload");
 
 
 			getModelsAr(data)
 				.then((res) => {
-					console.log("then");
+					console.log("Then");
 					if (current_object != null) {
 						scene.remove(current_object);
 					}
@@ -126,7 +126,11 @@
 					console.log(erro);
 					alert(erro);
 				});
-		};
+		});
+
+		// document.getElementById("body").onload = function () {
+
+		// };
 
 		function plot_list(data) {
 
