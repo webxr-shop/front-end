@@ -44,20 +44,27 @@ function plot_list(data) {
         div.innerHTML = `<div class="col mb-5">
         <div class="card h-100">
 
-        <img class="card-img-top" src="${data._templates[i].thumb_model}" alt="..." />
+        <img class="card-img-top" src="${
+            data._templates[i].thumb_model
+        }" alt="..." />
 
         <div class="card-body p-4">
         <div class="text-center">
 
         <h5 class="fw-bolder">${data._templates[i].name_model}</h5>
 
-        R$ ${data._templates[i].price}
+        ${data._templates[i].price.toLocaleString("pt-BR", {
+            style: "currency",
+            currency: "BRL",
+        })}
         </div>
         </div>
 
         <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
         <div class="text-center">
-        <a class="btn btn-outline-dark mt-auto" href="shop-item.html?token=${data._templates[i].token}">Comprar</a>
+        <a class="btn btn-outline-dark mt-auto" href="shop-item.html?token=${
+            data._templates[i].token
+        }">Comprar</a>
         </div>
         </div>
         </div>
@@ -75,7 +82,10 @@ function params(res) {
     title.innerHTML = res.model.name_model;
 
     let price = document.getElementById("price");
-    price.innerHTML = `R$ ${res.model.price}`;
+    price.innerHTML = `${res.model.price.toLocaleString("pt-BR", {
+        style: "currency",
+        currency: "BRL",
+    })}`;
 
     let description = document.getElementById("description");
     description.innerHTML = res.model.description_model;
