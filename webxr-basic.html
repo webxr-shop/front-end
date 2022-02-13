@@ -75,8 +75,7 @@
 			arPlace();
 		});
 
-
-		document.getElementById("body").onload = function () {
+		$("#body").ready(function () {
 			const queryString = window.location.search;
 			const urlParams = new URLSearchParams(queryString);
 			const token = urlParams.get("token");
@@ -101,7 +100,7 @@
 					console.log(erro);
 					throw new Error(erro);
 				});
-		};
+		});
 
 		function arPlace() {
 			if (reticle.visible) {
