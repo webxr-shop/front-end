@@ -33,6 +33,7 @@ export function shopItem(token) {
 }
 
 function plot_list(data) {
+    document.getElementById("load").hidden = true;
     let count = localStorage.getItem("car");
     let carrinho = document.getElementById("carrinho");
     carrinho.innerHTML = count == null ? 0 : count;
@@ -75,6 +76,8 @@ function plot_list(data) {
 }
 
 function params(res) {
+    document.getElementById("load").hidden = true;
+    document.getElementById("imgs").hidden = false;
     let img = document.getElementById("imgs");
     img.setAttribute("src", res.model.thumb_model);
 
