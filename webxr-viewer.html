@@ -59,7 +59,6 @@
 	<script type="module">
 
 		import * as THREE from 'three';
-		import { getModelsAr } from "./controllers/ar-controller.js";
 		import { ARButton } from './jsm/webxr/ARButton.js';
 		import { OrbitControls } from './jsm/controls/OrbitControls.js';
 		import { GLTFLoader } from './jsm/loaders/GLTFLoader.js';
@@ -98,31 +97,36 @@
 			arCart();
 		});
 
-		const queryString = window.location.search;
-		const urlParams = new URLSearchParams(queryString);
-		const token = urlParams.get("token");
-		if (token == null) {
-			window.location.href = "index.html"
-		}
+		$("#body").ready(function () {
+			import { getModelsAr } from "./controllers/ar-controller.js";
+			const queryString = window.location.search;
+			const urlParams = new URLSearchParams(queryString);
+			const token = urlParams.get("token");
+			if (token == null) {
+				window.location.href = "index.html"
+			}
 
-		let data = {
-			token,
-		};
+			let data = {
+				token,
+			};
 
 
-		getModelsAr(data)
-			.then((res) => {
-				console.log("Then");
-				if (current_object != null) {
-					scene.remove(current_object);
-				}
-				loadModel(res.model.file_model);
-				plot_list(res);
-			})
-			.catch((erro) => {
-				console.log(erro);
-				alert(erro);
-			});
+			getModelsAr(data)
+				.then((res) => {
+					console.log("Then");
+					if (current_object != null) {
+						scene.remove(current_object);
+					}
+					loadModel(res.model.file_model);
+					plot_list(res);
+				})
+				.catch((erro) => {
+					console.log(erro);
+					alert(erro);
+				});
+		})
+
+
 
 
 		function plot_list(data) {
