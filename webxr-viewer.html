@@ -157,7 +157,8 @@
 				a.appendChild(img);
 
 				let span = document.createElement("span");
-				span.innerHTML = `<br>${data.models[i].name_model} - R$${data._templates[i].price.toLocaleString("pt-BR", {style: "currency", currency: "BRL"})}<br>Dimensões: ${data.models[i].dim_x}x${data.models[i].dim_y}x${data.models[i].dim_z} cm`;
+                span.innerHTML = `<br>${data.models[i].name_model} - R$${data.models[i].price}<br>Dimensões: ${data.models[i].dim_x}x${data.models[i].dim_y}x${data.models[i].dim_z} cm`;
+				// span.innerHTML = `<br>${data.models[i].name_model} - R$${data._templates[i].price.toLocaleString("pt-BR", {style: "currency", currency: "BRL"})}<br>Dimensões: ${data.models[i].dim_x}x${data.models[i].dim_y}x${data.models[i].dim_z} cm`;
 				a.appendChild(span);
 
 				list.appendChild(a);

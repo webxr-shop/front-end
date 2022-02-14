@@ -45,7 +45,9 @@ function plot_list(data) {
         div.innerHTML = `<div class="col mb-5">
         <div class="card h-100">
 
-        <img class="card-img-top" src="${
+        <img class="card-img-top" href="shop-item.html?token=${
+            data._templates[i].token
+        }" src="${
             data._templates[i].thumb_model
         }" alt="..." />
 
