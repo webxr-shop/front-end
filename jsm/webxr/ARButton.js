@@ -57,7 +57,7 @@ class ARButton {
 				button.textContent = 'FINALIZAR';
 
                 button.onclick = function() {
-                    window.location.href = 'index.html';
+                    window.location.href = 'https://forms.gle/xg9Nmtsfqvan9bbY6';
                 };
 
 				sessionInit.domOverlay.root.style.display = '';
