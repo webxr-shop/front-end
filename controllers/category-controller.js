@@ -110,6 +110,9 @@ export function models(category_id) {
             let title3 = document.getElementById("name3");
             title3.innerHTML = res.category.name;
 
+            let title4 = document.getElementById("titleCat");
+            title4.innerHTML = res.category.name + " - Plataforma WebXR";
+
             let data = [];
             for (let i = 0; i < res._templates.length; i++) {
                 let array = [
