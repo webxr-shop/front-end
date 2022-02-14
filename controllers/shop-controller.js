@@ -96,7 +96,7 @@ function params(res) {
     description.innerHTML = res.model.description_model;
 
     let size = document.getElementById("size");
-    size.innerHTML = `${res.model.dim_x}cm largura<br>${res.model.dim_y}cm altura<br>${res.model.dim_z}cm profundidade`;
+    size.innerHTML = `Largura: ${res.model.dim_x}cm<br>Altura: ${res.model.dim_y}cm<br>Profundidade: ${res.model.dim_z}cm`;
 
     let supported = localStorage.getItem("isPossible");
     let car = document.getElementById("car");
