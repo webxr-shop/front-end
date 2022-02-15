@@ -42,36 +42,36 @@ function plot_list(data) {
 
     for (let i = 0; i < data._templates.length; i++) {
         let div = document.createElement("div");
-        div.innerHTML = `<div class="col mb-5">
-        <div class="card h-100">
+        div.setAttribute("class", "col mb-5");
+        div.innerHTML = `
+            <div class="card h-100">
 
-        <a href="shop-item.html?token=${
-            data._templates[i].token
-        }"><img class="card-img-top" src="${
-            data._templates[i].thumb_model
-        }" alt="..." /></a>
+                <a href="shop-item.html?token=${
+                    data._templates[i].token
+                }"><img class="card-img-top" src="${
+                    data._templates[i].thumb_model
+                }" alt="..." /></a>
 
-        <div class="card-body p-4">
-        <div class="text-center">
+                <div class="card-body p-4">
+                    <div class="text-center">
 
-        <h5 class="fw-bolder">${data._templates[i].name_model}</h5>
+                        <p class="fw-bolder">${data._templates[i].name_model}</p>
 
-        ${data._templates[i].price.toLocaleString("pt-BR", {
-            style: "currency",
-            currency: "BRL",
-        })}
-        </div>
-        </div>
+                        ${data._templates[i].price.toLocaleString("pt-BR", {
+                            style: "currency",
+                            currency: "BRL",
+                        })}
+                    </div>
+                </div>
 
-        <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-        <div class="text-center">
-        <a class="btn btn-outline-dark mt-auto" href="shop-item.html?token=${
-            data._templates[i].token
-        }">Comprar</a>
-        </div>
-        </div>
-        </div>
-        </div>`;
+                <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                    <div class="text-center">
+                        <a class="btn btn-outline-dark mt-auto" href="shop-item.html?token=${
+                            data._templates[i].token
+                        }">Comprar</a>
+                    </div>
+                </div>
+            </div>`;
 
         list.appendChild(div);
     }
