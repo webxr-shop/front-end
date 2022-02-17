@@ -28,6 +28,11 @@ export function categories() {
     categoryService
         .getCategories(data)
         .then((res) => {
+            if (res._categories.length != 0) {
+                document.getElementById("banner").hidden = true;
+            } else {
+                document.getElementById("categories").hidden = true;
+            }
             for (let i = 0; i < res["_categories"].length; i++) {
                 let color = colors[getRandomIntInclusive(0, colors.length - 1)];
 

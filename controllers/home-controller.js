@@ -50,6 +50,12 @@ export function models() {
 
                 data.push(array);
             }
+            if (res._templates.length != 0) {
+                document.getElementById("banner").hidden = true;
+            } else {
+                document.getElementById("infos").hidden = true;
+            }
+
             tables(data);
 
             for (let i = 0; i < res._templates.length; i++) {
