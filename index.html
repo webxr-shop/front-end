@@ -119,20 +119,20 @@
         let canhazElement = document.getElementById('canhazwebxr');
         let canhazImg = document.getElementById('canhazimg');
         if (!isMobile(window)) {
-            // canhazElement.innerText = "O WebXR Shop é compatível apenas com dispositivos móveis (smartphones). Para melhor experiência, acesse novamente este site através de um dispositivo compatível!"
-            canhazElement.innerText = "Suporta Realidade Aumentada"
+            canhazElement.innerText = "O WebXR Shop é compatível apenas com dispositivos móveis (smartphones). Para melhor experiência, acesse novamente este site através de um dispositivo compatível!"
             canhazImg.src = "assets/img/info-button.png";
             localStorage.setItem("isPossible", "false");
-        // } else if ('xr' in navigator) {
-        //     canhazElement.innerText = "Seu navegador pode executar experiências de Realidade Aumentada se você estiver usando um sistema operacional compatível e o hardware apropriado."
-        //     navigator.xr.isSessionSupported('immersive-ar').then((supported) => {
-        //         const span = document.createElement('span');
-        //         span.innerText = supported ? '✔️ Suporta Realidade Aumentada' : '❌ Não suporta Realidade Aumentada';
-        //         supported ? localStorage.setItem("isPossible", "true") : localStorage.setItem("isPossible", "false");
-        //         canhazElement.appendChild(document.createElement('br'));
-        //         canhazElement.appendChild(span);
-        //     });
-        //     canhazImg.src = "assets/img/check-button.png";
+        } else if ('xr' in navigator) {
+            canhazElement.innerText = "Suporta Realidade Aumentada!"
+            // canhazElement.innerText = "Seu navegador pode executar experiências de Realidade Aumentada se você estiver usando um sistema operacional compatível e o hardware apropriado."
+            // navigator.xr.isSessionSupported('immersive-ar').then((supported) => {
+            //     const span = document.createElement('span');
+            //     span.innerText = supported ? '✔️ Suporta Realidade Aumentada' : '❌ Não suporta Realidade Aumentada';
+            //     supported ? localStorage.setItem("isPossible", "true") : localStorage.setItem("isPossible", "false");
+            //     canhazElement.appendChild(document.createElement('br'));
+            //     canhazElement.appendChild(span);
+            // });
+            canhazImg.src = "assets/img/check-button.png";
         } else {
             localStorage.setItem("isPossible", "false");
             canhazElement.innerText = "Desculpe, seu navegador não suporta WebXR. Caso seja usuário de Android, tente novamente com o navegador Chrome. Caso seja usuário de iPhone, tente novamente com o navegador WebXR Viewer. "
