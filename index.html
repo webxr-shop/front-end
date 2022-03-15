@@ -70,7 +70,7 @@
     <header class="bg-dark py-5">
         <div class="container px-4 px-lg-5 my-5">
             <div class="text-center text-white">
-                <!-- <h1 class="display-4 fw-bolder">WebXR Shop</h1> -->
+                <h1 class="display-4 fw-bolder">WebXR Shop</h1>
             </div>
             <!-- Verificação de compatibilidade -->
             <div>
@@ -123,15 +123,14 @@
             canhazImg.src = "assets/img/info-button.png";
             localStorage.setItem("isPossible", "false");
         } else if ('xr' in navigator) {
-            canhazElement.innerText = "Suporta Realidade Aumentada!"
-            // canhazElement.innerText = "Seu navegador pode executar experiências de Realidade Aumentada se você estiver usando um sistema operacional compatível e o hardware apropriado."
-            // navigator.xr.isSessionSupported('immersive-ar').then((supported) => {
-            //     const span = document.createElement('span');
-            //     span.innerText = supported ? '✔️ Suporta Realidade Aumentada' : '❌ Não suporta Realidade Aumentada';
-            //     supported ? localStorage.setItem("isPossible", "true") : localStorage.setItem("isPossible", "false");
-            //     canhazElement.appendChild(document.createElement('br'));
-            //     canhazElement.appendChild(span);
-            // });
+            canhazElement.innerText = "Seu navegador pode executar experiências de Realidade Aumentada se você estiver usando um sistema operacional compatível e o hardware apropriado."
+            navigator.xr.isSessionSupported('immersive-ar').then((supported) => {
+                const span = document.createElement('span');
+                span.innerText = supported ? '✔️ Suporta Realidade Aumentada' : '❌ Não suporta Realidade Aumentada';
+                supported ? localStorage.setItem("isPossible", "true") : localStorage.setItem("isPossible", "false");
+                canhazElement.appendChild(document.createElement('br'));
+                canhazElement.appendChild(span);
+            });
             canhazImg.src = "assets/img/check-button.png";
         } else {
             localStorage.setItem("isPossible", "false");
